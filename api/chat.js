@@ -39,7 +39,7 @@ AutoStore、GTP、3PL/4PL、RaaS、
 上記と無関係な質問には「それは私の管轄外だ」と一言で返す。
 
 【文字数】
-必ず1000文字以内に収めること。専門用語には簡単な補足を入れる。`;
+必ず500文字以内に収めること。専門用語には簡単な補足を入れる。`;
 
 module.exports = async function handler(req, res) {
   const origin = req.headers['origin'] || '';
@@ -116,7 +116,7 @@ module.exports = async function handler(req, res) {
           },
           contents,
           generationConfig: {
-            maxOutputTokens: 1000,
+            maxOutputTokens: 1500,
             temperature: 0.7,
           },
         }),
