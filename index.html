@@ -625,7 +625,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .pm-shipper-box .player-role{font-size:10px;font-weight:800;color:#c4870a;letter-spacing:.5px;margin-bottom:2px;text-transform:uppercase;}
 .pm-shipper-box .player-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;}
 .player-sub{font-size:10px;color:var(--muted);line-height:1.4;}
-.pm-split{display:flex;width:80%;max-width:560px;justify-content:space-between;position:relative;height:32px;}
+.pm-split{display:flex;width:100%;max-width:560px;justify-content:space-between;position:relative;height:32px;}
 .pm-split::before,.pm-split::after{content:'';position:absolute;top:0;width:2px;height:32px;background:var(--muted2);}
 .pm-split::before{left:25%;}
 .pm-split::after{right:25%;}
@@ -633,10 +633,10 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .pm-split-left{left:0;transform:translateX(20%);}
 .pm-split-right{right:0;transform:translateX(-20%);}
 .pm-two-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:560px;align-items:start;}
-.pm-track{display:flex;flex-direction:column;align-items:center;}
-.pm-track .player-box{width:100%;}
+.pm-track{display:flex;flex-direction:column;align-items:center;min-width:0;}
+.pm-track .player-box{width:100%;box-sizing:border-box;word-break:break-word;}
 .pm-merge-arrow{font-size:10px;color:var(--muted);font-weight:700;padding:6px 0;}
-.pm-three-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;}
+.pm-three-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:560px;}
 .player-here-tag{margin-top:8px;padding:3px 8px;background:var(--sb);color:#fff;border-radius:20px;font-size:10px;font-weight:800;display:inline-block;}
 .player-box .player-sub{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
 
@@ -2272,7 +2272,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .pm-shipper-box .player-role{font-size:10px;font-weight:800;color:#c4870a;letter-spacing:.5px;margin-bottom:2px;text-transform:uppercase;}
 .pm-shipper-box .player-name{font-size:13px;font-weight:800;color:var(--text);margin-bottom:4px;}
 .player-sub{font-size:10px;color:var(--muted);line-height:1.4;}
-.pm-split{display:flex;width:80%;max-width:560px;justify-content:space-between;position:relative;height:32px;}
+.pm-split{display:flex;width:100%;max-width:560px;justify-content:space-between;position:relative;height:32px;}
 .pm-split::before,.pm-split::after{content:'';position:absolute;top:0;width:2px;height:32px;background:var(--muted2);}
 .pm-split::before{left:25%;}
 .pm-split::after{right:25%;}
@@ -2280,10 +2280,10 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .pm-split-left{left:0;transform:translateX(20%);}
 .pm-split-right{right:0;transform:translateX(-20%);}
 .pm-two-tracks{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:560px;align-items:start;}
-.pm-track{display:flex;flex-direction:column;align-items:center;}
-.pm-track .player-box{width:100%;}
+.pm-track{display:flex;flex-direction:column;align-items:center;min-width:0;}
+.pm-track .player-box{width:100%;box-sizing:border-box;word-break:break-word;}
 .pm-merge-arrow{font-size:10px;color:var(--muted);font-weight:700;padding:6px 0;}
-.pm-three-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;}
+.pm-three-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;width:100%;max-width:560px;}
 .player-here-tag{margin-top:8px;padding:3px 8px;background:var(--sb);color:#fff;border-radius:20px;font-size:10px;font-weight:800;display:inline-block;}
 .player-box .player-sub{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4;}
 
@@ -2858,331 +2858,9 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
     <div class="sep"></div>
     <div style="font-size:10px;color:var(--muted2);font-family:'DM Mono',monospace;white-space:nowrap;">更新：2025年5月</div>
   </div>
-</div>
-
-<div class="tabs">
-  <button class="tab active" data-tab="map">🌐 業界マップ</button>
-  <button class="tab" data-tab="matrix">📊 ソリューションマトリクス</button>
-  <button class="tab" data-tab="cases">📋 事例集</button>
-  <button class="tab" data-tab="market">📈 市場調査</button>
-  <button class="tab" data-tab="reading">ハシビロコウの業界ガイド</button>
-</div>
-
-<div class="main">
-  <!-- MAP -->
-  <div id="view-map" class="view active">
-    <div class="help-bar">
-      <button class="help-toggle" id="help-map-btn"><span>💡 このマップの見方</span><span class="arr">▼</span></button>
-      <div class="help-content" id="help-map">
-        <div class="help-section"><h4>📊 縦軸：資本グループ</h4><p>倉庫自動化への<strong>投資コミットメント額</strong>が大きい順に並べています。同じ行にいる企業はグループ内の関係会社です。</p></div>
-        <div class="help-section"><h4>↔️ 横軸：関わり方</h4><p><strong>ハード製造</strong>：ロボット・設備を作る<br><strong>ソフト開発</strong>：WMS・AI・制御ソフトを作る<br><strong>SI・代理販売</strong>：設計・統合・販売をする<br>※同一企業が複数列に登場するのは正常です</p></div>
-        <div class="help-section"><h4>⭐ SBGroupについて</h4><div class="sbg-note">AutoStore出資($2.8B) + ABB Robotics買収($5.375B) + GreenBox JV($7.5B受注残) ＝ <strong>業界最大規模のコミットメント</strong>。ハード・ソフト・SI全方位をカバー。</div></div>
-      </div>
-      <div class="help-content open" id="help-search" style="display:block;padding:10px 20px;border-top:1px solid var(--border);background:var(--surface2);">
-        <div style="font-size:11px;color:var(--muted);display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-          <span style="font-weight:700;color:var(--text2)">🔍 検索のヒント：</span>
-          <span>会社名・技術名・業種など部分一致で検索できます。</span>
-          <span style="background:var(--border);padding:1px 7px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;">GTP</span>
-          <span style="background:var(--border);padding:1px 7px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;">AMR</span>
-          <span style="background:var(--border);padding:1px 7px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;">医薬品</span>
-          <span style="background:var(--border);padding:1px 7px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;">SBG</span>
-          <span style="background:var(--border);padding:1px 7px;border-radius:20px;font-family:'DM Mono',monospace;font-size:10px;">Walmart</span>
-          <span style="color:var(--muted2)">— 事例集タブでは荷主名（例：ユニクロ／虎の穴／ニトリ）でも検索できます。表記ゆれにも対応。</span>
-        </div>
-      </div>
-    </div>
-    <div class="map-scroll"><div class="imap" id="imap"></div></div>
   </div>
-
-  <!-- MATRIX -->
-  <div id="view-matrix" class="view">
-    <div class="help-bar">
-      <button class="help-toggle" id="help-matrix-btn"><span>💡 このマトリクスの見方</span><span class="arr">▼</span></button>
-      <div class="help-content" id="help-matrix">
-        <div class="help-section"><h4>↕️ 縦軸：倉庫オペレーション工程</h4><p>入荷→保管→水平搬送→垂直搬送→ピッキング→仕分け→出荷→ソフト・制御の順。実際の倉庫内の物の流れに沿った構成です。</p></div>
-        <div class="help-section"><h4>↔️ 横軸：ソリューション種別</h4><p>工程ごとに使われる技術・製品カテゴリ（GTP・AMR・WMS等）で列を分けています。同一企業が複数セルに登場するのは正常です。</p></div>
-        <div class="help-section"><h4>🌐 業界マップとの使い分け</h4><p><strong>業界マップ</strong>→「誰がどの役割で稼いでいるか」<br><strong>このマトリクス</strong>→「どの工程にどの技術・企業があるか」</p></div>
-      </div>
-    </div>
-    <div class="matrix-scroll"><div class="matrix" id="matrix" style="--cols:4"></div></div>
   </div>
-
-  <!-- CASES -->
-  <div id="view-cases" class="view">
-    <div class="help-bar" style="flex-shrink:0;">
-      <div style="display:flex;align-items:center;gap:10px;padding:9px 20px 4px;flex-wrap:wrap;">
-        <span style="font-size:11px;font-weight:700;color:var(--text2);width:32px;flex-shrink:0;">業種</span>
-        <div id="case-filter-industry" class="case-filters"></div>
-        <span id="case-count" style="font-size:11px;color:var(--muted);margin-left:auto;flex-shrink:0;"></span>
-      </div>
-      <div style="display:flex;align-items:center;gap:10px;padding:0 20px 9px;flex-wrap:wrap;">
-        <span style="font-size:11px;font-weight:700;color:var(--text2);width:32px;flex-shrink:0;">工程</span>
-        <div id="case-filter-proc" class="case-filters"></div>
-      </div>
-    </div>
-    <div class="cases-scroll">
-      <div id="cases-grid" class="cases-grid"></div>
-    </div>
   </div>
-
-  <!-- MARKET RESEARCH -->
-  <div id="view-market" class="view" style="overflow-y:auto;">
-    <div class="market-wrap">
-
-      <!-- ══ Executive Summary ══ -->
-      <div class="market-exec-summary" style="background:linear-gradient(135deg,#f8f9fc,#f0f4fa);border:1.5px solid var(--border2);">
-        <div class="market-exec-title" style="color:var(--text);">📊 自動倉庫・ASRS 市場調査レポート</div>
-        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border2);">
-          国内JILS統計・主要プレイヤーのIRデータ・各社公開情報をもとに、自動倉庫市場のトレンド・AutoStoreの財務的な位置づけ・競合動向を整理した調査資料。
-        </div>
-        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">主な発見</div>
-        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;">
-          <li style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="background:#0e8f6e;color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">①</span>
-            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
-              <strong style="color:var(--text);">コンベヤ・垂直搬送機への投資が縮小し、自動倉庫・自律走行ロボット系にシフト</strong><br>
-              国内自動倉庫は前年比+11.4%（全機器中最高成長）、台車系も+9.7%（内：無軌道+35.2%）と好調。一方、コンベヤ系△1.4%、垂直搬送機△19.8%と大幅減。固定的な搬送ラインから、柔軟に組み替えられる保管・ピッキング自動化への投資シフトが読み取れる。
-              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 JILS 2024年度</span>
-            </span>
-          </li>
-          <li style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="background:var(--sb);color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">②</span>
-            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
-              <strong style="color:var(--text);">AutoStoreは売上微減でも粗利率73%（過去最高）。製造・設置をパートナーに委ねるモデルが収益耐性の源泉</strong><br>
-              FY2022の$736MをピークにFY2024は$601Mと微減。ただし粗利率・EBITDAはともに過去最高を更新。KION/Dematic（SCSセグメント）が同期間に△22%と大幅減した局面でも収益構造を維持しており、カスタム大型案件依存のインテグレーター型との差が鮮明になっている。
-              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 AutoStore IR FY2024</span>
-            </span>
-          </li>
-          <li style="display:flex;gap:12px;align-items:flex-start;">
-            <span style="background:var(--text2);color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">③</span>
-            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
-              <strong style="color:var(--text);">AMR・ACR系が最も勢い。シャトル型は高金利で苦戦。キューブ型は収益耐性で差別化</strong><br>
-              棚搬送型AMRとACR型は国内でも新規参入が相次ぎ最も成長中（JILS台車系+9.7%・無軌道+35.2%）。シャトル型を中心とするKION/DematicはSCSセグメントで-22%と苦戦。キューブ型のAutoStoreは売上微減も粗利率73%（過去最高）を維持し、収益構造の強さで差別化している。
-              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 JILS・各社IR</span>
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      <!-- 凡例 -->
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px;">
-        <span class="mlabel mlabel-fact">🟢 事実：公的統計・上場企業IR</span>
-        <span class="mlabel mlabel-supp">⚪ 補助資料：民間調査・業界紙・非上場企業公開情報</span>
-        <span class="mlabel mlabel-warn">⚠️ 注記：定義・範囲の違い</span>
-      </div>
-
-      <!-- ══ 1. 自動倉庫市場のトレンド ══ -->
-      <section class="market-section">
-        <div class="market-section-h">
-          <span class="market-section-num">1</span>
-          自動倉庫市場のトレンド
-        </div>
-
-        <!-- JILS 5年推移 -->
-        <div class="market-card" style="margin-bottom:14px;">
-          <div class="market-card-h">国内 物流システム機器 生産出荷 5年推移 <span class="mlabel mlabel-fact">🟢</span></div>
-          <div class="market-barchart" id="mbc-jils5yr"></div>
-          <div class="market-source">JILS 物流システム機器生産出荷統計 2024年度版（単位：億円）</div>
-        </div>
-
-        <!-- カテゴリ別前年比 -->
-        <div class="market-card" style="margin-bottom:14px;">
-          <div class="market-card-h">商材カテゴリ別 前年比（JILS 2024年度）<span class="mlabel mlabel-fact" style="margin-left:6px;">🟢</span></div>
-          <div class="market-table-wrap">
-            <table class="market-table">
-              <thead>
-                <tr><th>カテゴリ</th><th>売上（百万円）</th><th style="text-align:center;">前年比</th><th>読み方</th></tr>
-              </thead>
-              <tbody>
-                <tr class="hl-row"><td><strong>自動倉庫</strong></td><td><strong>147,098</strong></td><td style="text-align:center;color:#0e8f6e;font-weight:800;">+11.4%</td><td>全機器中 最高成長率。キューブ型・シャトル型の需要増が牽引</td></tr>
-                <tr class="hl-row"><td><strong>台車系</strong>（無軌道 +35.2%）</td><td><strong>182,039</strong></td><td style="text-align:center;color:#0e8f6e;font-weight:700;">+9.7%</td><td>AMR・AGF含む無軌道が大幅増。搬送自動化の主役が移行中</td></tr>
-                <tr><td>コンピュータ・WMS</td><td>54,083</td><td style="text-align:center;color:#0e8f6e;font-weight:800;">+18.7%</td><td>ソフトウェア投資が加速。ただし大手ITベンダーは含まない⚠️</td></tr>
-                <tr><td>コンベヤ系</td><td>144,746</td><td style="text-align:center;color:#b04040;">△1.4%</td><td>ケース搬送コンベヤが△16.2%。固定型設備から移行している可能性</td></tr>
-                <tr><td>垂直搬送機</td><td>13,725</td><td style="text-align:center;color:#b04040;font-weight:800;">△19.8%</td><td>大幅減。省人化投資が自動倉庫・AMRにシフトしている示唆</td></tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="market-note" style="margin-top:8px;">自動倉庫・台車系が伸び、コンベヤ・垂直搬送が減少。「搬送ライン」から「保管・ピッキング自動化」への投資シフトが読み取れる。</div>
-        </div>
-
-        <!-- 方式別整理 -->
-        <div class="market-card-h" style="font-size:14px;margin-bottom:10px;">自動倉庫は1種類ではない — 方式別の特徴と競合関係</div>
-        <div class="market-method-grid">
-          <div class="method-card">
-            <div class="method-card-name">📦 パレット型 AS/RS</div>
-            <div class="method-card-desc">大型・低頻度・パレット単位。高さ40m超も可。Daifuku・Murata・SSI Schaefer</div>
-            <div style="font-size:12px;color:#3d8b5e;font-weight:700;margin-top:6px;">AutoStoreとの関係：競合外（対象が異なる）</div>
-          </div>
-          <div class="method-card">
-            <div class="method-card-name">🔄 ケース型シャトル（Mini-load）</div>
-            <div class="method-card-desc">中SKU・中頻度・ケース単位。Knapp OSR Shuttle・Dematic Multishuttle</div>
-            <div style="font-size:12px;color:#a07800;font-weight:700;margin-top:6px;">AutoStoreとの関係：中SKU帯で競合</div>
-          </div>
-          <div class="method-card method-hl">
-            <div class="method-card-name">⬛ キューブ型グリッド ← AutoStore</div>
-            <div class="method-card-desc">小〜中物・超高密度・高頻度。グリッド上でロボットが自律移動</div>
-            <div style="font-size:12px;color:var(--sb);font-weight:700;margin-top:6px;">超高密度・標準化・24/7稼働が特徴</div>
-          </div>
-          <div class="method-card">
-            <div class="method-card-name">🤖 ACR（自律ケースハンドリング）</div>
-            <div class="method-card-desc">キューブ型より柔軟・既存ラック流用可。HAI Robotics・Geek+ RoboShuttle</div>
-            <div style="font-size:12px;color:#a07800;font-weight:700;margin-top:6px;">AutoStoreとの関係：柔軟性訴求で競合</div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ 2. AutoStoreの現在地 ══ -->
-      <section class="market-section">
-        <div class="market-section-h">
-          <span class="market-section-num">2</span>
-          AutoStoreの現在地
-        </div>
-
-        <!-- 売上推移チャート -->
-        <div class="market-card" style="margin-bottom:14px;">
-          <div class="market-card-h">AutoStore 売上推移 <span class="mlabel mlabel-fact">🟢 IR</span></div>
-          <div class="market-barchart" id="mbc-autostore-rev"></div>
-          <div class="market-source">AutoStore Holdings 公式IR（OSE:AUTO）Annual Report</div>
-          <div class="market-note" style="margin-top:10px;">2022年をピークに微減。高金利によるグローバルCapEx投資抑制が主因で、競合の大手インテグレーター（KION/Dematic -21%）よりも下落幅は小さい。一方で粗利率・EBITDAは過去最高を更新しており、標準化されたプラットフォームモデルの収益耐性が示されている。</div>
-        </div>
-
-        <!-- KPI 3枚 -->
-        <div class="market-kpi-grid" style="margin-bottom:14px;">
-          <div class="market-kpi kpi-hl">
-            <div class="market-kpi-num">USD 601.4M</div>
-            <div class="market-kpi-label">2024通期売上 <span class="mlabel mlabel-fact">🟢</span></div>
-            <div class="market-kpi-sub">ガイダンス（$575-600M）を上回り達成</div>
-          </div>
-          <div class="market-kpi kpi-hl">
-            <div class="market-kpi-num">73.1%</div>
-            <div class="market-kpi-label">粗利率 FY2024（過去最高）<span class="mlabel mlabel-fact">🟢</span></div>
-            <div class="market-kpi-sub">調整後EBITDAマージン 47.0%。業界最高水準</div>
-          </div>
-          <div class="market-kpi kpi-hl">
-            <div class="market-kpi-num">約1,650</div>
-            <div class="market-kpi-label">累計設置システム数 <span class="mlabel mlabel-fact">🟢</span></div>
-            <div class="market-kpi-sub">58カ国展開。累計ロボット64,500台（2023年時点）</div>
-          </div>
-        </div>
-
-        <!-- プラットフォームモデル説明 -->
-        <div class="market-card">
-          <div class="market-card-h">なぜ粗利率73%か — プラットフォーム型 vs インテグレーター型</div>
-          <div class="market-grid2">
-            <div style="background:linear-gradient(135deg,#fff8f4,#fff0e6);border:1.5px solid rgba(255,102,0,.3);border-radius:10px;padding:16px 18px;">
-              <div style="font-size:14px;font-weight:900;color:var(--sb);margin-bottom:12px;">⬛ AutoStore（プラットフォーム型）</div>
-              <div style="font-size:13px;color:var(--text2);line-height:1.9;">
-                売上 ＝ ロボット・グリッド・ポートの販売<br>
-                　　＋ ソフトウェアライセンス・保証<br>
-                COGS ＝ ロボット製造コストのみ<br>
-                <strong>設置・調整 ＝ パートナーが担当</strong><br>
-                → パートナーコストはAutoStoreのCOGSに入らない<br>
-                → 粗利率 <strong style="color:var(--sb);font-size:16px;">73.1%</strong>
-              </div>
-            </div>
-            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;">
-              <div style="font-size:14px;font-weight:900;color:var(--text2);margin-bottom:12px;">Daifuku等（インテグレーター型）</div>
-              <div style="font-size:13px;color:var(--text2);line-height:1.9;">
-                売上 ＝ 設計〜設置〜調整まで一括請負<br>
-                　　＋ ソフトウェア・保守<br>
-                COGS ＝ 製造 ＋ 設置人件費 ＋ 現地工事費<br>
-                <strong>設置・調整 ＝ 自社工事部隊が担当</strong><br>
-                → 工事コストがCOGSに全額計上される<br>
-                → 粗利率 <strong>15〜25%程度</strong>
-              </div>
-            </div>
-          </div>
-          <div class="market-note" style="margin-top:12px;">
-            <strong>🟢 数値の根拠：</strong>AutoStore Holdings Q4 2024 Annual Results（OSE上場・監査済み）に開示された実績値。計算式は（$601.4M − 約$162M）÷ $601.4M ≈ 73.1%。COGSはロボット等の製造原価のみ。設置・調整・WMS連携はパートナー負担のためAutoStoreのCOGSに入らない。Daifukuの粗利率は同社Annual Report（FY2024）を参照。
-          </div>
-        </div>
-      </section>
-
-      <!-- ══ 3. 競合プレイヤーの動向 ══ -->
-      <section class="market-section">
-        <div class="market-section-h">
-          <span class="market-section-num">3</span>
-          競合プレイヤーの動向
-        </div>
-
-        <!-- 技術タイプ別フレームワーク -->
-        <div class="market-note" style="margin-bottom:16px;">
-          GTPでケース・ピース単位の保管・ピッキングを自動化するソリューションは<strong>技術方式を問わず基本的に競合</strong>。以下は国内で販売・導入が確認できているもの。技術タイプ別に整理することで、どの土俵で競合するかが見えやすくなる。
-        </div>
-
-        <!-- 技術タイプ別カード（5タイプ）-->
-        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;">
-
-          <div class="method-card method-hl" style="grid-column:1/-1;">
-            <div class="method-card-name" style="font-size:14px;">⬛ キューブ型グリッド</div>
-            <div class="method-card-desc">グリッド上をロボットが移動しビンを取り出す。高密度が最大の強み。AutoStoreが元祖。</div>
-            <div style="font-size:12px;color:var(--sb);font-weight:700;margin-top:4px;">★ AutoStore（SBR販売）</div>
-          </div>
-
-          <div class="method-card">
-            <div class="method-card-name">🤖 ACR型（自律ケースハンドリング）</div>
-            <div class="method-card-desc">ロボットが棚の間を移動しトートを取り出す。既存ラック流用可・短期展開が特徴。</div>
-            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：HAI Robotics（HaiPick）、Geek+（RoboShuttle）</div>
-          </div>
-
-          <div class="method-card">
-            <div class="method-card-name">🔄 3D移動型</div>
-            <div class="method-card-desc">ロボットが3次元に自由移動。天井高を最大限活用でき、レイアウト変更に強い。</div>
-            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：Exotec（Skypod）</div>
-          </div>
-
-          <div class="method-card">
-            <div class="method-card-name">📦 棚搬送型AMR（GTP）</div>
-            <div class="method-card-desc">棚ごとロボットが搬送しピッキングステーションへ届ける。導入ハードルが低い。</div>
-            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：Geek+（AMR）、Rapyuta ASRS</div>
-          </div>
-
-          <div class="method-card">
-            <div class="method-card-name">🔁 シャトル型ケースASRS</div>
-            <div class="method-card-desc">専用シャトルがラック内を走行しケースを出し入れ。高スループット・高可用性。</div>
-            <div style="font-size:12px;color:#a07800;font-weight:700;margin-top:4px;">競合：Dematic（Multishuttle）、Knapp（OSR Shuttle）、SSI Schaefer</div>
-          </div>
-
-        </div>
-
-
-
-      </section>
-
-      <!-- ══ 出典 ══ -->
-      <section class="market-section">
-        <div class="market-section-h">
-          <span class="market-section-num">出典</span>
-          出典一覧
-        </div>
-        <div class="market-sources-grid">
-          <div class="market-source-item">
-            <div class="market-source-ch">章 1</div>
-            <div class="market-source-name">JILS 物流システム機器生産出荷統計 2024年度版</div>
-            <div class="market-source-note">公益社団法人日本ロジスティクスシステム協会 <span class="market-source-badge msb-ok">✅</span></div>
-          </div>
-          <div class="market-source-item">
-            <div class="market-source-ch">章 2・3</div>
-            <div class="market-source-name">AutoStore Holdings Q4 2024 Results（OSE:AUTO）</div>
-            <div class="market-source-note"><a href="https://investors.autostoresystem.com" target="_blank">investors.autostoresystem.com</a> <span class="market-source-badge msb-ok">✅</span></div>
-          </div>
-          <div class="market-source-item">
-            <div class="market-source-ch">章 3</div>
-            <div class="market-source-name">KION Group Annual Report 2024 / Daifuku Annual Report FY2024 / Symbotic 10-K FY2024 / Geek+ IPO目論見書（HKEX 2025）</div>
-            <div class="market-source-note">各社上場企業の公式開示資料 <span class="market-source-badge msb-ok">✅</span></div>
-          </div>
-          <div class="market-source-item">
-            <div class="market-source-ch">章 3</div>
-            <div class="market-source-name">JETRO「日本の投資環境 成功事例：Exotec」/ Geek+ 日本法人PR / HAI ROBOTICS JAPAN公式</div>
-            <div class="market-source-note">日本進出状況の参照元 ⚪ <span class="market-source-badge msb-ok">✅</span></div>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
-
-
   <!-- READING (BUSINESS PRIMER) -->
   <div id="view-reading" class="view" style="overflow-y:auto;">
     <div class="reading-wrap">
