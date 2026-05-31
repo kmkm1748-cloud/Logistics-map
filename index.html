@@ -1282,36 +1282,38 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
     <div class="market-wrap">
 
       <!-- ══ Executive Summary ══ -->
-      <div class="market-exec-summary">
-        <!-- レポート概要 -->
-        <div style="margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1);">
-          <div class="market-exec-title">📊 自動倉庫・ASRS 市場調査レポート</div>
-          <div style="font-size:13px;color:rgba(255,255,255,.6);line-height:1.75;max-width:660px;">
-            国内JILS統計・主要プレイヤーのIRデータ・各社公開情報をもとに、<strong style="color:rgba(255,255,255,.85);">自動倉庫市場のトレンド・AutoStoreの財務的な位置づけ・競合動向</strong>を整理した調査資料。営業活動の前提知識として活用することを目的とする。
-          </div>
+      <div class="market-exec-summary" style="background:linear-gradient(135deg,#f8f9fc,#f0f4fa);border:1.5px solid var(--border2);">
+        <div class="market-exec-title" style="color:var(--text);">📊 自動倉庫・ASRS 市場調査レポート</div>
+        <div style="font-size:12px;color:var(--muted);margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border2);">
+          国内JILS統計・主要プレイヤーのIRデータ・各社公開情報をもとに、自動倉庫市場のトレンド・AutoStoreの財務的な位置づけ・競合動向を整理した調査資料。
         </div>
-        <!-- 主な発見 -->
-        <div style="font-size:10px;font-weight:800;color:rgba(255,255,255,.35);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;">主な発見</div>
-        <div class="market-exec-grid" style="grid-template-columns:repeat(3,1fr);">
-          <div class="market-exec-card">
-            <div class="market-exec-badge">🟢 JILS 2024年度 / 事実</div>
-            <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,.35);margin-bottom:5px;letter-spacing:.5px;">① 市場トレンド</div>
-            <div class="market-exec-label">投資が「搬送」から「保管・ピッキング自動化」にシフト中</div>
-            <div class="market-exec-body">国内自動倉庫は+11.4%で全機器中最高成長。コンベヤ・垂直搬送は減少傾向。AutoStoreが属するキューブ型ASRSへの需要が拡大している。</div>
-          </div>
-          <div class="market-exec-card market-exec-hl">
-            <div class="market-exec-badge">🟢 AutoStore IR FY2024 / 事実</div>
-            <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,.35);margin-bottom:5px;letter-spacing:.5px;">② AutoStoreの位置づけ</div>
-            <div class="market-exec-label">売上微減でも粗利73%。プラットフォームモデルが収益耐性の源泉</div>
-            <div class="market-exec-body">製造・設置をパートナーに委ねCOGSを圧縮。大手統合型（KION/Dematic -21%）が苦しんだ局面でも高収益構造を維持している。</div>
-          </div>
-          <div class="market-exec-card">
-            <div class="market-exec-badge">🟢 各社IR・公開情報 / 事実</div>
-            <div style="font-size:10px;font-weight:900;color:rgba(255,255,255,.35);margin-bottom:5px;letter-spacing:.5px;">③ 競合動向</div>
-            <div class="market-exec-label">大手は高金利で苦戦。中国・新興勢が日本でも本格展開中</div>
-            <div class="market-exec-body">Geek+は日本でAMRシェアNo.1、ExotecはUNIQLO実績で攻勢。技術・ビジネスモデルが3タイプに分かれ、競合の性格がそれぞれ異なる。</div>
-          </div>
-        </div>
+        <div style="font-size:10px;font-weight:800;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;">主な発見</div>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:14px;">
+          <li style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="background:#0e8f6e;color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">①</span>
+            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
+              <strong style="color:var(--text);">コンベヤ・垂直搬送機への投資が縮小し、自動倉庫・自律走行ロボット系にシフト</strong><br>
+              国内自動倉庫は前年比+11.4%（全機器中最高成長）、台車系も+9.7%（内：無軌道+35.2%）と好調。一方、コンベヤ系△1.4%、垂直搬送機△19.8%と大幅減。固定的な搬送ラインから、柔軟に組み替えられる保管・ピッキング自動化への投資シフトが読み取れる。
+              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 JILS 2024年度</span>
+            </span>
+          </li>
+          <li style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="background:var(--sb);color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">②</span>
+            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
+              <strong style="color:var(--text);">AutoStoreは売上微減でも粗利率73%（過去最高）。製造・設置をパートナーに委ねるモデルが収益耐性の源泉</strong><br>
+              FY2022の$736MをピークにFY2024は$601Mと微減。ただし粗利率・EBITDAはともに過去最高を更新。KION/Dematic（SCSセグメント）が同期間に△22%と大幅減した局面でも収益構造を維持しており、カスタム大型案件依存のインテグレーター型との差が鮮明になっている。
+              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 AutoStore IR FY2024</span>
+            </span>
+          </li>
+          <li style="display:flex;gap:12px;align-items:flex-start;">
+            <span style="background:var(--text2);color:#fff;font-weight:900;font-size:11px;flex-shrink:0;padding:2px 7px;border-radius:20px;margin-top:2px;">③</span>
+            <span style="font-size:13px;color:var(--text2);line-height:1.7;">
+              <strong style="color:var(--text);">AMR・ACR系が最も勢い。シャトル型は高金利で苦戦。キューブ型は収益耐性で差別化</strong><br>
+              棚搬送型AMRとACR型は国内でも新規参入が相次ぎ最も成長中（JILS台車系+9.7%・無軌道+35.2%）。シャトル型を中心とするKION/DematicはSCSセグメントで-22%と苦戦。キューブ型のAutoStoreは売上微減も粗利率73%（過去最高）を維持し、収益構造の強さで差別化している。
+              <span class="mlabel mlabel-fact" style="margin-left:4px;">🟢 JILS・各社IR</span>
+            </span>
+          </li>
+        </ul>
       </div>
 
       <!-- 凡例 -->
@@ -1455,152 +1457,162 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
           競合プレイヤーの動向
         </div>
 
-        <!-- タイプ別説明 -->
-        <div class="market-grid3" style="margin-bottom:16px;">
-          <div class="market-card" style="margin-bottom:0;border-top:3px solid var(--text2);">
-            <div class="market-card-h" style="color:var(--text2);">大手統合型インテグレーター</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.7;">設計〜設置〜保守まで一括。大型カスタム案件が主体。Daifuku・KION/Dematicが代表。売上規模は最大だが高金利局面で大幅減。</div>
-          </div>
-          <div class="market-card" style="margin-bottom:0;border-top:3px solid var(--sb);">
-            <div class="market-card-h" style="color:var(--sb);">プラットフォーム型</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.7;">標準化された製品をパートナー経由で展開。AutoStore・Symbotic。製造・設置を分離することで超高粗利を実現。売上は大手より小さいが収益構造が別物。</div>
-          </div>
-          <div class="market-card" style="margin-bottom:0;border-top:3px solid #0e8f6e;">
-            <div class="market-card-h" style="color:#0e8f6e;">中国・新興プレイヤー</div>
-            <div style="font-size:12px;color:var(--muted);line-height:1.7;">AMR・ACRを中心に急成長。Geek+・HAI Robotics・Exotec。柔軟性・低コスト・短期展開を訴求。ほとんどが赤字継続中だが日本市場にも本格進出。</div>
-          </div>
+        <!-- 技術タイプ別フレームワーク -->
+        <div class="market-note" style="margin-bottom:16px;">
+          GTPでケース・ピース単位の保管・ピッキングを自動化するソリューションは<strong>技術方式を問わず基本的に競合</strong>。以下は国内で販売・導入が確認できているもの。技術タイプ別に整理することで、どの土俵で競合するかが見えやすくなる。
         </div>
 
-        <!-- 全体比較テーブル -->
+        <!-- 技術タイプ別カード（5タイプ）-->
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:20px;">
+
+          <div class="method-card method-hl" style="grid-column:1/-1;">
+            <div class="method-card-name" style="font-size:14px;">⬛ キューブ型グリッド</div>
+            <div class="method-card-desc">グリッド上をロボットが移動しビンを取り出す。高密度が最大の強み。AutoStoreが元祖。</div>
+            <div style="font-size:12px;color:var(--sb);font-weight:700;margin-top:4px;">★ AutoStore（SBR販売）</div>
+          </div>
+
+          <div class="method-card">
+            <div class="method-card-name">🤖 ACR型（自律ケースハンドリング）</div>
+            <div class="method-card-desc">ロボットが棚の間を移動しトートを取り出す。既存ラック流用可・短期展開が特徴。</div>
+            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：HAI Robotics（HaiPick）、Geek+（RoboShuttle）</div>
+          </div>
+
+          <div class="method-card">
+            <div class="method-card-name">🔄 3D移動型</div>
+            <div class="method-card-desc">ロボットが3次元に自由移動。天井高を最大限活用でき、レイアウト変更に強い。</div>
+            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：Exotec（Skypod）</div>
+          </div>
+
+          <div class="method-card">
+            <div class="method-card-name">📦 棚搬送型AMR（GTP）</div>
+            <div class="method-card-desc">棚ごとロボットが搬送しピッキングステーションへ届ける。導入ハードルが低い。</div>
+            <div style="font-size:12px;color:#c0392b;font-weight:700;margin-top:4px;">競合：Geek+（AMR）、Rapyuta ASRS</div>
+          </div>
+
+          <div class="method-card">
+            <div class="method-card-name">🔁 シャトル型ケースASRS</div>
+            <div class="method-card-desc">専用シャトルがラック内を走行しケースを出し入れ。高スループット・高可用性。</div>
+            <div style="font-size:12px;color:#a07800;font-weight:700;margin-top:4px;">競合：Dematic（Multishuttle）、Knapp（OSR Shuttle）、SSI Schaefer</div>
+          </div>
+
+        </div>
+
+        <!-- 競合詳細テーブル -->
         <div class="market-card" style="margin-bottom:16px;">
-          <div class="market-card-h">売上トレンド比較 <span class="mlabel mlabel-warn" style="margin-left:4px;">⚠️ 通貨・年度・範囲が異なるため単純比較不可</span></div>
+          <div class="market-card-h">国内販売確認済み 競合一覧 — メーカー × 日本販売体制 <span class="mlabel mlabel-supp">⚪ 公開情報ベース</span></div>
           <div class="market-table-wrap">
             <table class="market-table" style="min-width:700px;">
               <thead>
                 <tr>
-                  <th style="text-align:center;width:36px;padding:7px 6px;">国</th>
-                  <th>会社</th>
-                  <th>タイプ</th>
-                  <th>FY2022</th>
-                  <th>FY2023</th>
-                  <th>FY2024</th>
-                  <th>トレンド</th>
-                  <th>技術</th>
+                  <th style="width:110px;">技術タイプ</th>
+                  <th>メーカー</th>
+                  <th>製品</th>
+                  <th>日本での販売</th>
+                  <th style="width:90px;">販売形態</th>
+                  <th>日本導入実績（参考）</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇯🇵</td>
-                  <td><strong>Daifuku</strong><br><span style="font-size:10px;color:var(--muted);">TSE上場</span></td>
-                  <td><span style="font-size:11px;color:var(--text2);">大手統合型</span></td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥602B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥611B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥751B</td>
-                  <td><span class="market-trend-up">↑急成長</span><br><span style="font-size:10px;color:var(--muted);">⚠️ 全事業（半導体・空港含む）</span></td>
-                  <td style="font-size:11px;">パレット型ASRS・コンベヤ・AGV一括</td>
-                </tr>
-                <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇩🇪</td>
-                  <td><strong>KION/Dematic</strong><br><span style="font-size:10px;color:var(--muted);">MDAX上場</span></td>
-                  <td><span style="font-size:11px;color:var(--text2);">大手統合型</span></td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">€3.81B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">€3.00B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">€2.94B</td>
-                  <td><span class="market-trend-dn">↓大幅減</span><br><span style="font-size:10px;color:var(--muted);">SCS（倉庫自動化）セグメントのみ</span></td>
-                  <td style="font-size:11px;">シャトル・コンベヤ・ソーター一括</td>
-                </tr>
+                <!-- キューブ型 -->
                 <tr class="hl-row">
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇳🇴</td>
-                  <td><strong>AutoStore ★</strong><br><span style="font-size:10px;color:var(--muted);">OSE上場</span></td>
-                  <td><span style="font-size:11px;color:var(--sb);">プラットフォーム型</span></td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$736M</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$616M</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$601M</td>
-                  <td><span class="market-trend-dn">↓微減</span><br><span style="font-size:10px;color:var(--muted);">粗利・EBITDAは過去最高</span></td>
-                  <td style="font-size:11px;">キューブ型グリッド（元祖）</td>
+                  <td style="font-weight:700;color:var(--sb);">⬛ キューブ型</td>
+                  <td><span style="font-size:18px;">🇳🇴</span> <strong>AutoStore</strong><br><span style="font-size:10px;color:var(--muted);">OSE上場</span></td>
+                  <td style="font-size:12px;">AutoStore System</td>
+                  <td>
+                    <strong style="color:var(--sb);">SBR</strong>（グローバル認定ディストリビューター）<br>
+                    <strong>オカムラ</strong>（正規販売店・2014年〜国内初導入）
+                  </td>
+                  <td><span style="font-size:11px;background:rgba(255,102,0,.1);color:var(--sb);padding:2px 6px;border-radius:10px;font-weight:700;">認定パートナー複数</span></td>
+                  <td style="font-size:11px;">国内50カ所以上（2024年時点）</td>
+                </tr>
+                <!-- ACR型 -->
+                <tr>
+                  <td style="font-weight:700;color:#c0392b;" rowspan="3">🤖 ACR型</td>
+                  <td><span style="font-size:18px;">🇨🇳</span> <strong>HAI Robotics</strong><br><span style="font-size:10px;color:var(--muted);">未上場・深圳</span></td>
+                  <td style="font-size:12px;">HaiPick（ACR）</td>
+                  <td><strong>HAI ROBOTICS JAPAN</strong></td>
+                  <td><span style="font-size:11px;background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:10px;font-weight:700;">自社日本法人</span></td>
+                  <td style="font-size:11px;">EC・アパレル向け複数実績</td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇺🇸</td>
-                  <td><strong>Symbotic</strong><br><span style="font-size:10px;color:var(--muted);">NASDAQ上場</span></td>
-                  <td><span style="font-size:11px;color:var(--sb);">プラットフォーム型</span></td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$0.6B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$1.34B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">$1.77B</td>
-                  <td><span class="market-trend-up">↑急成長</span><br><span style="font-size:10px;color:var(--muted);">Walmart 42 RDC・受注残$22.8B</span></td>
-                  <td style="font-size:11px;">パレット→ケース一貫（大規模特化）</td>
+                  <td><span style="font-size:18px;">🇨🇳</span> <strong>Geek+</strong><br><span style="font-size:10px;color:var(--muted);">HKEX上場・北京</span></td>
+                  <td style="font-size:12px;">RoboShuttle V5</td>
+                  <td><strong>Geek+ Japan</strong></td>
+                  <td><span style="font-size:11px;background:#e3f2fd;color:#1565c0;padding:2px 6px;border-radius:10px;font-weight:700;">日本JV</span></td>
+                  <td style="font-size:11px;">国内展開中（AMRと並行）</td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇨🇳</td>
-                  <td><strong>Geek+</strong><br><span style="font-size:10px;color:var(--muted);">HKEX上場</span></td>
-                  <td><span style="font-size:11px;color:#0e8f6e;">中国・新興</span></td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥1.45B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥2.14B</td>
-                  <td style="font-family:'DM Mono',monospace;font-size:12px;">¥2.41B</td>
-                  <td><span class="market-trend-up">↑急成長</span><br><span style="font-size:10px;color:var(--muted);">赤字継続。粗利率34.8%（改善中）</span></td>
-                  <td style="font-size:11px;">AMR主体。ACR（RoboShuttle）も展開</td>
+                  <td><span style="font-size:18px;">🇨🇳</span> <strong>Hikrobot</strong><br><span style="font-size:10px;color:var(--muted);">Hikvision子会社</span></td>
+                  <td style="font-size:12px;">CTU（カートン搬送）</td>
+                  <td><strong>フォクスター（Phoxter）他</strong></td>
+                  <td><span style="font-size:11px;background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-weight:700;">代理店</span></td>
+                  <td style="font-size:11px;">製造業・倉庫業で導入増加中</td>
+                </tr>
+                <!-- 3D移動型 -->
+                <tr>
+                  <td style="font-weight:700;color:#c0392b;">🔄 3D移動型</td>
+                  <td><span style="font-size:18px;">🇫🇷</span> <strong>Exotec</strong><br><span style="font-size:10px;color:var(--muted);">未上場・ユニコーン</span></td>
+                  <td style="font-size:12px;">Skypod（次世代版）</td>
+                  <td><strong>EXOTEC NIHON株式会社</strong><br><span style="font-size:10px;color:var(--muted);">東京都港区、2020年設立</span></td>
+                  <td><span style="font-size:11px;background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:10px;font-weight:700;">自社日本法人</span></td>
+                  <td style="font-size:11px;">UNIQLO・ヨドバシカメラ・三井不動産MFLP</td>
+                </tr>
+                <!-- 棚搬送型AMR -->
+                <tr>
+                  <td style="font-weight:700;color:#c0392b;" rowspan="3">📦 棚搬送型AMR</td>
+                  <td><span style="font-size:18px;">🇨🇳</span> <strong>Geek+</strong><br><span style="font-size:10px;color:var(--muted);">HKEX上場・北京</span></td>
+                  <td style="font-size:12px;">AMR（棚搬送GTP）</td>
+                  <td><strong>Geek+ Japan</strong></td>
+                  <td><span style="font-size:11px;background:#e3f2fd;color:#1565c0;padding:2px 6px;border-radius:10px;font-weight:700;">日本JV</span></td>
+                  <td style="font-size:11px;">トヨタ・アスクル。国内AMRシェアNo.1</td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇨🇳</td>
-                  <td><strong>HAI Robotics</strong><br><span style="font-size:10px;color:var(--muted);">未上場</span></td>
-                  <td><span style="font-size:11px;color:#0e8f6e;">中国・新興</span></td>
-                  <td colspan="3" style="text-align:center;color:var(--muted);font-size:12px;">非公開（累計1,100件超 ⚪）</td>
-                  <td><span class="market-trend-uk">不明</span></td>
-                  <td style="font-size:11px;">ACR。12m高さ・1〜2ヶ月で展開可</td>
+                  <td><span style="font-size:18px;">🇯🇵</span> <strong>Rapyuta Robotics</strong><br><span style="font-size:10px;color:var(--muted);">未上場・東京（ETH Zurich系）</span></td>
+                  <td style="font-size:12px;">ラピュタASRS</td>
+                  <td><strong>自社（東京本社）</strong><br><span style="font-size:10px;color:var(--muted);">Panasonic Connect提携</span></td>
+                  <td><span style="font-size:11px;background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:10px;font-weight:700;">日本本社</span></td>
+                  <td style="font-size:11px;">アルプス物流・東京エコール・アクタス等</td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇫🇷</td>
-                  <td><strong>Exotec</strong><br><span style="font-size:10px;color:var(--muted);">未上場・ユニコーン</span></td>
-                  <td><span style="font-size:11px;color:#0e8f6e;">欧州・新興</span></td>
-                  <td colspan="3" style="text-align:center;color:var(--muted);font-size:12px;">非公開（累計売上$1B ⚪）評価額$2B</td>
-                  <td><span class="market-trend-uk">不明</span></td>
-                  <td style="font-size:11px;">Skypod 3D移動。レイアウト柔軟</td>
+                  <td><span style="font-size:18px;">🇨🇳</span> <strong>Hikrobot</strong><br><span style="font-size:10px;color:var(--muted);">Hikvision子会社</span></td>
+                  <td style="font-size:12px;">AMR（棚搬送）</td>
+                  <td><strong>フォクスター（Phoxter）他</strong></td>
+                  <td><span style="font-size:11px;background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:10px;font-weight:700;">代理店</span></td>
+                  <td style="font-size:11px;">中小製造業・倉庫業で導入増加中</td>
+                </tr>
+                <!-- シャトル型 -->
+                <tr>
+                  <td style="font-weight:700;color:#a07800;" rowspan="3">🔁 シャトル型</td>
+                  <td><span style="font-size:18px;">🇩🇪</span> <strong>Dematic</strong><br><span style="font-size:10px;color:var(--muted);">KION Group子会社</span></td>
+                  <td style="font-size:12px;">Multishuttle</td>
+                  <td><strong>Dematic Japan株式会社</strong></td>
+                  <td><span style="font-size:11px;background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:10px;font-weight:700;">自社日本法人</span></td>
+                  <td style="font-size:11px;">EC・製造・医薬品向け実績</td>
                 </tr>
                 <tr>
-                  <td style="text-align:center;font-size:22px;line-height:1;padding:6px 4px;">🇨🇳</td>
-                  <td><strong>BlueSword</strong><br><span style="font-size:10px;color:var(--muted);">未上場</span></td>
-                  <td><span style="font-size:11px;color:#0e8f6e;">中国・新興</span></td>
-                  <td colspan="3" style="text-align:center;color:var(--muted);font-size:12px;">非公開（1993年創業・グローバル展開）</td>
-                  <td><span class="market-trend-uk">不明</span></td>
-                  <td style="font-size:11px;">AS/RS〜ACRまで総合ラインナップ</td>
+                  <td><span style="font-size:18px;">🇦🇹</span> <strong>Knapp</strong><br><span style="font-size:10px;color:var(--muted);">未上場・オーストリア</span></td>
+                  <td style="font-size:12px;">OSR Shuttle Evo</td>
+                  <td><strong>Knapp Japan</strong><br><span style="font-size:10px;color:var(--muted);">⚪ 要確認</span></td>
+                  <td><span style="font-size:11px;background:#f3e5f5;color:#6a1b9a;padding:2px 6px;border-radius:10px;font-weight:700;">要確認</span></td>
+                  <td style="font-size:11px;">医薬品・EC向け実績豊富（海外）</td>
+                </tr>
+                <tr>
+                  <td><span style="font-size:18px;">🇩🇪</span> <strong>SSI Schaefer</strong><br><span style="font-size:10px;color:var(--muted);">未上場・ドイツ</span></td>
+                  <td style="font-size:12px;">Cuby・Navette等</td>
+                  <td><strong>SSI Schaefer Systems Japan</strong><br><span style="font-size:10px;color:var(--muted);">横浜</span></td>
+                  <td><span style="font-size:11px;background:#e8f5e9;color:#2e7d32;padding:2px 6px;border-radius:10px;font-weight:700;">自社日本法人</span></td>
+                  <td style="font-size:11px;">国内複数実績あり</td>
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div class="market-note" style="margin-top:8px;">
+            <strong>⚠️ 日本での販売未確認：</strong>Ocado OSRS（英・キューブ型。AEONとの食品倉庫は自社運営用）、Symbotic（米・超大型パレット専用）。いずれも日本でのASRS販売は未確認（2025年時点）。<br>
+            <strong>販売形態の凡例：</strong>認定パートナー複数＝メーカーが複数の認定SIer/ディストリビューターを通じて販売 ／ 自社日本法人＝メーカーが独自に設立 ／ 日本JV＝合弁会社 ／ 代理店＝国内代理店経由 ／ 要確認＝公開情報で確認できず
           </div>
         </div>
 
-        <!-- 日本進出状況 -->
-        <div class="market-card">
-          <div class="market-card-h">日本市場への進出状況 <span class="mlabel mlabel-supp">⚪ 公開情報ベース</span></div>
-          <div class="market-table-wrap">
-            <table class="market-table" style="min-width:580px;">
-              <thead>
-                <tr><th>会社</th><th>進出時期</th><th>日本での状況</th></tr>
-              </thead>
-              <tbody>
-                <tr class="hl-row">
-                  <td><strong>Exotec</strong></td>
-                  <td>2019年〜</td>
-                  <td>UNIQLO（ファーストリテイリング）2021年稼働が足がかり。三井不動産「MFLP船橋Ⅲ」に導入済み（2024年）。世界初のSkypod専用デモセンターを新木場に開設。EXOTEC NIHON として国内売上300億円を目標に積極展開中</td>
-                </tr>
-                <tr>
-                  <td><strong>Geek+</strong></td>
-                  <td>2017年〜</td>
-                  <td>日本資本とのJVとして設立。トヨタ・アスクルなど大手に導入済み。国内棚搬送型AMRで4年連続シェアNo.1。2025年2月に西日本支社開設、2026年3月に古河で国内3拠点目のLaaSセンター開設と、国内展開を加速中</td>
-                </tr>
-                <tr>
-                  <td><strong>HAI Robotics</strong></td>
-                  <td>2021年〜</td>
-                  <td>日本法人HAI ROBOTICS JAPAN設立。ACRシステムを中心に展開中。EC業界での導入事例あり</td>
-                </tr>
-                <tr>
-                  <td>BlueSword</td>
-                  <td>不明</td>
-                  <td>日本進出の具体的な情報は確認できず（2025年5月時点）</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+
       </section>
 
       <!-- ══ 出典 ══ -->
