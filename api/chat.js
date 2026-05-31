@@ -1,6 +1,6 @@
 /**
  * Logimap AI Chat - Vercel Serverless Function
- * api/chat.js
+ * api/chat.js - 会話履歴対応版
  */
 
 const GEMINI_API_URL =
@@ -22,6 +22,7 @@ const SYSTEM_PROMPT = `あなたはLogimap（倉庫自動化業界の情報サ�
 - 説明は端的に、でも「何なのか」「何のためにあるのか」は必ず含める。
 - たまに乾いた皮肉やアイロニックな一言を混ぜてもよい。ただし上から目線にならないこと。
 - 人間を客観的に観察している鳥、という距離感を保つ。
+- 会話の流れを踏まえて回答すること（前の質問への言及がある場合はそれを考慮する）。
 
 【回答の構成】
 1. キャラらしい一言（任意・短く）
@@ -40,7 +41,6 @@ AutoStore、GTP、3PL/4PL、RaaS、
 【文字数】
 必ず1000文字以内に収めること。専門用語には簡単な補足を入れる。`;
 
-
 module.exports = async function handler(req, res) {
   const origin = req.headers['origin'] || '';
   const allowedOrigin = ALLOWED_ORIGINS.find(o => origin.startsWith(o)) || ALLOWED_ORIGINS[0];
@@ -57,7 +57,6 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // body を手動でパース（Vercel Hobby でも動くように）
   let body = req.body;
   if (typeof body === 'string') {
     try { body = JSON.parse(body); } catch { body = {}; }
@@ -66,7 +65,7 @@ module.exports = async function handler(req, res) {
     body = {};
   }
 
-  const { message, context } = body;
+  const { message, context, history } = body;
 
   if (!message || typeof message !== 'string' || message.trim() === '') {
     return res.status(400).json({ error: 'メッセージが空です。' });
@@ -82,10 +81,28 @@ module.exports = async function handler(req, res) {
   }
 
   const contextBlock = context
-    ? `\n\n【現在表示中のページ情報】\n${String(context).slice(0, 800)}`
+    ? `【現在読んでいるページの文脈】\n${String(context).slice(0, 800)}`
     : '';
 
-  const fullPrompt = `${SYSTEM_PROMPT}${contextBlock}\n\n【質問】\n${message}`;
+  // 会話履歴を contents 配列に変換（最大10メッセージ＝5往復）
+  const contents = [];
+
+  if (Array.isArray(history) && history.length > 0) {
+    for (const h of history.slice(-10)) {
+      if (h.role && h.text) {
+        contents.push({
+          role: h.role === 'user' ? 'user' : 'model',
+          parts: [{ text: String(h.text) }]
+        });
+      }
+    }
+  }
+
+  // 現在のメッセージ（文脈付き）
+  const currentText = contextBlock
+    ? `${contextBlock}\n\n【質問】\n${message}`
+    : message;
+  contents.push({ role: 'user', parts: [{ text: currentText }] });
 
   try {
     const geminiRes = await fetch(
@@ -94,9 +111,12 @@ module.exports = async function handler(req, res) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: fullPrompt }] }],
+          system_instruction: {
+            parts: [{ text: SYSTEM_PROMPT }]
+          },
+          contents,
           generationConfig: {
-            maxOutputTokens: 500,
+            maxOutputTokens: 1000,
             temperature: 0.7,
           },
         }),
