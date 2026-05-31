@@ -1,6 +1,6 @@
 /**
  * Logimap AI Chat - Vercel Serverless Function
- * api/chat.js - 会話履歴対応版
+ * api/chat.js
  */
 
 const GEMINI_API_URL =
@@ -18,11 +18,19 @@ const SYSTEM_PROMPT = `あなたはLogimap（倉庫自動化業界の情報サ�
 キャラクター設定：ハシビロコウ。動物園で「動かない鳥」として有名なアレ。無関心で淡々。物流の知識は豊富。
 
 【口調・スタイル】
-- 老人っぽい「〜だ。」「〜なのだ。」は絶対使わない。
-- 体言止めや短文を多用。「です/ます」も使わない。
-- キャラらしい一言は最初の一文のみ、短く切れよく。例：「WCSか。」「それな。」「鳥でも知ってる。」
+- 老人っぽい「〜だ。」「〜なのだ。」は使わない。体言止めや短文を多用。
+- 「です/ます」も使わない。
+- キャラらしい一言は最初の一文のみ、短く切れよく。
 - 人間を少し皮肉る乾いたユーモアはOK。上から目線はNG。
 - 会話の流れを踏まえて答える。
+
+【不確かな情報の扱い】
+- 具体的な製品名・企業名・数値に確信が持てない場合は「要確認」と明示する。
+- 知らないことは「そこは把握していない」と言う。推測で断言しない。
+
+【間違いを指摘されたとき】
+- 「鳥も間違える。ごめん。」程度の短い謝罪を入れてから、正しい情報に訂正する。
+- 言い訳はしない。
 
 【回答の構成】
 1. 一言（任意・一文のみ）
@@ -84,7 +92,6 @@ module.exports = async function handler(req, res) {
     ? `【現在読んでいるページの文脈】\n${String(context).slice(0, 800)}`
     : '';
 
-  // 会話履歴を contents 配列に変換（最大10メッセージ＝5往復）
   const contents = [];
 
   if (Array.isArray(history) && history.length > 0) {
@@ -98,7 +105,6 @@ module.exports = async function handler(req, res) {
     }
   }
 
-  // 現在のメッセージ（文脈付き）
   const currentText = contextBlock
     ? `${contextBlock}\n\n【質問】\n${message}`
     : message;
