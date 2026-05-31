@@ -6240,39 +6240,71 @@ document.querySelectorAll('.rsub').forEach(btn=>{
       const activeRsub = document.querySelector('.rsub.active');
       const rsubName = activeRsub ? activeRsub.textContent.trim() : '';
 
-      // アクティブなview（表示中の画面）
-      let activeView = null;
-      const views = document.querySelectorAll('.view');
-      for (const v of views) {
-        const style = window.getComputedStyle(v);
-        if (style.display !== 'none' && style.visibility !== 'hidden') {
-          activeView = v;
-          break;
-        }
-      }
-
-      // readingコンテンツの場合はアクティブなコンテンツを優先
-      const activeContent = document.querySelector('.reading-content.active');
-      const targetEl = activeContent || activeView;
-
-      let contentText = '';
-      if (targetEl) {
-        const nodes = targetEl.querySelectorAll(
-          'h1, h2, h3, .reading-h, p, li, td, .reading-figure-title, .reading-bubble'
-        );
-        const parts = [];
-        for (const n of nodes) {
-          const t = n.textContent.replace(/\s+/g, ' ').trim();
-          if (t && t.length > 3) parts.push(t);
-          if (parts.join(' ').length > 800) break;
-        }
-        contentText = parts.join(' / ').slice(0, 800);
-      }
-
       const parts = [];
       if (tabName) parts.push(`現在のタブ: ${tabName}`);
       if (rsubName) parts.push(`セクション: ${rsubName}`);
-      if (contentText) parts.push(`本文抜粋: ${contentText}`);
+
+      // ── 業界ガイドタブ：スクロール位置から「今見ているセクション」を特定 ──
+      const readingView = document.getElementById('view-reading');
+      const activeContent = document.querySelector('.reading-content.active');
+
+      if (activeContent && readingView) {
+        const viewRect = readingView.getBoundingClientRect();
+        const headings = Array.from(activeContent.querySelectorAll('.reading-h'));
+
+        // ビューポート上半分に入っている見出しを探す（最後に一致したものを使用）
+        let visibleHeading = null;
+        for (const h of headings) {
+          const rect = h.getBoundingClientRect();
+          if (rect.top <= viewRect.top + viewRect.height * 0.6 && rect.bottom >= viewRect.top - 100) {
+            visibleHeading = h;
+          }
+        }
+
+        if (visibleHeading) {
+          // 見出し + その直後のコンテンツを収集（次のsection見出しまで）
+          const sectionParts = [visibleHeading.textContent.trim()];
+          let el = visibleHeading.nextElementSibling;
+          let charLen = sectionParts[0].length;
+
+          while (el && charLen < 700) {
+            if (el.classList.contains('reading-h')) break;
+            const text = el.textContent.replace(/\s+/g, ' ').trim();
+            if (text && text.length > 3) {
+              sectionParts.push(text);
+              charLen += text.length;
+            }
+            el = el.nextElementSibling;
+          }
+          parts.push(`現在読んでいるセクション: ${sectionParts.join(' / ').slice(0, 700)}`);
+
+        } else {
+          // フォールバック：コンテンツ冒頭を渡す
+          const nodes = activeContent.querySelectorAll('.reading-h, p, li, .reading-bubble');
+          const fallbackParts = [];
+          for (const n of nodes) {
+            const t = n.textContent.replace(/\s+/g, ' ').trim();
+            if (t && t.length > 3) fallbackParts.push(t);
+            if (fallbackParts.join(' ').length > 600) break;
+          }
+          if (fallbackParts.length) parts.push(`本文抜粋: ${fallbackParts.join(' / ').slice(0, 600)}`);
+        }
+
+      } else {
+        // 業界ガイド以外のタブ：アクティブなviewのテキスト冒頭を使用
+        const activeView = document.querySelector('.view.active');
+        if (activeView) {
+          const nodes = activeView.querySelectorAll('h1, h2, h3, p, li, td');
+          const fallbackParts = [];
+          for (const n of nodes) {
+            const t = n.textContent.replace(/\s+/g, ' ').trim();
+            if (t && t.length > 3) fallbackParts.push(t);
+            if (fallbackParts.join(' ').length > 600) break;
+          }
+          if (fallbackParts.length) parts.push(`本文抜粋: ${fallbackParts.join(' / ').slice(0, 600)}`);
+        }
+      }
+
       return parts.join('\n');
     } catch { return ''; }
   }
@@ -6340,6 +6372,11 @@ document.querySelectorAll('.rsub').forEach(btn=>{
   let lastSent = 0;
   let isSending = false;
 
+  // 会話履歴（最大5往復）
+  let conversationHistory = [];
+  const MAX_EXCHANGES = 5;
+  let exchangeCount = 0;
+
   async function sendMessage() {
     const text = input.value.trim();
     if (!text || isSending) return;
@@ -6378,8 +6415,8 @@ document.querySelectorAll('.rsub').forEach(btn=>{
       const res = await fetch(WORKER_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text, context }),
-        signal: AbortSignal.timeout(20000), // 20秒タイムアウト
+        body: JSON.stringify({ message: text, context, history: conversationHistory }),
+        signal: AbortSignal.timeout(20000),
       });
 
       const data = await res.json();
@@ -6389,6 +6426,20 @@ document.querySelectorAll('.rsub').forEach(btn=>{
         addMessage('ai', data.error || rand(ERROR_MSGS), 'lm-msg-error');
       } else {
         addMessage('ai', data.reply);
+
+        // 履歴に追加
+        conversationHistory.push({ role: 'user', text });
+        conversationHistory.push({ role: 'model', text: data.reply });
+        exchangeCount++;
+
+        // 5往復でリセット通知
+        if (exchangeCount >= MAX_EXCHANGES) {
+          setTimeout(() => {
+            addSystem('── 記憶の上限だ。鳥なので仕方ない。ここまでの会話は忘れた。──');
+            conversationHistory = [];
+            exchangeCount = 0;
+          }, 800);
+        }
       }
     } catch (e) {
       loadingEl.remove();
