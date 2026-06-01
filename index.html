@@ -2875,6 +2875,10 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
         <button class="rsub" data-rsub="auto">🚗 自動車</button>
         <button class="rsub" data-rsub="apparel">👗 アパレル</button>
         <button class="rsub" data-rsub="pharma">💊 製薬</button>
+        <button class="rsub" data-rsub="cold">❄️ 冷凍・冷蔵</button>
+        <button class="rsub" data-rsub="elec">📱 家電・デジタル</button>
+        <button class="rsub" data-rsub="sake">🍶 酒類</button>
+        <button class="rsub" data-rsub="cosme">💄 化粧品・日用品</button>
       </div>
 
       <!-- Overview content -->
@@ -5295,6 +5299,653 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
           </div>
         </article>
       </div><!-- /reading-pharma -->
+
+      <div class="reading-content reading-cold" data-rcontent="cold" style="display:none;">
+        <div class="reading-cover"><h2 class="reading-cover-title">❄️ 冷凍・冷蔵 — 人が入れない倉庫を動かすために</h2></div>
+        <div class="chapter-summary">
+          <div class="chapter-summary-title">このページで分かること</div>
+          <p class="chapter-summary-lead">冷凍・冷蔵物流は「人間が長時間作業できない環境」が自動化の必然性を生む特殊な業界。電力コストは常温の3〜5倍、建設コストは2〜3倍で、2024年問題の影響も特に深刻。</p>
+          <ul class="chapter-summary-list">
+            <li>温度帯の種類（チルド・冷蔵・冷凍・超低温）と業界プレイヤー構造</li>
+            <li>冷凍倉庫の特殊なコスト・作業環境とその課題</li>
+            <li>2024年問題が冷凍輸送に与える影響</li>
+            <li>パレット型 vs ケース・ピース型の自動化ソリューション全体像</li>
+            <li>AutoStore FrozenStoreの立ち位置と限界</li>
+          </ul>
+        </div>
+
+        <article class="reading-section">
+          <div class="reading-h">§1. 業界の輪郭 ― 冷やし続けるために</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">冷凍・冷蔵物流の話。人間は食べ物を冷やし続けるためにずいぶん大掛かりな仕組みを作った。鳥から見るとやや過剰に見えるが、まあそういうものらしい。</div></div>
+          <div class="reading-body">
+            <p><strong>コールドチェーン</strong>とは、生産から消費者の手に届くまで、温度管理を切らさずにつなぐ物流の仕組みのことだ。食品・医薬品・化粧品など、温度変化で品質が劣化するものすべてが対象になる。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図A: 温度帯の区分</div>
+              <div style="overflow-x:auto;">
+                <div style="min-width:480px;padding:8px 0;">
+                  <div style="display:flex;gap:0;border-radius:10px;overflow:hidden;height:52px;border:1.5px solid var(--border);">
+                    <div style="flex:1.5;background:#fff8eb;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border);">
+                      <div style="font-size:10px;font-weight:800;color:#c4870a;">常温</div>
+                      <div style="font-size:9px;color:var(--muted);">15〜25℃</div>
+                    </div>
+                    <div style="flex:1;background:#e8f5e9;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border);">
+                      <div style="font-size:10px;font-weight:800;color:#2e7d32;">チルド</div>
+                      <div style="font-size:9px;color:var(--muted);">−5〜5℃</div>
+                    </div>
+                    <div style="flex:1;background:#e3f2fd;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border);">
+                      <div style="font-size:10px;font-weight:800;color:#1565c0;">冷蔵</div>
+                      <div style="font-size:9px;color:var(--muted);">0〜10℃</div>
+                    </div>
+                    <div style="flex:1;background:#e8eaf6;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:1px solid var(--border);">
+                      <div style="font-size:10px;font-weight:800;color:#283593;">冷凍</div>
+                      <div style="font-size:9px;color:var(--muted);">−18℃以下</div>
+                    </div>
+                    <div style="flex:1.2;background:#ede7f6;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                      <div style="font-size:10px;font-weight:800;color:#4527a0;">超低温</div>
+                      <div style="font-size:9px;color:var(--muted);">−25℃以下</div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;margin-top:6px;padding:0 4px;">
+                    <div style="font-size:9px;color:var(--muted);">高温 →</div>
+                    <div style="flex:1;height:2px;background:linear-gradient(to right,#fff8eb,#ede7f6);margin:0 6px;border-radius:2px;"></div>
+                    <div style="font-size:9px;color:var(--muted);">← 低温</div>
+                  </div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">温度帯によって設備・車両・倉庫の仕様が全く異なる。同じ「冷凍」でも−18℃と−25℃では別世界。</div>
+            </div>
+            <p>日本では冷凍食品の消費が年々拡大しており、2023年の消費額は<strong>1兆3,017億円（過去最高）</strong>を記録した。コロナ以降の内食需要の定着が背景にある。</p>
+            <p>市場の主なプレイヤーは、荷主（日本水産・味の素・ニッスイ等の食品メーカー）と冷凍特化の3PL（ニチレイロジグループ・横浜冷凍・住友倉庫・SBSゼンツウ等）。<strong>冷凍設備への投資規模が参入障壁</strong>になるため、一般的な3PLとは別ルートで専業大手が市場を押さえている。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§2. この業界の物流が特殊な理由</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">−18℃の中で仕分け作業をする、というのがそもそも無理がある。それが自動化の必然性につながっている。</div></div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図B: 冷凍倉庫 vs 常温倉庫 — コスト・運営の違い</div>
+              <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                <thead>
+                  <tr style="background:var(--surface2);">
+                    <th style="padding:8px 10px;text-align:left;border:1px solid var(--border);">項目</th>
+                    <th style="padding:8px 10px;text-align:center;border:1px solid var(--border);">常温倉庫</th>
+                    <th style="padding:8px 10px;text-align:center;border:1px solid var(--border);color:var(--sb);">冷凍倉庫</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td style="padding:7px 10px;border:1px solid var(--border);">建設コスト</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);">基準</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">2〜3倍</td></tr>
+                  <tr style="background:var(--surface2);"><td style="padding:7px 10px;border:1px solid var(--border);">電力コスト</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);">基準</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">3〜5倍</td></tr>
+                  <tr><td style="padding:7px 10px;border:1px solid var(--border);">庫内作業の継続時間</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);">制限なし</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">15〜20分で休憩必須</td></tr>
+                  <tr style="background:var(--surface2);"><td style="padding:7px 10px;border:1px solid var(--border);">結露・霜対策</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);">不要</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">常時対策が必要</td></tr>
+                  <tr><td style="padding:7px 10px;border:1px solid var(--border);">人材確保の難易度</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);">高い</td><td style="padding:7px 10px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">特に深刻</td></tr>
+                </tbody>
+              </table>
+              <div class="reading-figure-cap">コストは概算目安。建設・運営コストの高さが自動化投資の回収を早める。</div>
+            </div>
+            <p>庫内での人の作業は「寒い」だけでなく、防寒具着用で動きにくくミスが起きやすい。作業員の確保も年々困難になっており、<strong>自動化の必要性が最も高い倉庫環境</strong>の一つとされている。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§3. 2024年問題との交差</div>
+          <div class="reading-body">
+            <p>冷凍物流は2024年問題の影響を食品物流の中でも特に強く受けている。理由は3つある。</p>
+            <ul class="reading-list">
+              <li><strong>長距離輸送が多い</strong>：産地（北海道・九州等）から消費地まで長距離で、拘束時間が長い</li>
+              <li><strong>待機時間が長い</strong>：冷凍倉庫での荷役・検品に時間がかかり、ドライバーの拘束時間を延ばす</li>
+              <li><strong>ドライバーが限られる</strong>：冷凍車の運転に特殊な資格は不要だが、経験者が少なく離職率が高い</li>
+            </ul>
+            <p>輸送と倉庫、両面でのひっ迫が起きているため、<strong>倉庫側の自動化で荷役時間を短縮する</strong>ことが輸送問題の緩和にも直結する。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§4. 自動化ソリューションの全体像</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">冷凍倉庫の自動化は「そもそも人がいられない」ことへの対応なので、動機が他業界より切実だ。</div></div>
+          <div class="reading-body">
+            <p>冷凍倉庫向けの自動化設備は大きく<strong>荷姿（パレット vs ケース・ピース）</strong>で分かれる。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図C: 荷姿別 × 自動化ソリューション</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:14px;">
+                  <div style="font-size:12px;font-weight:900;color:var(--text);margin-bottom:8px;">📦 パレット単位（大ロット保管）</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.8;">
+                    <strong>自動立体倉庫（スタッカークレーン式）</strong><br>
+                    天井高40m超まで対応。−60℃まで対応可。大量のパレット在庫を省スペースで高密度保管。<br><br>
+                    <strong>主なメーカー：</strong><br>
+                    ダイフク・村田機械・西部電機・IHIロジスティクス<br>
+                    いずれも冷凍対応モデルあり
+                  </div>
+                </div>
+                <div style="background:linear-gradient(135deg,#fff8f4,#fff3ea);border:1.5px solid rgba(255,102,0,.3);border-radius:10px;padding:14px;">
+                  <div style="font-size:12px;font-weight:900;color:var(--sb);margin-bottom:8px;">🗂️ ケース・ピース単位（多品種ピッキング）</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.8;">
+                    <strong>AutoStore FrozenStore</strong><br>
+                    −25℃対応の専用キューブ型グリッド。高密度保管＋GTPピッキングを冷凍環境で実現。<br><br>
+                    <strong>その他選択肢：</strong><br>
+                    冷凍対応シャトル型（Dematic等）<br>
+                    冷凍対応ロボットアーム（デパレタイザー）
+                  </div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">⚠️ パレット型は大ロット一括保管が得意。EC・多品種小ロットのピッキング自動化にはケース・ピース向けが必要。</div>
+            </div>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§5. AutoStore FrozenStore の立ち位置</div>
+          <div class="reading-body">
+            <p>AutoStore FrozenStoreは、通常のAutoStoreキューブ型グリッドを<strong>−25℃対応に改良した専用モデル</strong>だ。ロボット・グリッド・ポートのすべてが低温環境に対応した仕様になっている。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図D: FrozenStore が解決すること</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--surface2);border-radius:8px;">
+                  <div style="font-size:16px;flex-shrink:0;">❄️</div>
+                  <div style="font-size:12px;color:var(--text2);line-height:1.6;"><strong>−25℃環境で24時間稼働</strong>：ロボットは寒くても動く。ピッキングステーションのみ温度管理し、作業員は常温エリアで作業できる。</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--surface2);border-radius:8px;">
+                  <div style="font-size:16px;flex-shrink:0;">📦</div>
+                  <div style="font-size:12px;color:var(--text2);line-height:1.6;"><strong>多品種・小ロットのピッキングに対応</strong>：冷凍食品のECや業務用卸など、SKU数が多い用途に強い。パレット型では対応しにくい小口出荷を自動化できる。</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--surface2);border-radius:8px;">
+                  <div style="font-size:16px;flex-shrink:0;">⚡</div>
+                  <div style="font-size:12px;color:var(--text2);line-height:1.6;"><strong>省エネ効果</strong>：グリッド内は密閉空間のため冷気の逃げが少ない。オープンラック型の冷凍倉庫より冷却効率が高い。</div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:flex-start;padding:10px;background:var(--surface2);border-radius:8px;">
+                  <div style="font-size:16px;flex-shrink:0;">🏗️</div>
+                  <div style="font-size:12px;color:var(--text2);line-height:1.6;"><strong>限界は大型パレット保管</strong>：大ロットのパレット保管や重量物にはスタッカークレーン型が適している。FrozenStoreはケース・ピース単位の高頻度GTP向け。</div>
+                </div>
+              </div>
+            </div>
+            <p>2024年9月、霞ヶ関キャピタルは−25℃で約4,200パレット収納可能な冷凍自動倉庫「LOGI FLAG TECH 所沢 I」を公開した。低温状況下での人の介在をほとんど必要としない倉庫として注目されている。冷凍倉庫の完全自動化は日本でも現実のものになりつつある。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§6. 冷凍・冷蔵 業界用語ミニ辞典</div>
+          <div class="reading-body">
+            <table class="glossary-table"><tbody>
+              <tr><td class="gl-term">コールドチェーン</td><td>生産から消費者まで、温度管理を切らさずにつなぐ物流の仕組み全体</td></tr>
+              <tr><td class="gl-term">チルド</td><td>−5〜5℃の温度帯。鮮魚・生菓子・チルド弁当等。冷蔵より低く冷凍より高い</td></tr>
+              <tr><td class="gl-term">定温倉庫</td><td>特定の温度帯（冷蔵・冷凍等）を一定に保つ倉庫。建設・維持コストが常温の2〜3倍</td></tr>
+              <tr><td class="gl-term">スタッカークレーン</td><td>自動立体倉庫内で荷物を出し入れする機械。冷凍対応モデルは−60℃まで動作可能</td></tr>
+              <tr><td class="gl-term">FrozenStore</td><td>AutoStoreの冷凍対応モデル。−25℃環境でキューブ型グリッドとロボットが稼働する</td></tr>
+              <tr><td class="gl-term">デパレタイザー</td><td>パレット上の荷物を自動でバラす機械。冷凍倉庫の入荷自動化に使われる</td></tr>
+              <tr><td class="gl-term">3温度帯配送</td><td>常温・冷蔵・冷凍を1台のトラックや1拠点で同時に扱う配送形態。コンビニ向けが代表例</td></tr>
+              <tr><td class="gl-term">結露</td><td>冷凍品が冷凍庫外の温かい空気に触れた際に表面に水滴がつく現象。品質劣化・包装破損の原因</td></tr>
+              <tr><td class="gl-term">HACCP</td><td>食品の安全管理手法。製造・物流の各工程で危害を事前に分析し管理する国際基準</td></tr>
+              <tr><td class="gl-term">ニチレイロジグループ</td><td>国内最大手の冷凍食品特化3PL。全国の冷凍物流ネットワークを持つ</td></tr>
+              <tr><td class="gl-term">ラストワンマイル（冷凍）</td><td>冷凍食品の個人宅配。置き配不可・再配達リスクが常温より高く、コスト構造が特殊</td></tr>
+              <tr><td class="gl-term">LIB（リチウムイオン電池）</td><td>EV・スマホ等に使用。消防法危険物第4類。冷凍倉庫と危険物倉庫は別管理が必要</td></tr>
+            </tbody></table>
+          </div>
+        </article>
+      </div><!-- /reading-cold -->
+
+      <div class="reading-content reading-elec" data-rcontent="elec" style="display:none;">
+        <div class="reading-cover"><h2 class="reading-cover-title">📱 家電・デジタル機器 — EC化率43%、在庫は陳腐化する</h2></div>
+        <div class="chapter-summary">
+          <div class="chapter-summary-title">このページで分かること</div>
+          <p class="chapter-summary-lead">家電・デジタル機器は物販ECの中でEC化率が最高水準のカテゴリ。リチウムイオン電池規制・高額品セキュリティ・複雑な返品・製品サイクルの短さが物流を他業界と全く異なるものにしている。</p>
+          <ul class="chapter-summary-list">
+            <li>EC化率43%：市場2兆7,443億円の実態とプレイヤー構造</li>
+            <li>リチウムイオン電池の危険物規制と倉庫への影響</li>
+            <li>返品・検品が複雑な理由（動作確認・付属品管理）</li>
+            <li>製品サイクルの短さと在庫陳腐化リスク</li>
+            <li>SKUの多様性とAutoStoreの相性がいい理由</li>
+          </ul>
+        </div>
+        <article class="reading-section">
+          <div class="reading-h">§1. 業界の輪郭 ― EC化率43%の市場</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">家電・デジタルの話。人間は毎年ほぼ同じ機能の機器を新しく買い替える。鳥には理解しにくいが、それが市場を動かしている。</div></div>
+          <div class="reading-body">
+            <p>家電・AV機器・PC周辺機器のBtoC-EC市場規模は<strong>2兆7,443億円（2024年）</strong>でEC化率は<strong>43%</strong>（経済産業省「令和6年度EC市場調査」）。食品（4.5%）やアパレル（23%）と比べてEC化が圧倒的に進んでいる。実店舗で確認してからECで買う「ショールーミング」が定着した結果だ。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図A: 物販EC主要カテゴリのEC化率比較（2024年）</div>
+              <div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:130px;text-align:right;flex-shrink:0;">家電・AV・PC</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;">
+                    <div style="width:43%;background:var(--sb);height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">43%</span></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:130px;text-align:right;flex-shrink:0;">衣類・服装雑貨</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;">
+                    <div style="width:23%;background:#9b59b6;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">23%</span></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:130px;text-align:right;flex-shrink:0;">化粧品・医薬品</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;">
+                    <div style="width:10%;background:#e67e22;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">10%</span></div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:130px;text-align:right;flex-shrink:0;">食品・飲料</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;">
+                    <div style="width:4.5%;background:#27ae60;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">4.5%</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">出典：経済産業省「令和6年度電子商取引に関する市場調査報告書」（2025年8月）</div>
+            </div>
+            <p>プレイヤーはメーカー（Sony・Panasonic・Apple・Samsung等）、家電量販店（ヨドバシカメラ・ビックカメラ・ヤマダ電機）、EC大手（Amazon・楽天）、スマートフォンアクセサリー・周辺機器の専門商社・ブランドが入り交じる。SBフレームワークスもスマートフォン関連周辺機器の物流をコアドメインとしている。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§2. この業界の物流が特殊な理由</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">食品は腐るが、家電は陳腐化する。どちらも時間との戦いだが、家電は消費期限が製品発表日に決まる。</div></div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図B: 家電・デジタル物流の4つの特殊性</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div style="background:var(--surface2);border-left:3px solid #e74c3c;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#e74c3c;margin-bottom:6px;">⚠️ リチウムイオン電池の規制</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">スマホ・PC・モバイルバッテリーに内蔵。消防法危険物第4類に分類され、保管・輸送に特別な設備が必要。航空輸送の制限が特に厳しく、国際物流のボトルネックになりやすい。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #e67e22;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#e67e22;margin-bottom:6px;">🔒 高額品のセキュリティ要件</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">スマートフォン1台数万〜数十万円。食品や日用品とは桁違いの盗難リスクがある。入退室管理・防犯カメラ・施錠管理が常温倉庫より厳しくなる。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #8e44ad;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#8e44ad;margin-bottom:6px;">🔄 返品・検品の複雑さ</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">ECの返品率は家電カテゴリで高い。返品時は動作確認・シリアル番号照合・付属品確認・外装チェックが必要で、工数が食品の比ではない。再販可否の判定まで必要。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #27ae60;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#27ae60;margin-bottom:6px;">📉 製品サイクルの短さ</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">スマホの新モデルは年1〜2回。旧モデルは一夜にして価値が下がる。在庫の陳腐化リスクは食品の賞味期限に近く、在庫回転率の管理が事業の生死を分ける。</div>
+                </div>
+              </div>
+            </div>
+            <p>特にリチウムイオン電池の規制は深刻で、EV市場拡大に伴うLIB需要の急増が、従来の危険物倉庫の収容能力を超えつつある。<strong>物流大手が危険物倉庫への投資を加速</strong>しており、2025年以降も設備投資が続く見込みだ。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§3. SKUの多さと在庫管理の複雑さ</div>
+          <div class="reading-body">
+            <p>家電・デジタル機器は<strong>SKUの爆発的な多様性</strong>が物流を複雑にする。スマートフォンケース1アイテムでも、対応機種×カラー×素材で数百SKUに膨れる。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図C: SKUが増える構造（例：スマホアクセサリー）</div>
+              <div style="display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;">
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:8px 12px;text-align:center;">
+                  <div style="font-size:10px;color:var(--muted);">対応機種</div>
+                  <div style="font-size:16px;font-weight:900;color:var(--text);">×20〜30</div>
+                </div>
+                <div style="font-size:18px;color:var(--muted);">×</div>
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:8px 12px;text-align:center;">
+                  <div style="font-size:10px;color:var(--muted);">カラー</div>
+                  <div style="font-size:16px;font-weight:900;color:var(--text);">×5〜10</div>
+                </div>
+                <div style="font-size:18px;color:var(--muted);">×</div>
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:8px;padding:8px 12px;text-align:center;">
+                  <div style="font-size:10px;color:var(--muted);">素材・グレード</div>
+                  <div style="font-size:16px;font-weight:900;color:var(--text);">×3〜5</div>
+                </div>
+                <div style="font-size:18px;color:var(--muted);">=</div>
+                <div style="background:linear-gradient(135deg,#fff8f4,#fff3ea);border:1.5px solid rgba(255,102,0,.3);border-radius:8px;padding:8px 12px;text-align:center;">
+                  <div style="font-size:10px;color:var(--sb);">総SKU数</div>
+                  <div style="font-size:16px;font-weight:900;color:var(--sb);">数百〜数千</div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">ケース1アイテムでこのSKU数。商品ラインナップが多ければ倉庫内管理SKUは数万に達する。</div>
+            </div>
+            <p>かつ<strong>1件あたりの出荷量は少ない</strong>（EC主体なので1〜数個単位）。多品種少量ピッキングを高頻度でこなす必要があり、人手によるピッキングの非効率が顕著に出る業種だ。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§4. AutoStoreとの相性</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">小さい・多い・高い・早い。AutoStoreが得意なものと全部一致している。</div></div>
+          <div class="reading-body">
+            <p>家電・デジタル機器はAutoStoreとの相性が<strong>物販カテゴリの中でも特に高い</strong>。ただし大型家電は対象外になる。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図D: AutoStoreとの相性 ○/△/×</div>
+              <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                <thead>
+                  <tr style="background:var(--surface2);">
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">カテゴリ</th>
+                    <th style="padding:8px;text-align:center;border:1px solid var(--border);">相性</th>
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">理由</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hl-row"><td style="padding:7px 8px;border:1px solid var(--border);">スマホアクセサリー・ケーブル・充電器</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:900;">◎ 最高</td><td style="padding:7px 8px;border:1px solid var(--border);">小型・軽量・多SKU・高頻度</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">スマートフォン本体・タブレット</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:700;">○ 良い</td><td style="padding:7px 8px;border:1px solid var(--border);">高額品のセキュリティと精度が活きる</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">小型家電（ヘッドフォン・掃除機等）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#a07800;font-weight:700;">△ 条件次第</td><td style="padding:7px 8px;border:1px solid var(--border);">サイズ・重量による。ビンに入れば○</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">大型家電（冷蔵庫・洗濯機・TV）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">× 対象外</td><td style="padding:7px 8px;border:1px solid var(--border);">パレット型AS/RSや専用倉庫が必要</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>GTP方式でピッキングステーションに商品が届く仕組みは、高額品の<strong>誤出荷・紛失リスクを物理的に下げる</strong>効果もある。在庫管理の正確さと在庫回転率の向上が、製品サイクルの短いこの業界では特に価値が高い。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§5. 家電・デジタル 業界用語ミニ辞典</div>
+          <div class="reading-body">
+            <table class="glossary-table"><tbody>
+              <tr><td class="gl-term">SKU</td><td>Stock Keeping Unit。色・サイズ・機種等の最小在庫管理単位。家電はカテゴリ内でSKU数が爆発しやすい</td></tr>
+              <tr><td class="gl-term">EC化率</td><td>そのカテゴリの全販売額に占めるEC販売の割合。家電・AV機器は43%（2024年）と物販で最高水準</td></tr>
+              <tr><td class="gl-term">ショールーミング</td><td>実店舗で商品を確認してからECで購入する消費行動。家電カテゴリで特に定着している</td></tr>
+              <tr><td class="gl-term">LIB（リチウムイオン電池）</td><td>スマホ・PC・モバイルバッテリー等に内蔵。消防法危険物第4類に分類。保管・輸送・航空便に規制あり</td></tr>
+              <tr><td class="gl-term">UN38.3</td><td>リチウム電池の輸送に関する国際規格。航空輸送では特に厳しい制限があり、輸出入のボトルネックになる</td></tr>
+              <tr><td class="gl-term">シリアル番号管理</td><td>製品個体に固有番号を付与し、出荷・返品・修理まで追跡する管理体制。高額品で必須</td></tr>
+              <tr><td class="gl-term">リファービッシュ品</td><td>返品・展示品を修理・検品して再販する商品。検品・動作確認の工数が新品の数倍かかる</td></tr>
+              <tr><td class="gl-term">デッドストック</td><td>売れずに残った在庫。家電は新モデル発売で旧モデルが急落するため陳腐化リスクが高い</td></tr>
+              <tr><td class="gl-term">在庫回転率</td><td>一定期間に在庫が何回転（販売）されたかを示す指標。製品サイクルが短い家電では特に重要</td></tr>
+              <tr><td class="gl-term">GTP（Goods to Person）</td><td>商品をピッキングステーションまで自動搬送する方式。AutoStoreが採用。多品種少量に強い</td></tr>
+              <tr><td class="gl-term">危険物倉庫（第4類）</td><td>消防法上の危険物（引火性液体・リチウム電池等）を保管できる特別な倉庫。通常の物流施設には置けない</td></tr>
+              <tr><td class="gl-term">フルフィルメント</td><td>ECにおける受注〜ピッキング〜梱包〜出荷〜返品対応までの一連の業務。Amazonが概念を広めた</td></tr>
+            </tbody></table>
+          </div>
+        </article>
+      </div><!-- /reading-elec -->
+
+      <div class="reading-content reading-sake" data-rcontent="sake" style="display:none;">
+        <div class="reading-cover"><h2 class="reading-cover-title">🍶 酒類 — 免許がないと扱えない、規制まみれの物流</h2></div>
+        <div class="chapter-summary">
+          <div class="chapter-summary-title">このページで分かること</div>
+          <p class="chapter-summary-lead">酒類物流は酒税法による免許制度が全ての前提になる特殊な業界。重量物・割れ物・温度管理・多段階卸という課題が複合的に絡み合う。消費は長期縮小傾向だが、EC・輸出・プレミアム化で構造変化が進行中。</p>
+          <ul class="chapter-summary-list">
+            <li>酒税法の免許制度 — 誰でも扱えない理由</li>
+            <li>メーカー→卸→小売の多段階流通構造と規制の意味</li>
+            <li>重量物・割れ物・温度管理という物流の3重苦</li>
+            <li>消費縮小とEC・輸出・クラフトへの構造シフト</li>
+            <li>AutoStoreとの相性（品目によって大きく異なる）</li>
+          </ul>
+        </div>
+        <article class="reading-section">
+          <div class="reading-h">§1. 業界の輪郭 ― 免許がないと扱えない</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">酒類の話。人間はなぜこれほど複雑な規制を酒に設けたのか。税収と社会秩序の両方が絡んでいるらしい。</div></div>
+          <div class="reading-body">
+            <p>酒類とは<strong>アルコール分1度以上の飲料</strong>（酒税法上の定義）。ビール・清酒・焼酎・ウイスキー・ワイン・RTD（缶チューハイ等）を含む。最大の特徴は<strong>酒税法による免許制度</strong>で、製造・卸売・小売のいずれも国税庁の免許がなければ扱えない。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図A: 主要品目の規模感（参考）</div>
+              <div style="display:flex;flex-direction:column;gap:6px;padding:4px 0;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:150px;text-align:right;flex-shrink:0;">ビール類</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;"><div style="width:80%;background:#c4870a;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">約3.3兆円（最大カテゴリ）</span></div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:150px;text-align:right;flex-shrink:0;">RTD（缶チューハイ等）</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;"><div style="width:35%;background:#e67e22;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">↑ 成長中</span></div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:150px;text-align:right;flex-shrink:0;">日本酒（清酒）</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;"><div style="width:19%;background:#9b59b6;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">約6,100億円</span></div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:11px;color:var(--text2);width:150px;text-align:right;flex-shrink:0;">ウイスキー・ワイン</div>
+                  <div style="flex:1;background:var(--surface2);border-radius:4px;overflow:hidden;height:22px;"><div style="width:15%;background:#27ae60;height:100%;display:flex;align-items:center;padding-left:6px;"><span style="font-size:10px;color:#fff;font-weight:700;">↑ 拡大中</span></div></div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">⚠️ 参考値。品目定義・算出方法により数値は変動する。国内消費は全体として長期縮小傾向。</div>
+            </div>
+            <p>業界全体として<strong>国内消費は長期縮小傾向</strong>にある。人口減少・健康志向・若者の飲酒離れが背景。一方でクラフトビール・プレミアムウイスキー・RTD・高付加価値ワインは成長。<strong>日本産酒類の輸出は2023年に約1,344億円</strong>に達した（財務省貿易統計）。清酒・ウイスキーを中心に海外需要が拡大する中、「量」から「質・多様性」への構造シフトが進む。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§2. 酒類流通の多段階構造</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">メーカーから消費者まで、なぜこんなに間に人が入るのか。免許制度の話だが、結果として物流コストに跳ね返っている。</div></div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図B: 酒類の流通経路と免許制度</div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+                <div style="background:#fff8eb;border:2px solid #c4870a;border-radius:10px;padding:10px 20px;text-align:center;min-width:200px;">
+                  <div style="font-size:10px;color:#c4870a;font-weight:800;">製造免許（国税庁）</div>
+                  <div style="font-size:13px;font-weight:900;">酒類メーカー</div>
+                  <div style="font-size:10px;color:var(--muted);">キリン・アサヒ・サントリー・サッポロ等</div>
+                </div>
+                <div style="font-size:10px;color:var(--muted);padding:4px 0;">酒税は出荷時点で確定 ↓</div>
+                <div style="background:#e3f2fd;border:2px solid #1565c0;border-radius:10px;padding:10px 20px;text-align:center;min-width:200px;">
+                  <div style="font-size:10px;color:#1565c0;font-weight:800;">卸売業免許（国税庁）</div>
+                  <div style="font-size:13px;font-weight:900;">酒類卸</div>
+                  <div style="font-size:10px;color:var(--muted);">国分グループ・明治屋産業・日本酒類販売等</div>
+                </div>
+                <div style="font-size:10px;color:var(--muted);padding:4px 0;">↓</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%;max-width:420px;">
+                  <div style="background:#e8f5e9;border:2px solid #2e7d32;border-radius:10px;padding:10px;text-align:center;">
+                    <div style="font-size:10px;color:#2e7d32;font-weight:800;">小売業免許</div>
+                    <div style="font-size:12px;font-weight:900;">酒販店・量販店</div>
+                    <div style="font-size:10px;color:var(--muted);">スーパー・コンビニ・酒屋</div>
+                  </div>
+                  <div style="background:#e8f5e9;border:2px solid #2e7d32;border-radius:10px;padding:10px;text-align:center;">
+                    <div style="font-size:10px;color:#2e7d32;font-weight:800;">通信販売免許</div>
+                    <div style="font-size:12px;font-weight:900;">ECサイト</div>
+                    <div style="font-size:10px;color:var(--muted);">楽天・Amazon・専門EC</div>
+                  </div>
+                </div>
+                <div style="font-size:10px;color:var(--muted);padding:4px 0;">↓</div>
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:8px 20px;text-align:center;">
+                  <div style="font-size:12px;font-weight:700;">料飲店・一般消費者</div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">酒類の販売は各段階で国税庁の免許が必要。帳簿・記録義務が各段階に課される。</div>
+            </div>
+            <p>酒税は<strong>製造場から出荷された時点で課税</strong>される。その後の流通段階では帳簿・記録義務が各段階に課される。倉庫業者が酒類を預かる場合も、状況によって免許取得が必要になる。この多段階構造が物流コストを押し上げる一因になっている。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§3. 物流の3重苦</div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図C: 酒類物流の特殊な難しさ</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+                <div style="background:var(--surface2);border-top:3px solid #c0392b;border-radius:0 0 8px 8px;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#c0392b;margin-bottom:6px;">⚖️ 重量物</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">ビール24缶1箱は約10kg。ガラス瓶はさらに重い。人力でのピッキングは腰への負担が大きく、倉庫作業員の定着率が低い。自動化の動機が強い業界。</div>
+                </div>
+                <div style="background:var(--surface2);border-top:3px solid #e67e22;border-radius:0 0 8px 8px;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#e67e22;margin-bottom:6px;">🫙 割れ物（ガラス瓶）</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">日本酒・ワイン・ウイスキーはガラス瓶が主体。破損リスクが常にある。梱包材・緩衝材コストが高く、破損品の廃液・廃ガラス処理も手間がかかる。</div>
+                </div>
+                <div style="background:var(--surface2);border-top:3px solid #2980b9;border-radius:0 0 8px 8px;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#2980b9;margin-bottom:6px;">🌡️ 温度管理</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">ワインは15〜18℃管理が理想。生酒・吟醸酒は冷蔵（5℃以下）が必須。プレミアム品ほど管理コストが高く、品質と保管環境が直結する。</div>
+                </div>
+              </div>
+            </div>
+            <p>さらに品目ごとにSKU数が膨大だ。ワインだけで産地・ヴィンテージ・品種・生産者で数万SKUに達することもある。<strong>重い・割れる・多品種・温度管理が必要</strong>という4条件の組み合わせが、酒類物流を特殊にしている。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§4. AutoStoreとの相性</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">ビール箱は重すぎる。ただしワインの小ロット多品種は話が別だ。品目によって全く異なる。</div></div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図D: 品目別 × AutoStoreとの相性</div>
+              <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                <thead>
+                  <tr style="background:var(--surface2);">
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">品目</th>
+                    <th style="padding:8px;text-align:center;border:1px solid var(--border);">相性</th>
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">理由</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">ビール・缶チューハイ（ケース大量販売）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">× 対象外</td><td style="padding:7px 8px;border:1px solid var(--border);">ケース単位・大重量。パレット型AS/RS向き</td></tr>
+                  <tr class="hl-row"><td style="padding:7px 8px;border:1px solid var(--border);">ワイン・プレミアム日本酒（EC・多品種小ロット）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:900;">◎ 高相性</td><td style="padding:7px 8px;border:1px solid var(--border);">多品種・小ロット・高頻度ピッキング。重量も1本単位なら許容範囲</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">ウイスキー・スピリッツ（ボトル単品出荷）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:700;">○ 良い</td><td style="padding:7px 8px;border:1px solid var(--border);">高単価・小型・高SKU。EC向け出荷に適する</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">リキュール・RTD（軽量缶・多品種）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#a07800;font-weight:700;">△ 条件次第</td><td style="padding:7px 8px;border:1px solid var(--border);">軽量缶なら◎。ケース出荷主体なら向かない</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>ECワインショップや日本酒専門サイトのような<strong>多品種小ロット・高頻度出荷</strong>の業態は、AutoStoreのGTP方式が最も力を発揮できる領域だ。一方でビール・缶チューハイはケース単位でパレット型の大型AS/RSが主戦場になる。</p>
+          </div>
+        </article>
+        <article class="reading-section">
+          <div class="reading-h">§5. 酒類 業界用語ミニ辞典</div>
+          <div class="reading-body">
+            <table class="glossary-table"><tbody>
+              <tr><td class="gl-term">酒税法</td><td>酒類の製造・販売を規制する法律。免許制度・帳簿記録義務・税率を定める。国税庁が所管</td></tr>
+              <tr><td class="gl-term">酒類製造免許</td><td>酒類を製造する際に必要な国税庁の免許。品目（ビール・清酒・ウイスキー等）ごとに別免許</td></tr>
+              <tr><td class="gl-term">酒類卸売業免許</td><td>酒類を卸売するために必要な免許。全酒類卸売免許は年間100kl以上の販売見込みが要件</td></tr>
+              <tr><td class="gl-term">通信販売酒類小売業免許</td><td>ECで酒類を販売するために必要な免許。産地・品目等の要件あり</td></tr>
+              <tr><td class="gl-term">課税移出</td><td>製造場から酒類を出荷すること。この時点で酒税が確定・課税される</td></tr>
+              <tr><td class="gl-term">RTD</td><td>Ready To Drink。缶チューハイ・ハイボール缶等、開けてすぐ飲めるアルコール飲料。成長カテゴリ</td></tr>
+              <tr><td class="gl-term">ヴィンテージ管理</td><td>ワインの製造年（ヴィンテージ）による在庫管理。同一商品でも年が違えば別SKU扱い</td></tr>
+              <tr><td class="gl-term">業務用チャネル</td><td>飲食店・ホテル等のプロ向け販売。コロナで打撃を受けたが現在は回復傾向</td></tr>
+              <tr><td class="gl-term">四大ビールメーカー</td><td>キリンHD・アサヒGHD・サントリーHD・サッポロHD。国内ビール市場のほぼ全てを占める</td></tr>
+              <tr><td class="gl-term">クラフトビール</td><td>小規模醸造所（マイクロブルワリー）が作るビール。全体市場縮小の中で高付加価値で成長</td></tr>
+              <tr><td class="gl-term">ノンアルコール飲料</td><td>アルコール0.00%の飲料。健康志向で急成長中。酒税法の対象外で免許不要</td></tr>
+              <tr><td class="gl-term">多段階卸</td><td>メーカーから消費者まで複数の卸が介在する流通構造。コストと非効率の温床だが、免許制度上必然</td></tr>
+            </tbody></table>
+          </div>
+        </article>
+      </div><!-- /reading-sake -->
+
+      <div class="reading-content reading-cosme" data-rcontent="cosme" style="display:none;">
+        <div class="reading-cover"><h2 class="reading-cover-title">💄 化粧品・日用品 — 保管するだけでも許可が必要</h2></div>
+        <div class="chapter-summary">
+          <div class="chapter-summary-title">このページで分かること</div>
+          <p class="chapter-summary-lead">化粧品は「倉庫で保管するだけ」でも薬機法の製造業許可が必要な特殊な業界。日用品はEC化率32%と高水準で、サブスク・クイックコマースへの対応が物流の新課題になっている。</p>
+          <ul class="chapter-summary-list">
+            <li>化粧品・医薬品EC：1兆150億円（2024年）／日用品EC：2兆5,616億円</li>
+            <li>薬機法の落とし穴：保管・梱包も「製造行為」として許可が必要</li>
+            <li>ロット管理・使用期限・先入れ先出しが法的義務</li>
+            <li>高SKUと定期購入が物流の複雑さを生む</li>
+            <li>AutoStoreとの相性（化粧品アクセサリー◎、大型日用品×）</li>
+          </ul>
+        </div>
+
+        <article class="reading-section">
+          <div class="reading-h">§1. 業界の輪郭 ― 2つの異なる市場</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">化粧品と日用品を一緒にして語られることが多いが、物流の構造はかなり異なる。同じ棚には置けるが、法規制の重さが全然違う。</div></div>
+          <div class="reading-body">
+            <p>「化粧品・日用品」は物流では同じカテゴリとして扱われることが多いが、規制・物流特性・自動化との相性はかなり異なる。化粧品は薬機法の対象で厳格な管理が求められ、日用品は消耗品として高回転・大量出荷が特徴だ。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図A: 化粧品 vs 日用品 — EC市場規模とEC化率（2024年）</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:14px;text-align:center;">
+                  <div style="font-size:12px;font-weight:900;color:#9b59b6;margin-bottom:8px;">💄 化粧品・医薬品</div>
+                  <div style="font-size:22px;font-weight:900;color:var(--text);">1兆150億円</div>
+                  <div style="font-size:11px;color:var(--muted);margin:4px 0;">前年比 +4.54%</div>
+                  <div style="margin-top:8px;background:#e8eaf6;border-radius:6px;padding:6px;">
+                    <div style="font-size:10px;color:var(--muted);">EC化率</div>
+                    <div style="font-size:18px;font-weight:900;color:#9b59b6;">8.82%</div>
+                    <div style="font-size:10px;color:var(--muted);">店頭販売が根強い（経験財）</div>
+                  </div>
+                </div>
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:14px;text-align:center;">
+                  <div style="font-size:12px;font-weight:900;color:#27ae60;margin-bottom:8px;">🧴 生活雑貨・日用品</div>
+                  <div style="font-size:22px;font-weight:900;color:var(--text);">2兆5,616億円</div>
+                  <div style="font-size:11px;color:var(--muted);margin:4px 0;">前年比 +3.62%</div>
+                  <div style="margin-top:8px;background:#e8f5e9;border-radius:6px;padding:6px;">
+                    <div style="font-size:10px;color:var(--muted);">EC化率</div>
+                    <div style="font-size:18px;font-weight:900;color:#27ae60;">32.58%</div>
+                    <div style="font-size:10px;color:var(--muted);">ストック買い・サブスクが定着</div>
+                  </div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">出典：経済産業省「令和6年度電子商取引に関する市場調査報告書」（2025年8月）</div>
+            </div>
+            <p>化粧品はEC化率8.82%と物販平均（9.78%）を下回る。化粧品は「実際に試してから選ぶ経験財」であるため店頭販売が根強い。一方で日用品はストック需要・サブスクの定着でEC化率32%と高水準だ。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§2. 薬機法の落とし穴 ― 保管するだけでも許可が必要</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">「保管するだけなのに製造業許可が必要」というのは、知らないと詰まるポイントだ。鳥は製造しないので関係ないが。</div></div>
+          <div class="reading-body">
+            <p>化粧品物流の最大の特殊性は<strong>薬機法（医薬品医療機器等法）</strong>だ。化粧品メーカーだけでなく、<strong>倉庫で保管するだけでも「化粧品製造業許可」が必要</strong>になる。</p>
+            <div class="reading-figure">
+              <div class="reading-figure-title">図B: 化粧品製造業許可の2区分</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                <div style="background:var(--surface2);border:1.5px solid var(--border2);border-radius:10px;padding:14px;">
+                  <div style="font-size:11px;font-weight:900;color:var(--text);margin-bottom:6px;">一般区分（1号）</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">すべての製造工程を一貫して行える許可。化粧品の中身を原料から製造する工場向け。</div>
+                </div>
+                <div style="background:linear-gradient(135deg,#fff8f4,#fff3ea);border:1.5px solid rgba(255,102,0,.3);border-radius:10px;padding:14px;">
+                  <div style="font-size:11px;font-weight:900;color:var(--sb);margin-bottom:6px;">包装・表示・保管区分（2号）← 倉庫に必要</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">包装・ラベル貼付・保管のみを行える許可。<strong>倉庫業者・EC事業者はこちらが必要。</strong>保管・梱包が「製造行為」として定義されているため。</div>
+                </div>
+              </div>
+              <div class="reading-figure-cap">⚠️ 許可なしで化粧品を保管・梱包すると薬機法違反。倉庫選定では必ず許可の有無を確認する必要がある。</div>
+            </div>
+            <p>この規制はシャンプー・石けん・香水・歯磨き粉にも適用される（いずれも薬機法上の化粧品）。さらに<strong>出荷前の「市場出荷判定」</strong>が義務化されており、判定に合格したもののみが出荷できる。責任技術者の配置も求められる。</p>
+            <p>一方で日用品（洗剤・トイレットペーパー・キッチン用品等）は薬機法の対象外であり、一般的な倉庫で扱える。化粧品と日用品を同一倉庫で扱う場合、<strong>区画の分離と管理体制の整備</strong>が必要になる。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§3. 物流の特殊性</div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図C: 化粧品・日用品物流の4つの特殊性</div>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                <div style="background:var(--surface2);border-left:3px solid #9b59b6;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#9b59b6;margin-bottom:6px;">📋 ロット管理・使用期限</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">薬機法上、ロット番号（製造番号）の記録・管理が義務。使用期限管理と先入れ先出し（FIFO）も法的要件。成分が酸化・変質する前に出荷する必要がある。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #e67e22;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#e67e22;margin-bottom:6px;">🌡️ 温度・湿度管理</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">化粧水・乳液・美容液は温度変化・直射日光・湿気で成分が変質する。適切な保管環境の維持が品質と薬機法準拠の両方に必要。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #e74c3c;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#e74c3c;margin-bottom:6px;">🔢 高SKU・カラーバリエーション</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">ファンデーション1アイテムで肌色×テクスチャー×容量で数十SKU。リップは色数が100超えることも。アパレルに匹敵するSKU爆発が起きやすい。</div>
+                </div>
+                <div style="background:var(--surface2);border-left:3px solid #27ae60;border-radius:0 8px 8px 0;padding:12px;">
+                  <div style="font-size:11px;font-weight:900;color:#27ae60;margin-bottom:6px;">🔄 定期購入・サブスク対応</div>
+                  <div style="font-size:11px;color:var(--text2);line-height:1.7;">日用品・化粧品はリピート購入率が高く、サブスクリプションモデルが急増。毎月決まった日に同内容を出荷する定期便対応が倉庫オペレーションに求められる。</div>
+                </div>
+              </div>
+            </div>
+            <p>さらに日用品では<strong>重量物の問題</strong>もある。シャンプー・コンディショナーのセット、洗濯洗剤の大容量ボトルは1箱10kg超になることがある。日用品の物流は「化粧品の規制の複雑さ」と「日用品の重量・かさばり」の両方に対応が必要だ。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§4. AutoStoreとの相性</div>
+          <div class="reading-talker"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div><div class="reading-bubble">化粧品の小瓶は軽くて小さく、SKUが多い。AutoStoreが最も得意とする組み合わせだ。</div></div>
+          <div class="reading-body">
+            <div class="reading-figure">
+              <div class="reading-figure-title">図D: 品目別 × AutoStoreとの相性</div>
+              <table style="width:100%;border-collapse:collapse;font-size:12px;">
+                <thead>
+                  <tr style="background:var(--surface2);">
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">品目</th>
+                    <th style="padding:8px;text-align:center;border:1px solid var(--border);">相性</th>
+                    <th style="padding:8px;text-align:left;border:1px solid var(--border);">理由</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="hl-row"><td style="padding:7px 8px;border:1px solid var(--border);">スキンケア・化粧水・美容液（小瓶・多SKU）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:900;">◎ 最高</td><td style="padding:7px 8px;border:1px solid var(--border);">小型・軽量・高SKU・EC出荷。ロット管理もWMS連携で対応</td></tr>
+                  <tr class="hl-row"><td style="padding:7px 8px;border:1px solid var(--border);">メイクアップ（ファンデーション・リップ等）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#0e8f6e;font-weight:900;">◎ 最高</td><td style="padding:7px 8px;border:1px solid var(--border);">カラー多品種・小型・繊細。誤ピッキング防止にGTPが最適</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">シャンプー・コンディショナー（中型ボトル）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#a07800;font-weight:700;">△ 条件次第</td><td style="padding:7px 8px;border:1px solid var(--border);">ビンのサイズ次第。大容量・重量ボトルはビンに収まらない場合あり</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">洗剤・柔軟剤（大容量ボトル・箱）</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">× 対象外</td><td style="padding:7px 8px;border:1px solid var(--border);">重量・サイズがビン規格を超える。一般棚やパレット型向き</td></tr>
+                  <tr><td style="padding:7px 8px;border:1px solid var(--border);">トイレットペーパー・ティッシュ</td><td style="padding:7px;text-align:center;border:1px solid var(--border);color:#c0392b;font-weight:700;">× 対象外</td><td style="padding:7px 8px;border:1px solid var(--border);">軽量だが大型・かさばる。AutoStoreの高密度保管の強みが活きない</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p>化粧品の小型ボトル・バイアル・コンパクト品はAutoStoreのビンに収まりやすく、多品種×小ロット×高精度ピッキングが求められる用途にそのまま当てはまる。薬機法のロット管理もWMS連携で先入れ先出しを自動化できる。<strong>化粧品ECはAutoStoreと最も相性が良い業態の一つ</strong>だ。</p>
+          </div>
+        </article>
+
+        <article class="reading-section">
+          <div class="reading-h">§5. 化粧品・日用品 業界用語ミニ辞典</div>
+          <div class="reading-body">
+            <table class="glossary-table"><tbody>
+              <tr><td class="gl-term">薬機法</td><td>医薬品・医療機器等の品質・有効性・安全性の確保等に関する法律。化粧品の製造・保管・販売を規制する</td></tr>
+              <tr><td class="gl-term">化粧品製造業許可（包装・表示・保管）</td><td>倉庫で化粧品を保管・梱包するために必要な許可（2号区分）。取得倉庫のみが化粧品を合法的に扱える</td></tr>
+              <tr><td class="gl-term">市場出荷判定</td><td>化粧品を出荷する前に品質確認を行い、合格品のみを出荷することを示す。薬機法上の義務</td></tr>
+              <tr><td class="gl-term">責任技術者</td><td>化粧品製造業許可を持つ事業者に設置が義務付けられる技術者。薬剤師または化学系学歴＋実務経験が要件</td></tr>
+              <tr><td class="gl-term">ロット管理</td><td>同じ製造条件でまとめて製造した製品グループをロット番号で管理する仕組み。問題発生時の追跡・回収に必須</td></tr>
+              <tr><td class="gl-term">先入れ先出し（FIFO）</td><td>First In First Out。先に入荷した商品から先に出荷するルール。化粧品では使用期限管理のために法的に義務</td></tr>
+              <tr><td class="gl-term">OEM（Original Equipment Manufacturing）</td><td>他社ブランドの製品を受託製造する形態。化粧品業界では小規模ブランドがOEM工場を活用するケースが多い</td></tr>
+              <tr><td class="gl-term">定期便・サブスクリプション</td><td>毎月一定の商品を自動で届けるモデル。シャンプー・スキンケア・日用品で普及。倉庫側は定期的な一括出荷対応が必要</td></tr>
+              <tr><td class="gl-term">医薬部外品</td><td>化粧品より効能が認められた製品（薬用化粧品・育毛剤等）。化粧品より規制が厳しく、製造販売承認が必要</td></tr>
+              <tr><td class="gl-term">クイックコマース</td><td>日用品を注文から数十分〜1時間以内に届けるサービス。Uber Eats等が参入し、倉庫の小型分散配置が進む</td></tr>
+              <tr><td class="gl-term">ドラッグストア（DS）</td><td>医薬品・化粧品・日用品を一括販売する小売業態。ウエルシア・ツルハ・マツキヨ等。食品も扱う総合型が主流</td></tr>
+              <tr><td class="gl-term">バーチャルメイク</td><td>ARを使ってオンラインでメイクアップを試せる技術。化粧品ECの弱点（試せない）を補う手法として普及中</td></tr>
+            </tbody></table>
+          </div>
+        </article>
+
+      </div><!-- /reading-cosme -->
+
+
 
 
     </div>
