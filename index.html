@@ -10698,6 +10698,9 @@ function switchView(name){
       if (chatWindow) chatWindow.style.display = 'none';
     }
   }
+  // 設備の相場観：作成中ポップアップを開くたびに表示
+  const wipModal = document.getElementById('wip-modal');
+  if (wipModal) wipModal.style.display = (name === 'souba') ? 'flex' : 'none';
 }
 document.querySelectorAll('.tab').forEach(tab=>{
   tab.addEventListener('click',()=>switchView(tab.getAttribute('data-tab')));
@@ -12490,5 +12493,28 @@ document.querySelectorAll('.iflow .topnav a[href^="#"]').forEach(function(a){
   });
 });
 </script>
+
+<!-- 設備の相場観：作成中ポップアップ -->
+<style>
+#wip-modal{position:fixed;inset:0;z-index:9999;display:none;align-items:center;justify-content:center;background:rgba(20,24,33,.55);backdrop-filter:blur(3px);}
+#wip-modal .wip-card{position:relative;max-width:420px;width:calc(100% - 48px);background:#fff;border-radius:18px;box-shadow:0 18px 60px rgba(0,0,0,.3);padding:28px 26px 24px;text-align:center;animation:wipPop .22s ease-out;}
+@keyframes wipPop{from{transform:scale(.92);opacity:0;}to{transform:scale(1);opacity:1;}}
+#wip-modal .wip-icon{width:92px;height:92px;border-radius:50%;object-fit:cover;border:3px solid #d46b08;margin:-66px auto 10px;display:block;background:#fff;}
+#wip-modal .wip-badge{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;color:#fff;background:#d46b08;border-radius:20px;padding:4px 14px;margin-bottom:12px;}
+#wip-modal .wip-name{font-size:11px;font-weight:800;color:#9aa3b2;letter-spacing:1px;margin-bottom:6px;}
+#wip-modal .wip-text{font-size:14px;line-height:1.9;color:#3a4150;text-align:left;background:#f6f8fb;border:1px solid #e3e8ef;border-radius:12px;padding:14px 16px;font-family:'Noto Sans JP',sans-serif;}
+#wip-modal .wip-close{margin-top:18px;font-size:13px;font-weight:700;color:#fff;background:#2a3242;border:none;border-radius:10px;padding:10px 28px;cursor:pointer;font-family:'Noto Sans JP',sans-serif;transition:background .15s;}
+#wip-modal .wip-close:hover{background:#3a4356;}
+</style>
+<div id="wip-modal" role="dialog" aria-modal="true">
+  <div class="wip-card">
+    <img src="data:image/jpeg;base64,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" alt="ハシビロコウ" class="wip-icon">
+    <div class="wip-badge">🚧 作成中</div>
+    <div class="wip-name">ハシビロコウ</div>
+    <div class="wip-text">このページは作成中。管理人がデータを寄越さないせいだ。仕事が遅い。鳥は悪くない。</div>
+    <button class="wip-close" onclick="document.getElementById('wip-modal').style.display='none'">閉じる</button>
+  </div>
+</div>
+
 </body>
 </html>
