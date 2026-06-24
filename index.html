@@ -1197,6 +1197,10 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .kanban-flow{flex-wrap:wrap;}
 .kf-arrows{min-width:120px;}
 .kf-arr{font-size:9px;padding:3px 6px;}
+.fchip{display:inline-block;padding:3px 11px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--muted);cursor:pointer;user-select:none;transition:all .12s;font-size:11px;line-height:1.6;}
+.fchip:hover{border-color:var(--sb);color:var(--text2);}
+.fchip.active{background:var(--sb);border-color:var(--sb);color:#fff;font-weight:700;}
+.fchip-grp.active{background:#1a1f36;border-color:#1a1f36;}
 </style>
 
 <style id="iflow-styles">
@@ -1579,6 +1583,20 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
         </div>
       </div>
     </div>
+    <div id="map-filters" style="display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 20px;border-bottom:1px solid var(--border);background:var(--surface);font-size:11px;">
+      <span style="font-weight:700;color:var(--text2);margin-right:2px;">🏛 資本グループ:</span>
+      <span class="fchip fchip-grp active" data-grp="all">すべて</span>
+      <span style="width:1px;height:16px;background:var(--border);margin:0 4px;"></span>
+      <span style="font-weight:700;color:var(--text2);margin-right:2px;">⚙️ ソリューション:</span>
+      <span class="fchip fchip-sol active" data-sol="all">すべて</span>
+      <span class="fchip fchip-sol" data-sol="gtp">GTP/自動倉庫</span>
+      <span class="fchip fchip-sol" data-sol="amr">AMR</span>
+      <span class="fchip fchip-sol" data-sol="acr">ACR</span>
+      <span class="fchip fchip-sol" data-sol="arm">ロボアーム</span>
+      <span class="fchip fchip-sol" data-sol="ai">AI</span>
+      <span class="fchip fchip-sol" data-sol="wms">WMS/WES</span>
+      <span class="fchip fchip-sol" data-sol="integrator">SI</span>
+    </div>
     <div class="map-scroll"><div class="imap" id="imap"></div></div>
   </div>
 
@@ -1872,7 +1890,7 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
                   <td style="font-size:11px;">RoboShuttle V5</td>
                   <td style="font-size:11px;"><strong>Geek+ Japan</strong>（日本JV）</td>
                   <td><span style="font-size:10px;background:#e3f2fd;color:#1565c0;padding:2px 5px;border-radius:10px;font-weight:700;">日本JV</span></td>
-                  <td style="font-size:11px;" rowspan="2"><span class="market-trend-up">↑急成長</span><br>Geek+全体 RMB 24.1億(FY24)<br><span style="color:var(--muted);font-size:10px;">赤字継続。製品別非公開 ⚠️</span></td>
+                  <td style="font-size:11px;" rowspan="2"><span class="market-trend-up">↑急成長</span><br>Geek+全体 RMB 24.1億(FY24)<br><span style="color:var(--muted);font-size:10px;">FY24は赤字／2025通年はRMB31.7億・初の黒字化。製品別非公開 ⚠️</span></td>
                 </tr>
                 <tr>
                   <td><span style="font-size:16px;">🇨🇳</span> <strong>Hikrobot</strong><br><span style="font-size:10px;color:var(--muted);">Hikvision子会社</span></td>
@@ -10047,18 +10065,18 @@ function tagHTML(t){const i=TAGS[t];return i?`<span class="tag ${i.cls}">${i.lab
 const NODES={
   sbg:{label:'SoftBank Group',flag:'🇯🇵',sub:'持株会社 / 東証プライム / 設立1981年',tags:['holding'],color:'#ff6600',website:'https://group.softbank/ja',
     shortDesc:'倉庫自動化への投資規模は業界ダントツ1位。ハード・ソフト・SI全方位をカバー。',
-    desc:'ソフトバンクグループは2021年以降、倉庫自動化を次世代投資の柱と位置づけ、AutoStore出資（40%・$2.8B）・Berkshire Grey完全買収（$375M）・ABB Robotics買収交渉（$5.375B）・GreenBox JV設立（SBG 65%・受注残$7.5B）を通じて業界最大規模の投資コミットメントを形成している。\n\nRobo HDという持株会社にロボティクス関連投資を統合し、「Physical AI」戦略のもとでAI基盤（Skild AI・評価額$14B）とハードウェアを組み合わせた次世代自動化エコシステムの構築を進めている。SBロボティクスを通じた国内展開・GreenBoxを通じた海外WaaS展開を両輪として、倉庫自動化のバリューチェーン全体を押さえる唯一のグループとなっている。',
+    desc:'ソフトバンクグループは2021年以降、倉庫自動化を次世代投資の柱と位置づけ、AutoStore出資（40%・$2.8B）・Berkshire Grey完全買収（$375M）・ABB Robotics買収契約締結（$5.375B・規制承認待ち）・GreenBox JV設立（SBG 65%・受注残$7.5B）を通じて業界最大規模の投資コミットメントを形成している。\n\nRobo HDという持株会社にロボティクス関連投資を統合し、「Physical AI」戦略のもとでAI基盤（Skild AI・評価額$14B）とハードウェアを組み合わせた次世代自動化エコシステムの構築を進めている。SBロボティクスを通じた国内展開・GreenBoxを通じた海外WaaS展開を両輪として、倉庫自動化のバリューチェーン全体を押さえる唯一のグループとなっている。',
     groupDesc:'倉庫自動化への投資コミットメントは業界最大規模。ハード製造（ABB・Berkshire Grey・Balyo）・ソフト開発（Skild AI・Symbotic）・SI/代理販売（SBロボ・GreenBox）の全方位をカバーする唯一のグループ。AutoStoreへの40%出資により、独立系最大手とも資本でつながっている。',
-    kpis:[{l:'AutoStore出資',v:'40%（$2.8B・2021年）'},{l:'ABB Robotics',v:'買収中 $5.375B（2025年10月発表）'},{l:'GreenBox JV',v:'SBG 65% / Symbotic 35%'},{l:'Berkshire Grey',v:'100%子会社（$375M・2023年）'},{l:'Balyo出資',v:'91.28%（フランスAGVメーカー）'},{l:'Skild AI出資',v:'評価額$14B（NVIDIA共同出資）'},{l:'GreenBox受注残',v:'約$7.5B（約1.1兆円）'},{l:'投資コミットメント合計',v:'約10兆円超（業界最大）'}],
+    kpis:[{l:'AutoStore出資',v:'40%（$2.8B・2021年）'},{l:'ABB Robotics',v:'買収契約済 $5.375B（2025/10/8・2026年中クローズ予定）'},{l:'GreenBox JV',v:'SBG 65% / Symbotic 35%'},{l:'Berkshire Grey',v:'100%子会社（$375M・2023年）'},{l:'Balyo出資',v:'91.28%（フランスAGVメーカー）'},{l:'Skild AI出資',v:'評価額$14B（NVIDIA共同出資）'},{l:'GreenBox受注残',v:'約$7.5B（約1.1兆円）'},{l:'投資コミットメント合計',v:'約10兆円超（業界最大）'}],
     customers:[],
     groupMembers:[
       {id:'sbr',rel:'100%子会社',role:'SI・代理販売'},
       {id:'greenbox',rel:'JV 65%',role:'WaaS・統合'},
       {id:'berkshire',rel:'100%子会社',role:'AIピッキング・ハード'},
-      {id:'balyo',rel:'出資 41.8%',role:'AGF・搬送ハード'},
+      {id:'balyo',rel:'出資 91.28%',role:'AGF・搬送ハード'},
       {id:'abb_r',rel:'買収中 $5.375B',role:'産業ロボット・ハード'},
       {id:'skild',rel:'出資（NVIDIA共同）',role:'AI基盤ソフト'},
-      {id:'symbotic',rel:'GreenBox JV経由',role:'ロボットシステム・WaaS'},
+      {id:'symbotic',rel:'SBG約8%出資（直接）',role:'ロボットシステム・WaaS'},
       {id:'autostore',rel:'株主 40%（独立系）',role:'キューブGTP保管'},
     ],
     solutions:[{name:'Robo HD（ロボHD）戦略',desc:'SBGのロボティクス投資を束ねる持株会社。AutoStore・Berkshire Grey・ABB Robotics・Skild AIを傘下に置き、Physical AIによる倉庫自動化の次世代プラットフォームを構築中。ハードとAIの垂直統合で、既存の大手インテグレーターとは異なるアプローチで市場に挑む。',videoUrl:null,linkUrl:'https://group.softbank/ja',linkLabel:'SBG公式サイト'}],
@@ -10105,11 +10123,11 @@ const NODES={
     desc:'Balyoは、SoftBank Groupが91.28%を出資するフランスのAGVメーカー。最大の特徴は「既存フォークリフトの自動化改造」というアプローチ。Balyoが開発したナビゲーション技術（LiDAR＋SLAM）を既存のフォークリフトに後付けすることで、大規模な設備入替なしに自動化が実現できる。\n\nこの「既存設備の活用」という哲学は、倉庫自動化への投資障壁を大幅に下げるものであり、特に欧州の既存インフラが充実した物流センターでのニーズにマッチしている。欧州を中心に展開しているが、SBGの出資を受けてアジア・日本市場への展開も視野に入れている。\n\nSBG傘下ということで、SBロボティクスとの協業による日本市場展開の可能性も存在する。',
     kpis:[{l:'SBG出資比率',v:'91.28%'},{l:'設立',v:'2009年（フランス）'},{l:'技術',v:'LiDAR＋SLAMナビゲーション'},{l:'差別化',v:'既存フォークリフトへの後付け自動化'},{l:'展開地域',v:'欧州中心'},{l:'日本',v:'SBGとの連携で参入可能性あり'}],
     customers:[{flag:'🇫🇷',name:'欧州物流・製造企業',tag:'欧州中心'}],
-    groupMembers:[{id:'sbg',rel:'最大株主（41.8%出資）',role:'持株会社'},{id:'sbr',rel:'グループ兄弟会社（日本展開で連携可能性）',role:'SI・代理販売'}],
+    groupMembers:[{id:'sbg',rel:'最大株主（91.28%出資）',role:'持株会社'},{id:'sbr',rel:'グループ兄弟会社（日本展開で連携可能性）',role:'SI・代理販売'}],
     solutions:[{name:'Balyo AGF（自動フォークリフト）',desc:'既存のフォークリフトにBalyoのナビゲーションユニットを装着することで自動搬送を実現するAGF。地図ベースのSLAMナビゲーションにより、固定ガイドなしで柔軟に経路を設定できる。設備投資を最小化しながら搬送自動化を実現する最も現実的なアプローチの一つ。',videoUrl:'https://www.youtube.com/watch?v=7ORgAYuoQLQ',linkUrl:'https://www.balyo.com/',linkLabel:'ソリューション詳細'}],
     mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / ハード製造列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'水平搬送 / AGF自動フォーク列',color:'#0e8f6e'}]},
 
-  abb_r:{label:'ABB Robotics',flag:'🇨🇭',sub:'SBG買収中 $5.375B / ABB本体から分離予定 / 2025年10月発表',tags:['arm'],color:'#ff6600',website:'https://new.abb.com/products/robotics',
+  abb_r:{label:'ABB Robotics',flag:'🇨🇭',sub:'SBG買収契約済 $5.375B / ABB本体から分離 / 2025/10/8契約・規制承認待ち',tags:['arm'],color:'#ff6600',website:'https://new.abb.com/products/robotics',
     shortDesc:'SBGが$5.4Bで買収中の産業ロボット世界大手。Robo HDに統合しPhysical AI戦略を加速。',
     desc:'ABB Roboticsは、スイスの総合電機・自動化企業ABBのロボティクス部門。2025年10月、SoftBank GroupがABBから同部門を$5.375Bで買収することを発表した。これはSBGの倉庫自動化戦略において最大規模の単一投資であり、同社のPhysical AI戦略の中核に位置づけられている。\n\n産業ロボットアームの世界最大手の一つとして、自動車・電子・食品・物流など幅広い分野での実績を持つ。倉庫領域では特にデパレタイズ（入荷時の荷解き）・パレタイズ（出荷時の積載）・ピッキングに採用されている。YuMiと呼ばれる協働ロボット（コボット）も持ち、軽量ピッキング・梱包工程での人とロボットの協働も実現できる。\n\nSBGのRobo HDに統合後は、Berkshire GreyのAI把持技術・Skild AIの汎用ロボットAI・AutoStoreのGTPシステムとの連携が進み、エンドツーエンドの自動化ソリューションを提供できる体制が整う見込み。',
     kpis:[{l:'SBGによる買収額',v:'$5.375B（2025年10月発表）'},{l:'売上規模',v:'約$3.5B（Robotics部門単体）'},{l:'ロボット納入台数',v:'累計50万台超（世界最大級）'},{l:'統合先',v:'Robo HD（SBG傘下）'},{l:'主力製品',v:'IRBシリーズ・YuMi（協働ロボット）'},{l:'連携予定',v:'Berkshire Grey・Skild AI・AutoStore'}],
@@ -10126,6 +10144,51 @@ const NODES={
     groupMembers:[{id:'sbg',rel:'主要出資者（NVIDIA共同出資）',role:'持株会社'},{id:'abb_r',rel:'統合後の連携予定（AIロボット制御）',role:'産業ロボット'},{id:'berkshire',rel:'連携予定（AI把持×汎用AI）',role:'AIピッキング'}],
     solutions:[{name:'Skild Brain（汎用ロボットAI基盤モデル）',desc:'大規模シミュレーションと実世界の動画データで学習した汎用AI基盤モデル。特定のロボットに依存せず、あらゆる形状・メーカーのロボットに適用できるOSのような存在。倉庫ピッキング・デパレ・自律走行など多様なタスクに一つのモデルで対応できる点が革新的。',videoUrl:null,linkUrl:'https://www.skild.ai/',linkLabel:'Skild AI公式サイト'}],
     mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / ソフト開発列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'ソフト・制御 / AI基盤プラットフォーム列',color:'#1a1f36'}]},
+
+  agile:{label:'Agile Robots',flag:'🇩🇪',sub:'独・非上場 / 2018年 / SBG主導出資',tags:['arm','ai'],color:'#ff6600',website:'https://www.agile-robots.com/',
+    shortDesc:'力覚制御に強い協働・産業ロボット。SBGが2021年に主導出資。顧客Foxconn・BMW・VW。',
+    desc:'Agile Robotsは、ドイツ・ミュンヘン発の協働ロボット／産業ロボット企業。力覚センシングとAIビジョンを組み合わせた高精度な操作が強みで、繊細な組立・検査タスクにも対応できる。\n\nSoftBank Groupが2021年に主導した資金調達ラウンドで出資し、SBGのロボティクス関連投資先の一つとして公式に位置づけられている（ABB買収のプレスリリースでも既存投資先として明記）。2024年時点で売上約2億ユーロ・従業員3,200人超に成長し、Foxconn・BMW・Volkswagenなどの製造業大手を顧客に持つ。倉庫・物流ではピッキングやハンドリングでの活用が見込まれる。',
+    kpis:[{l:'売上',v:'約2億ユーロ（2024年）'},{l:'従業員',v:'3,200人超'},{l:'SBG関係',v:'2021年に主導出資（持分非開示）'},{l:'主要顧客',v:'Foxconn・BMW・Volkswagen'},{l:'強み',v:'力覚制御＋AIビジョン'}],
+    customers:[{flag:'🌍',name:'Foxconn・BMW・VW',tag:'製造'}],
+    groupMembers:[{id:'sbg',rel:'主導出資者（2021年）',role:'持株会社'},{id:'skild',rel:'AI基盤での連携余地',role:'ロボAI基盤'}],
+    solutions:[{name:'Agile協働／産業ロボット',desc:'力覚センシングとAIビジョンを統合した高精度ロボット。繊細な組立・検査・ハンドリングに対応し、製造ラインから物流まで適用範囲が広い。',videoUrl:null,linkUrl:'https://www.agile-robots.com/',linkLabel:'Agile Robots公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / ハード製造列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'ピッキング / ロボットアーム列',color:'#c4870a'}]},
+
+  agility:{label:'Agility Robotics',flag:'🇺🇸',sub:'米・非上場 / 2015年 / SBG主要株主',tags:['arm','ai'],color:'#ff6600',website:'https://www.agilityrobotics.com/',
+    shortDesc:'倉庫向け二足歩行ヒューマノイド「Digit」。GXO等の物流現場に約100台展開。SBGが主要株主。',
+    desc:'Agility Roboticsは、倉庫・物流向けの二足歩行ヒューマノイドロボット「Digit」を開発する米国企業。Digitは人と同じ空間で箱の運搬・移し替えなどを行えるよう設計され、既存の倉庫レイアウトを大きく変えずに導入できる点が特徴。\n\nSoftBank Groupが主要株主の一社として出資しており（評価額約$1.75B規模）、GXO Logisticsなどの物流事業者の現場に約100台規模で展開が進んでいる。ヒューマノイドはまだ実証・初期導入フェーズだが、汎用的な人型の強みを活かして将来の人手不足対応の有力候補とされる。SBGの「Physical AI」戦略における将来枠のピースに位置づけられる。',
+    kpis:[{l:'製品',v:'二足歩行ヒューマノイド Digit'},{l:'評価額',v:'約$1.75B規模'},{l:'展開',v:'GXO等の物流現場に約100台'},{l:'SBG関係',v:'主要株主の一社（持分非開示）'},{l:'位置づけ',v:'将来枠（実証〜初期導入）'}],
+    customers:[{flag:'🇺🇸',name:'GXO Logistics 等',tag:'3PL・物流'}],
+    groupMembers:[{id:'sbg',rel:'主要株主の一社',role:'持株会社'}],
+    solutions:[{name:'Digit（倉庫向けヒューマノイド）',desc:'人と同じ空間で箱の運搬・移し替えを行う二足歩行ロボット。既存の倉庫レイアウトを変えずに導入でき、将来の人手不足対応の有力候補。現状は実証〜初期導入フェーズ。',videoUrl:null,linkUrl:'https://www.agilityrobotics.com/',linkLabel:'Agility Robotics公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / ハード製造列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'ピッキング / ロボットアーム列',color:'#c4870a'}]},
+
+  openai:{label:'OpenAI',flag:'🇺🇸',sub:'米・非上場 / SBG累計$347億出資・約11%',tags:['ai'],color:'#ff6600',website:'https://openai.com/',
+    shortDesc:'基盤モデルの最大手。SBGが累計$347億を出資し約11%の大株主。※倉庫専用でない全社AI基盤。',
+    desc:'OpenAIは、ChatGPTなどで知られる基盤モデル（生成AI）の最大手。SoftBank Groupは累計で約$347億を出資し、約11%を保有する大株主の一角となっている（2025年に最大$400億規模の追加出資で合意）。\n\n倉庫自動化に特化した存在ではないが、SBGの「Physical AI」戦略における頭脳レイヤーの土台として重要。日本では合弁会社「SB OAI Japan」を通じ、企業向けAI「クリスタル・インテリジェンス」を2026年に独占展開する計画で、物流を含む各産業のAI活用の基盤になりうる。マップ上は「全社AI基盤（倉庫専用ではない）」として位置づける。',
+    kpis:[{l:'SBG出資',v:'累計約$347億・約11%（大株主）'},{l:'追加出資',v:'最大$400億規模で合意（2025年）'},{l:'製品',v:'基盤モデル（ChatGPT等）'},{l:'日本展開',v:'SB OAI Japan経由（2026年〜）'},{l:'位置づけ',v:'全社AI基盤（倉庫専用ではない）'}],
+    customers:[{flag:'🌍',name:'全産業',tag:'横断的AI基盤'}],
+    groupMembers:[{id:'sbg',rel:'大株主（約11%・累計$347億）',role:'持株会社'},{id:'sboai',rel:'日本合弁の相手（50%）',role:'企業向けAI'}],
+    solutions:[{name:'基盤モデル（生成AI）',desc:'生成AIの基盤モデル。倉庫専用ではないが、需要予測・対話型オペレーション支援・ドキュメント処理など物流業務のAI化の土台になりうる。',videoUrl:null,linkUrl:'https://openai.com/',linkLabel:'OpenAI公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / ソフト開発列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'ソフト・制御 / AI基盤プラットフォーム列',color:'#1a1f36'}]},
+
+  sboai:{label:'SB OAI Japan',flag:'🇯🇵',sub:'合弁 / 2025年11月設立 / Cホールディングス50%・OpenAI50%',tags:['ai'],color:'#ff6600',website:'https://group.softbank/',
+    shortDesc:'SBKK系×OpenAIの合弁。企業向けAI「クリスタル・インテリジェンス」を2026年に日本独占展開。',
+    desc:'SB OAI Japanは、2025年11月に設立されたソフトバンク系とOpenAIの合弁会社。出資はCホールディングス50%・OpenAI50%で、CホールディングスはSBKK（ソフトバンク株式会社）51%・SBG 49%の構成。\n\n企業向けAIソリューション「クリスタル・インテリジェンス」を2026年に日本で独占展開する計画で、物流・製造・流通など各産業のAI導入の入り口になりうる。倉庫自動化に直結する製品ではないが、SBグループのAIスタック（OpenAI＝モデル、Arm＝チップ、Skild＝ロボAI）を企業現場に届ける「提供レイヤー」として位置づけられる。',
+    kpis:[{l:'設立',v:'2025年11月'},{l:'出資',v:'Cホールディングス50%・OpenAI50%'},{l:'C-HD構成',v:'SBKK 51%・SBG 49%'},{l:'製品',v:'クリスタル・インテリジェンス（2026年〜独占）'}],
+    customers:[{flag:'🇯🇵',name:'日本企業全般',tag:'企業向けAI'}],
+    groupMembers:[{id:'sbkk',rel:'親会社系（C-HD経由）',role:'法人事業会社'},{id:'openai',rel:'合弁相手（50%）',role:'基盤モデル'}],
+    solutions:[{name:'クリスタル・インテリジェンス',desc:'企業向けAIソリューション。各社の業務データと基盤モデルを組み合わせ、物流を含む業務のAI化を支援。2026年に日本で独占展開予定。',videoUrl:null,linkUrl:'https://group.softbank/',linkLabel:'ソフトバンクグループ'}],
+    mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / SI・代理販売列',color:'#ff6600'}]},
+
+  sbkk:{label:'ソフトバンク(株)',flag:'🇯🇵',sub:'東証プライム: 9434 / SBG子会社 / 法人事業',tags:['amr','integrator'],color:'#ff6600',website:'https://www.softbank.jp/biz/',
+    shortDesc:'法人向けにAGV・無人フォーク・無人牽引車を販売する事業会社（SBRとは別チャネル）。',
+    desc:'ソフトバンク株式会社（9434）は、SoftBank Group傘下の通信・法人事業会社。SBG（持株・9984）とは別法人で、法人顧客向けにロボティクス／物流自動化ソリューションを販売している。\n\n具体的には、自動搬送ロボット（AGV）・無人フォークリフト・無人牽引車など複数タイプを法人向けに提供。AutoStore専業のSBロボティクス（SBR）とは別の販売チャネルとして、通信・IT営業基盤を活かした幅広い法人顧客へのリーチが強み。SBグループ内で「法人向けの販売・導入窓口」を担う位置づけ。',
+    kpis:[{l:'証券コード',v:'9434（東証プライム）'},{l:'取扱',v:'AGV・無人フォーク・無人牽引車 等'},{l:'立ち位置',v:'法人向け販売チャネル（SBRとは別）'},{l:'強み',v:'通信・IT営業基盤での法人リーチ'}],
+    customers:[{flag:'🇯🇵',name:'国内法人全般',tag:'多業種'}],
+    groupMembers:[{id:'sbg',rel:'親会社',role:'持株会社'},{id:'sboai',rel:'C-HD経由でAI合弁に参画',role:'企業向けAI'}],
+    solutions:[{name:'法人向けロボ／物流自動化',desc:'AGV・無人フォークリフト・無人牽引車などを法人向けに販売・導入支援。通信・IT営業基盤を活かした幅広いリーチが強み。',videoUrl:null,linkUrl:'https://www.softbank.jp/biz/',linkLabel:'ソフトバンク法人'}],
+    mapPositions:[{layer:'業界マップ',cell:'SBGroup行 / SI・代理販売列',color:'#ff6600'},{layer:'ソリューションマトリクス',cell:'水平搬送 / AGF自動フォーク列',color:'#0e8f6e'}]},
 
   autostore:{label:'AutoStore',flag:'🇳🇴',sub:'Oslo: AUTO / 設立1996年 / SBG 40%株主',tags:['gtp','ai'],color:'#7c3aed',website:'https://www.autostoresystem.com/ja',
     shortDesc:'キューブ型GTPのパイオニア。SBGが40%の株主でもある独立系最大手。',
@@ -10179,8 +10242,8 @@ const NODES={
 const GROUP_DATA={
   sbg:{
     label:'SBGroup',flag:'🇯🇵',color:'#ff6600',
-    desc:'ソフトバンクグループ（SBG）は2021年以降、倉庫自動化を次世代投資の柱と明確に位置づけ、業界最大規模の投資コミットメントを形成してきた。AutoStore出資（$2.8B・40%）・Berkshire Grey完全買収（$375M）・ABB Robotics買収交渉（$5.375B）・GreenBox JV設立（SBG 65%・受注残$7.5B）の4つの大型ディールにより、ハード製造（ABB・Berkshire Grey・Balyo）・ソフト開発（Skild AI・Symbotic）・SI/代理販売（SBロボ・GreenBox）の全方位をカバーする唯一のグループとなった。\n\nRobo HDという持株会社にロボティクス関連投資を統合し、「Physical AI」戦略のもとでAI基盤（Skild AI・評価額$14B）とハードウェアを組み合わせた次世代自動化エコシステムの構築を進めている。競合グループがM&Aで1〜2つの強みを持つのに対し、SBGはAutostoreという独立系GTP最大手にも40%出資することで、グループ内の全テクノロジーと補完関係にある。',
-    kpis:[{l:'AutoStore出資',v:'40%（$2.8B・2021年）'},{l:'ABB Robotics',v:'買収中 $5.375B（2025年10月発表）'},{l:'GreenBox JV',v:'SBG 65% / 受注残$7.5B'},{l:'Berkshire Grey',v:'100%子会社（$375M・2023年）'},{l:'Balyo出資',v:'91.28%（事実上子会社化）'},{l:'Skild AI出資',v:'評価額$14B（NVIDIA共同出資）'},{l:'投資合計',v:'約10兆円超（業界最大規模）'},{l:'戦略名',v:'Physical AI / Robo HD統合'}],
+    desc:'ソフトバンクグループ（SBG）は2021年以降、倉庫自動化を次世代投資の柱と明確に位置づけ、業界最大規模の投資コミットメントを形成してきた。AutoStore出資（$2.8B・40%）・Berkshire Grey完全買収（$375M）・ABB Robotics買収契約締結（$5.375B・規制承認待ち）・GreenBox JV設立（SBG 65%・受注残$7.5B）の4つの大型ディールにより、ハード製造（ABB・Berkshire Grey・Balyo）・ソフト開発（Skild AI・Symbotic）・SI/代理販売（SBロボ・GreenBox）の全方位をカバーする唯一のグループとなった。\n\nRobo HDという持株会社にロボティクス関連投資を統合し、「Physical AI」戦略のもとでAI基盤（Skild AI・評価額$14B）とハードウェアを組み合わせた次世代自動化エコシステムの構築を進めている。競合グループがM&Aで1〜2つの強みを持つのに対し、SBGはAutostoreという独立系GTP最大手にも40%出資することで、グループ内の全テクノロジーと補完関係にある。',
+    kpis:[{l:'AutoStore出資',v:'40%（$2.8B・2021年）'},{l:'ABB Robotics',v:'買収契約済 $5.375B（2025/10/8・2026年中クローズ予定）'},{l:'GreenBox JV',v:'SBG 65% / 受注残$7.5B'},{l:'Berkshire Grey',v:'100%子会社（$375M・2023年）'},{l:'Balyo出資',v:'91.28%（事実上子会社化）'},{l:'Skild AI出資',v:'評価額$14B（NVIDIA共同出資）'},{l:'投資合計',v:'約10兆円超（業界最大規模）'},{l:'戦略名',v:'Physical AI / Robo HD統合'}],
     strategy:'SBGの倉庫自動化戦略の核心は「ハード×AI×オペレーション」の垂直統合。AutoStoreでGTP市場を押さえ、ABB RoboticsでロボットアームをRobo HDに統合し、Skild AIで汎用ロボットAIを開発、Berkshire GreyでAIピッキングを実現、GreenBoxでWaaS（倉庫をサービスとして提供）という収益モデルを作る。「どの会社も持っていない全方位の組み合わせ」がSBGの競争優位。',
     members:['sbg','sbr','greenbox','symbotic','berkshire','balyo','abb_r','skild','autostore'],
   },
@@ -10264,16 +10327,16 @@ const GROUP_DATA={
 };
 
 const MAP_ROWS=[
-  {id:'sbg',label:'⭐ SBGroup',sub:'倉庫自動化への投資コミットメント 約10兆円超',commit:'AutoStore$2.8B + ABB$5.375B + GreenBox$7.5B受注残',tagline:'業界最大規模の投資でハード・ソフト・SIの全方位をカバー。AutoStoreへの40%出資も含む',isSBG:true,
-    cols:[{ids:['autostore','abb_r','berkshire','balyo']},{ids:['skild','symbotic']},{ids:['sbr','greenbox']}]},
+  {id:'sbg',label:'⭐ SBGroup',sub:'倉庫自動化への投資コミットメント 約10兆円超',commit:'AutoStore$2.8B + ABB$5.375B + GreenBox$7.5B受注残',tagline:'ハード（AutoStore/ABB/Agile/Agility）×AI基盤（OpenAI/Arm/Skild）×提供（SBR/GreenBox/SBKK/SB OAI）の全方位。AutoStore40%出資を含む業界最大規模',isSBG:true,
+    cols:[{ids:['autostore','abb_r','berkshire','balyo','agile','agility']},{ids:['skild','openai','symbotic']},{ids:['sbr','greenbox','sboai','sbkk']}]},
   {id:'kion',label:'KION Group',sub:'Dematic買収 $3.25B（2017年）',commit:'Dematic $3.25B + Linde/Still等',tagline:'欧州最大のフォークリフト・自動化コングロマリット',isSBG:false,
     cols:[{ids:['dematic']},{ids:[]},{ids:['swisslog','dematic']}]},
   {id:'panasonic',label:'Panasonic',sub:'Blue Yonder買収 $8.5B（2021年）',commit:'Blue Yonder $8.5B',tagline:'製造業のノウハウとAI需要予測でSCM全体の最適化を目指す',isSBG:false,
     cols:[{ids:[]},{ids:['blue_yonder']},{ids:[]}]},
   {id:'honeywell',label:'Honeywell',sub:'Intelligrated買収 $1.5B（2016年）',commit:'Intelligrated $1.5B',tagline:'コンベヤ・ソーター・WESのフルラインを一社で提供',isSBG:false,
     cols:[{ids:['honeywell']},{ids:['honeywell']},{ids:['honeywell']}]},
-  {id:'toyota',label:'Toyota / 豊田自動織機',sub:'Vanderlande・Bastian・viastore 約2,000億円',commit:'Vanderlande + Bastian + viastore',tagline:'フォークリフト世界No.1からTAL統合で倉庫自動化SIへ本格参入',isSBG:false,
-    cols:[{ids:[]},{ids:[]},{ids:['tal','toyota_lf']}]},
+  {id:'toyota',label:'Toyota / 豊田自動織機',sub:'トヨタ自動車24.66%・TOB非公開化中 / Vanderlande・Bastian・viastore等',commit:'Vanderlande約1,400億 + Bastian約290億 + viastore + Siemens Logistics 3億€',tagline:'トヨタ自動車を資本元に、フォークリフト世界No.1の豊田自動織機がM&Aで物流SIへ本格参入。実質マテハン世界4位',isSBG:false,
+    cols:[{ids:['toyota_ind','vanderlande','viastore','siemens_log']},{ids:['viastore']},{ids:['tal','bastian','toyota_lf']}]},
   {id:'midea',label:'Midea / KUKA',sub:'KUKA買収 約$4.5B（2016年）',commit:'KUKA $4.5B（Swisslog含む）',tagline:'中国家電大手が産業ロボット経由で倉庫自動化に参入',isSBG:false,
     cols:[{ids:['midea_kuka','swisslog']},{ids:[]},{ids:['swisslog']}]},
   {id:'teradyne',label:'Teradyne',sub:'Universal Robots買収 $3B（2015年）',commit:'Universal Robots $3B',tagline:'協働ロボット（コボット）世界最多導入で軽量ピッキング市場をリード',isSBG:false,
@@ -10300,7 +10363,7 @@ const COL_HEADERS=[
 const CHIP_DESC={
   abb_r:'産業ロボット世界最大手。SBGが$5.4Bで買収中。',
   berkshire:'AIピッキングロボット。SBG 100%子会社。AutoStoreとCarouselAIを共同開発。',
-  balyo:'SBGが42%出資するフランスのAGFメーカー。既存フォークリフトを自動化改造。',
+  balyo:'SBGが91.28%出資するフランスのAGFメーカー（事実上子会社化）。既存フォークリフトを自動化改造。',
   skild:'汎用ロボットAI基盤「Skild Brain」。SBG・NVIDIA共同出資・評価額$14B。',
   symbotic:'AIロボット群でケースレベル自動化。GreenBox JVを通じてSBGと世界展開中。',
   sbr:'AutoStore国内代理店。SBフレームワークス川崎に国内最大級システムを提供。',
@@ -10381,6 +10444,60 @@ const EXTRA={
   blue_yonder:{label:'Blue Yonder',flag:'🇺🇸',sub:'Panasonic傘下（$8.5B買収） / スコッツデール・アリゾナ / 設立1985年',tags:['wms'],color:'#0a7eb8',website:'https://blueyonder.com/ja-jp',shortDesc:'2024年売上$1.36B（SaaS成長+14.2%）。WMSが最大製品（前年比+32%）。132社新規顧客獲得。',desc:'Panasonic傘下のWMS世界大手。機械学習による需要予測・在庫最適化が強み。',kpis:[{l:'2024年売上',v:'$1.36B（SaaS成長+14.2%）'},{l:'WMS',v:'最大製品・前年比+32%成長'},{l:'新規顧客',v:'132社（2024年）'},{l:'親会社',v:'Panasonic（$8.5B買収・2021年）'}],customers:[{flag:'🌍',name:'グローバル大手小売・3PL',tag:'多業種'}],solutions:[{name:'Luminate WMS（倉庫管理システム）',desc:'クラウドネイティブSaaS型WMS。25年以上の開発実績を基盤に継続進化し続ける。AIによる動的タスク割り当て・ピッキングルート最適化で労働生産性15〜30%向上を実証。SAP・OracleとのERPプリビルド連携、マイクロサービスアーキテクチャで拡張性が高い。Gartner WMS Magic Quadrantでリーダー評価。2024年売上$1.36B（+14.2%）・新規顧客132社。',videoUrl:'https://www.youtube.com/watch?v=MCxZB8H8T5A',linkUrl:'https://blueyonder.com/solutions/warehouse-management',linkLabel:'Blue Yonder WMS公式ページ'},{name:'Robotics Hub（ロボティクス統合基盤）',desc:'異なるメーカーのAMR・AGV・ソーターをWMSから一元管理する統合基盤。マルチベンダー対応が強みで、特定メーカーに縛られずベストオブブリードの設備を組み合わせ可能。PanasonicグループのSCMノウハウとの融合でサプライチェーン全体の最適化を実現。',videoUrl:null,linkUrl:'https://blueyonder.com/solutions/warehouse-management',linkLabel:'Robotics Hub詳細'}],groupMembers:[{id:'panasonic',rel:'親会社（$8.5B買収・2021年）',role:'持株会社'}],mapPositions:[{layer:'業界マップ',cell:'Panasonic行 / ソフト開発列'},{layer:'ソリューションマトリクス',cell:'ソフト / WMS列',color:'#1a1f36'}]},
   honeywell:{label:'Honeywell Intelligrated',flag:'🇺🇸',sub:'Honeywell傘下 / Intelligrated買収$1.5B（2016年）',tags:['conv','integrator','wms'],color:'#b07a00',website:'https://www.intelligrated.com/',shortDesc:'コンベヤ・ソーター・WESをフルラインで提供するSI大手。Honeywell傘下。',desc:'Honeywell傘下のSI大手。コンベヤ・ソーター・ロボットピッキング・WESをフルライン提供。Momentum™プラットフォームで自動化設備をリアルタイム管理。',kpis:[{l:'倉庫自動化売上',v:'約$450M（年間）'},{l:'プラットフォーム',v:'Momentum™ WES'}],customers:[{flag:'🇺🇸',name:'大手小売・EC各社',tag:'小売・EC'}],solutions:[{name:'Momentum™ WES',desc:'【統合制御の中枢】コンベヤ・ソーター・ロボットアーム・AMRを問わず、倉庫内の全自動化設備をリアルタイムで一元管理するクラウド型WES。AIによる優先度に基づく動的タスク割り当てで倉庫全体の生産性を最大化する。WMSから指示を受けてWCS（設備制御）に指令を出す「中間レイヤー」として機能し、設備の追加・変更に柔軟に対応可能。コンベヤ・ソーターのハードウェアも自社提供できるため、ソフト・ハードをトータルで提案できることがHoneywellの強み。',videoUrl:'https://www.youtube.com/watch?v=R2S9FuJpotE',linkUrl:'https://www.honeywell.com/us/en/products/supply-chain-products/warehouse-automation',linkLabel:'WES詳細'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'Honeywell行 / ハード・ソフト・SI全列'},{layer:'ソリューションマトリクス',cell:'水平搬送 / 水平コンベヤ列・仕分け / クロスベルトソーター列・ソフト / WES列',color:'#1a1f36'}]},
   tal:{label:'Toyota Automated Logistics',flag:'🇯🇵',sub:'Bastian+Vanderlande+viastore統合 / 2026年4月',tags:['integrator','shuttle','gtp'],color:'#1a9e4a',website:'https://toyota-automated-logistics.com/',shortDesc:'Toyota傘下の倉庫自動化SI。AutoStore・Exotecを公式パートナーに。2026年4月統合。',desc:'豊田自動織機がBastian Solutions・Vanderlande倉庫部門・viastoreを2026年4月に統合した新ブランド。AutoStore・Exotecを公式パートナーとして大規模SIを展開。',kpis:[{l:'パートナー',v:'AutoStore・Exotec・OTTO Motors'}],customers:[{flag:'🇺🇸',name:'Puma',tag:'アパレル'}],solutions:[{name:'AS/RS + AMR 統合SI',desc:'【マルチベンダーSIの強み・特定メーカーに縛られない提案力】AutoStore・Exotecを公式パートナーとして、顧客の課題・規模・予算に応じて最適なAS/RS・AMRを組み合わせて提案・導入するフルラインSI。OTTO Motors（自律搬送）とも連携し、製造業・EC・食品・医薬品向けの大規模倉庫自動化を手掛ける。Bastian Solutions（米国）・Vanderlande（倉庫部門）・viastore（独・WMS）を2026年4月に統合したToyota Automated Logisticsブランドのもと、グローバルSIとして急成長中。PUMAの北米DC向け大規模AutoStoreシステムの導入が代表実績。',videoUrl:null,linkUrl:'https://toyota-automated-logistics.com/',linkLabel:'TAL公式サイト'}],groupMembers:[{id:'toyota_lf',rel:'グループ兄弟（国内展開）',role:'SI・代理販売'}],mapPositions:[{layer:'業界マップ',cell:'Toyota行 / SI・代理販売列'},{layer:'ソリューションマトリクス',cell:'保管 / GTP・シャトル列',color:'#1a6be8'}]},
+  toyota_motor:{label:'トヨタ自動車',flag:'🇯🇵',sub:'東証プライム: 7203 / 豊田自動織機の筆頭株主24.66%',tags:['holding'],color:'#1a9e4a',website:'https://global.toyota/',
+    shortDesc:'豊田自動織機の筆頭株主（24.66%）。トヨタ不動産主導のTOBで織機を非公開化中。',
+    desc:'トヨタ自動車は、マテハン中核会社である豊田自動織機の筆頭株主（24.66%・74,100,604株）。直接マテハン事業を手掛けるわけではないが、トヨタグループの総本社として資本の頂点に位置する。\n\n2025年、トヨタ不動産が新設持株会社を通じて豊田自動織機をTOBで非公開化する動きが進行中（トヨタ不動産が約1,800億円、トヨタ自動車が議決権なし優先株で約7,000億円を出資。アイシン・デンソー・豊田通商も参画）。TOB成立後はグループの株式持合いを解消し、豊田自動織機は上場廃止へ。狙いはトヨタグループの「モビリティカンパニー」変革で、豊田自動織機が「モノの移動（物流）」を担う構図を強める。',
+    kpis:[{l:'証券コード',v:'7203（東証プライム）'},{l:'豊田自動織機 保有',v:'24.66%（筆頭株主）'},{l:'TOB',v:'トヨタ不動産主導で非公開化進行中'},{l:'トヨタ自動車の出資',v:'議決権なし優先株 約7,000億円'},{l:'狙い',v:'グループのモビリティカンパニー変革'}],
+    customers:[{flag:'🌍',name:'（資本の頂点・事業会社ではない）',tag:'グループ総本社'}],
+    groupMembers:[{id:'toyota_ind',rel:'筆頭株主（24.66%・TOB非公開化中）',role:'マテハン中核'}],
+    solutions:[{name:'（持株・資本元）',desc:'トヨタグループの総本社。マテハン事業は豊田自動織機が担う。TOBで織機を非公開化し、グループの物流機能を強化する戦略。',videoUrl:null,linkUrl:'https://global.toyota/',linkLabel:'トヨタ自動車'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / 資本元',color:'#1a9e4a'}]},
+
+  toyota_ind:{label:'豊田自動織機',flag:'🇯🇵',sub:'東証プライム: 6201 / フォークリフト世界No.1 / マテハン中核',tags:['holding','amr','integrator'],color:'#1a9e4a',website:'https://www.toyota-shokki.co.jp/',
+    shortDesc:'トヨタG源流。フォークリフト世界No.1。M&Aで物流ソリューションを世界規模に拡大しマテハン世界4位（実質）。',
+    desc:'豊田自動織機（6201）は、トヨタグループの源流企業であり、マテハン事業の中核会社。フォークリフトで世界シェアNo.1を誇り、トヨタL&F（国内）・Raymond・CESAB（海外ブランド）でTMHG（Toyota Material Handling Group）を構成する。\n\n2017年以降、Bastian Solutions（米SIer・約290億円）、Vanderlande（蘭・約1,400億円）を買収し、2022年にviastore（独）を加え、物流システム事業（TALG: Toyota Automated Logistics Group）を世界規模に拡大。Vanderlande経由でSiemens Logistics（空港手荷物）も取得手続き中。これらM&Aで実質マテハン世界4位（上位はダイフク・SSI Schäfer・Dematic）。\n\nトヨタ自動車が筆頭株主（24.66%）で、トヨタ不動産主導のTOBで非公開化が進行中。',
+    kpis:[{l:'証券コード',v:'6201（東証プライム・TOB非公開化中）'},{l:'フォークリフト',v:'世界シェアNo.1'},{l:'マテハン順位',v:'実質世界4位（M&A後）'},{l:'2系統',v:'TMHG（フォークリフト）＋TALG（物流システム）'},{l:'筆頭株主',v:'トヨタ自動車 24.66%'}],
+    customers:[{flag:'🌍',name:'製造・流通・EC・空港 各社',tag:'多業種'}],
+    groupMembers:[{id:'toyota_motor',rel:'筆頭株主（24.66%）',role:'資本元'},{id:'vanderlande',rel:'100%子会社（2017・約1,400億円）',role:'物流システム'},{id:'bastian',rel:'100%子会社（2017・約290億円）',role:'北米SIer'},{id:'viastore',rel:'傘下（2022加入）',role:'自動倉庫/WMS'},{id:'tal',rel:'統合ブランド（TALG）',role:'SI統括'},{id:'toyota_lf',rel:'国内事業（TMHG）',role:'SI・代理販売'}],
+    solutions:[{name:'TMHG＋TALG 2系統',desc:'フォークリフト系（TMHG: トヨタL&F/Raymond/CESAB）と物流システム系（TALG: Vanderlande/Bastian/viastore）の2系統で、機器から大規模SIまでをカバー。',videoUrl:null,linkUrl:'https://www.toyota-shokki.co.jp/',linkLabel:'豊田自動織機'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / 資本の中核',color:'#1a9e4a'}]},
+
+  vanderlande:{label:'Vanderlande',flag:'🇳🇱',sub:'蘭・1949年 / 豊田自動織機 100%子会社（2017）',tags:['shuttle','conv','integrator'],color:'#1a9e4a',website:'https://www.vanderlande.com/',
+    shortDesc:'ソーター/コンベヤ/シャトル自動倉庫をフルライン自社開発。空港手荷物・小売・小包郵便に強み。豊田織機が100%買収。',
+    desc:'Vanderlandeは1949年創業のオランダの物流自動化大手。ソーター・コンベヤ・シャトル式自動倉庫をフルラインで自社開発し、特に空港手荷物処理システム（BHS）では世界有数の実績を持つ。小売・小包/郵便・空港の3領域に強い。\n\n豊田自動織機が2017年に約1,400億円で全株式を取得（欧州子会社経由）。50拠点・約4,500名規模。さらにVanderlande経由でSiemens Logistics（独・空港手荷物）を2024年10月31日契約・3億ユーロで取得手続き中（2025年内完了予定）。トヨタ系の物流システム事業（TALG）の中核を担う。',
+    kpis:[{l:'設立',v:'1949年（オランダ）'},{l:'買収',v:'豊田織機 100%（2017・約1,400億円）'},{l:'規模',v:'50拠点・約4,500名'},{l:'強み',v:'空港手荷物・小売・小包郵便'},{l:'Siemens Logistics',v:'2024契約・3億ユーロで取得手続き中'}],
+    customers:[{flag:'🌍',name:'空港・小売・郵便 各社',tag:'空港・小売'}],
+    groupMembers:[{id:'toyota_ind',rel:'親会社（100%・2017）',role:'マテハン中核'},{id:'siemens_log',rel:'傘下化（100%・手続き中）',role:'空港手荷物'},{id:'tal',rel:'統合ブランド（TALG）',role:'SI統括'}],
+    solutions:[{name:'ソーター／コンベヤ／シャトル自動倉庫',desc:'フルライン自社開発の物流自動化システム。空港手荷物処理（BHS）で世界有数。小売・小包郵便の大規模仕分けにも強い。',videoUrl:null,linkUrl:'https://www.vanderlande.com/',linkLabel:'Vanderlande公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / ハード製造列・SI・代理販売列',color:'#1a9e4a'},{layer:'ソリューションマトリクス',cell:'仕分け / クロスベルトソーター列・保管 / シャトルラック列',color:'#0a7eb8'}]},
+
+  bastian:{label:'Bastian Solutions',flag:'🇺🇸',sub:'米・インディアナ / 豊田自動織機 100%子会社（2017）',tags:['integrator','wms','arm'],color:'#1a9e4a',website:'https://www.bastiansolutions.com/',
+    shortDesc:'北米の物流SIer。ソフト開発力＋一括請負が強み。豊田織機が約290億円で100%買収。',
+    desc:'Bastian Solutionsは米国インディアナ州の物流システムインテグレーター。ハード/ソフトの選定〜開発〜構築〜保守を一括請負できる点が強みで、特に倉庫内物流機器の制御管理ソフトの開発力に定評がある。\n\n豊田自動織機が2017年に約290億円で全株式を取得（北米子会社経由）。トヨタ系の物流システム事業（TALG）の北米拠点として、製造業・EC・小売向けの大規模SIを手掛ける。',
+    kpis:[{l:'拠点',v:'米・インディアナ'},{l:'買収',v:'豊田織機 100%（2017・約290億円）'},{l:'強み',v:'ソフト開発力＋一括請負'},{l:'役割',v:'TALGの北米SI拠点'}],
+    customers:[{flag:'🇺🇸',name:'北米の製造・EC・小売',tag:'北米'}],
+    groupMembers:[{id:'toyota_ind',rel:'親会社（100%・2017）',role:'マテハン中核'},{id:'tal',rel:'統合ブランド（TALG）',role:'SI統括'}],
+    solutions:[{name:'北米向け物流SI',desc:'ハード/ソフト選定〜開発〜構築〜保守を一括請負。倉庫内物流機器の制御ソフト開発力が強み。北米の製造・EC・小売向け大規模SI。',videoUrl:null,linkUrl:'https://www.bastiansolutions.com/',linkLabel:'Bastian Solutions公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / SI・代理販売列',color:'#1a9e4a'},{layer:'ソリューションマトリクス',cell:'ソフト・制御 / WES列',color:'#1a1f36'}]},
+
+  viastore:{label:'viastore',flag:'🇩🇪',sub:'独 / 豊田自動織機 傘下（2022加入）',tags:['shuttle','wms'],color:'#1a9e4a',website:'https://www.viastore.com/',
+    shortDesc:'自動倉庫システムとWMSソフトウェアに強み。2022年にトヨタ系（TALG）入り。',
+    desc:'viastoreは、自動倉庫システム（AS/RS）とWMS/倉庫ソフトウェアに強みを持つドイツの物流自動化企業。2022年に豊田自動織機の物流システム事業（TALG: Toyota Automated Logistics Group）に加わり、Vanderlande・Bastianと並ぶグループの一員となった。\n\nハードウェア（自動倉庫）と自社ソフトウェアの両面を提供できる点が特徴で、TALGのソフトウェア機能を補強する役割を担う。',
+    kpis:[{l:'拠点',v:'ドイツ'},{l:'TALG加入',v:'2022年'},{l:'強み',v:'自動倉庫＋WMSソフトウェア'},{l:'役割',v:'TALGのソフト機能を補強'}],
+    customers:[{flag:'🌍',name:'欧州の製造・流通',tag:'欧州'}],
+    groupMembers:[{id:'toyota_ind',rel:'傘下（2022加入）',role:'マテハン中核'},{id:'tal',rel:'統合ブランド（TALG）',role:'SI統括'}],
+    solutions:[{name:'自動倉庫＋WMS',desc:'AS/RSとWMS/倉庫ソフトを一体提供。TALGのソフトウェア機能を補強する役割。',videoUrl:null,linkUrl:'https://www.viastore.com/',linkLabel:'viastore公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / ハード製造列・ソフト開発列',color:'#1a9e4a'},{layer:'ソリューションマトリクス',cell:'保管 / シャトルラック列・ソフト / WMS列',color:'#1a1f36'}]},
+
+  siemens_log:{label:'Siemens Logistics',flag:'🇩🇪',sub:'独 / Vanderlande傘下化 手続き中（2024契約・3億€）',tags:['conv','integrator'],color:'#1a9e4a',website:'https://www.siemens-logistics.com/',
+    shortDesc:'空港手荷物ハンドリングの専業。Vanderlande経由で豊田系入り（2024契約・3億ユーロ・2025完了予定）。',
+    desc:'Siemens Logisticsは、空港の手荷物搬送・仕分けシステム（BHS）を手掛けるドイツの専業企業。Vanderlandeが2024年10月31日に3億ユーロで100%取得する契約を締結し、2025年内の完了を予定（独禁当局承認待ち）。\n\n買収完了後はVanderlande傘下＝トヨタ系（TALG）の一員となり、Vanderlandeの空港手荷物事業をさらに強化する。空港という特定領域で世界有数の実績を持つ。',
+    kpis:[{l:'拠点',v:'ドイツ'},{l:'取得',v:'Vanderlande経由 100%（2024/10/31契約・3億€）'},{l:'完了予定',v:'2025年内（独禁当局承認待ち）'},{l:'領域',v:'空港手荷物ハンドリング（BHS）'}],
+    customers:[{flag:'🌍',name:'世界の空港',tag:'空港'}],
+    groupMembers:[{id:'vanderlande',rel:'親会社化（100%・手続き中）',role:'物流システム'},{id:'toyota_ind',rel:'最終親会社（Vanderlande経由）',role:'マテハン中核'}],
+    solutions:[{name:'空港手荷物システム（BHS）',desc:'空港の手荷物搬送・仕分けシステム。Vanderlande傘下化で空港領域をさらに強化。',videoUrl:null,linkUrl:'https://www.siemens-logistics.com/',linkLabel:'Siemens Logistics公式サイト'}],
+    mapPositions:[{layer:'業界マップ',cell:'Toyota行 / ハード製造列',color:'#1a9e4a'},{layer:'ソリューションマトリクス',cell:'仕分け / クロスベルトソーター列',color:'#0a7eb8'}]},
+
   toyota_lf:{label:'トヨタL&F',flag:'🇯🇵',sub:'豊田自動織機 トヨタL&Fカンパニー',tags:['gtp','amr','integrator'],color:'#1a9e4a',website:'https://logi.toyota-lf.com/',shortDesc:'AutoStore国内代理店。15,000+システム導入実績。日本・東南アジアで展開。',desc:'豊田自動織機のフォークリフト・物流ソリューション部門。AutoStoreの国内代理店。AGV・AMR・ソーター等を幅広く取り扱い。',kpis:[{l:'導入実績',v:'15,000+システム'}],customers:[{flag:'🇯🇵',name:'各種製造・流通業',tag:'多業種'}],solutions:[{name:'AutoStore（国内代理店）',desc:'AutoStoreの国内代理店として提案・導入・保守を担当。',videoUrl:'https://www.youtube.com/watch?v=icRpbughHWHw',linkUrl:'https://logi.toyota-lf.com/',linkLabel:'トヨタL&Fソリューション'}],groupMembers:[{id:'tal',rel:'グループ兄弟（TAL統合ブランド）',role:'SI・統合'}],mapPositions:[{layer:'業界マップ',cell:'Toyota行 / SI・代理販売列'}]},
   midea_kuka:{label:'Midea / KUKA',flag:'🇨🇳',sub:'Midea Group（中国）/ KUKA（独）/ KUKA買収$4.5B',tags:['holding','arm'],color:'#9b1fd4',website:'https://www.kuka.com/ja-jp',shortDesc:'中国家電大手MideaがKUKAを$4.5Bで買収。Swisslog・KUKAロボットを傘下に持つ。',desc:'中国の美的集団（Midea）がKUKAを買収（約$4.5B・2016年）し、産業ロボット・物流自動化・スマートホームを統合するグローバルコングロマリットを形成。【KUKAとSwisslogの相乗効果】KUKAの産業ロボットアーム（デパレ・パレタイズ・ピッキング）とSwisslogの倉庫SIを組み合わせることで、製造ラインから物流倉庫まで一気通貫のソリューション提案が可能。MideaはKUKAを通じたスマートファクトリー化も推進しており、自社の家電工場の自動化にKUKA・Swisslogを活用している。KUKA売上約$4B・Swisslog売上約€771M（2022年）・従業員合計約12,000人超の規模。',kpis:[{l:'Midea売上',v:'約$57B（2024年）'},{l:'倉庫自動化',v:'Swisslog・KUKA Robotics'}],customers:[{flag:'🌍',name:'自動車・電子・物流各社',tag:'グローバル'}],solutions:[{name:'KUKA KRシリーズ',desc:'6軸産業ロボット。デパレ・パレタイズ・ピッキングに採用実績多数。',videoUrl:'https://www.youtube.com/watch?v=W_BbMj8zPhs',linkUrl:'https://www.kuka.com/ja-jp/',linkLabel:'KUKA製品'}],groupMembers:[{id:'swisslog',rel:'100%子会社（KUKA経由）',role:'SI・代理販売'}],mapPositions:[{layer:'業界マップ',cell:'Midea/KUKA行 / ハード製造列'}]},
   teradyne:{label:'Teradyne / Universal Robots',flag:'🇺🇸',sub:'Teradyne傘下 / UR買収$3B（2015年）',tags:['arm'],color:'#9b1fd4',website:'https://www.universal-robots.com/ja/',shortDesc:'協働ロボット（コボット）世界最多導入。安全柵不要で人と共働き可能。',desc:'TeradyneがUniversal Robotsを$3Bで買収（2015年）した際、コボット市場は草創期だったが現在は世界最多導入数を誇るカテゴリリーダーに成長。【URの強み】安全柵不要・軽量（UR5なら本体約18.4kg）・セットアップ最短1時間・直感的なティーチングペンダントで、産業用ロボットの知識がない現場でも導入できる「民主化されたロボット」が最大の価値。ペイロード3〜30kgのシリーズと、より軽量・高速なURe（e-Series）を展開。物流・倉庫では梱包・ラベル貼り・検品・パレタイジングに活用。Cobot市場全体では2028年までに$10B超への成長が予測される。',kpis:[{l:'買収額',v:'$3B（Universal Robots・2015年）'},{l:'強み',v:'協働ロボット（コボット）世界最多導入'}],customers:[{flag:'🌍',name:'中小製造・物流企業',tag:'多業種'}],solutions:[{name:'UR5 / UR10 協働ロボット',desc:'安全柵不要で人と同じ作業スペースで使用可能。ピッキング・梱包・検品に対応。',videoUrl:'https://www.youtube.com/watch?v=BrqBBH7SWMM',linkUrl:'https://www.universal-robots.com/ja/products/',linkLabel:'製品ラインナップ'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'Teradyne行 / ハード製造列'},{layer:'ソリューションマトリクス',cell:'ピッキング / ロボットアーム列',color:'#c4870a'}]},
@@ -10837,6 +10954,91 @@ document.getElementById('search-clear').addEventListener('click', function(){
   searchQuery = '';
   applySearch();
 });
+
+// ═══════════ MAP FILTERS（資本グループ／ソリューション種別）═══════════
+let activeFilters = { grp:'all', sol:'all' };
+// id → 所属資本グループ(行id) の逆引き
+let NODE_GROUP_MAP = {};
+function buildNodeGroupMap(){
+  NODE_GROUP_MAP = {};
+  if(typeof MAP_ROWS==='undefined') return;
+  MAP_ROWS.forEach(row=>{
+    row.cols.forEach(col=>{
+      col.ids.forEach(id=>{ if(!(id in NODE_GROUP_MAP)) NODE_GROUP_MAP[id]=row.id; });
+    });
+  });
+}
+// 資本グループのフィルタチップを動的生成（行ヘッダーのラベルを使用）
+function buildGroupFilterChips(){
+  const wrap = document.getElementById('map-filters');
+  if(!wrap || typeof MAP_ROWS==='undefined') return;
+  const allGrp = wrap.querySelector('.fchip-grp[data-grp="all"]');
+  if(!allGrp) return;
+  // 既存の動的グループチップを除去（allは残す）
+  wrap.querySelectorAll('.fchip-grp:not([data-grp="all"])').forEach(e=>e.remove());
+  // allの直後に各グループを挿入（逆順insertでallの直後の順序を保つ）
+  const frag=document.createDocumentFragment();
+  MAP_ROWS.forEach(row=>{
+    const chip=document.createElement('span');
+    chip.className='fchip fchip-grp';
+    chip.setAttribute('data-grp',row.id);
+    // ラベルは短く（先頭の記号＋名称）
+    let lbl=row.label.replace(/^[⭐\s]+/,'').trim();
+    if(lbl.length>10) lbl=lbl.slice(0,10)+'…';
+    chip.textContent=(row.isSBG?'⭐':'')+lbl;
+    frag.appendChild(chip);
+  });
+  allGrp.after(frag);
+}
+function applyMapFilters(){
+  const {grp,sol}=activeFilters;
+  document.querySelectorAll('#imap .chip[data-id]').forEach(chip=>{
+    const id=chip.getAttribute('data-id');
+    const nd=getNode(id);
+    const grpMatch = grp==='all' || NODE_GROUP_MAP[id]===grp;
+    const solMatch = sol==='all' || (nd && (nd.tags||[]).includes(sol));
+    const hide = !(grpMatch && solMatch);
+    chip.style.display = hide ? 'none' : '';
+  });
+  // 行・セルの空判定：行内に表示チップが無ければ行ヘッダーを淡くする
+  document.querySelectorAll('#imap .row-hdr').forEach((rh,idx)=>{
+    // 行ごとの可視チップ数を数える（DOM順で row-hdr の後の3セル）
+  });
+  // グループフィルタ時、該当行だけ強調（他行は淡色）
+  const rows=document.querySelectorAll('#imap .row-hdr');
+  rows.forEach((rh,i)=>{
+    const rowId = (typeof MAP_ROWS!=='undefined' && MAP_ROWS[i]) ? MAP_ROWS[i].id : null;
+    const dim = (grp!=='all' && rowId && rowId!==grp);
+    rh.style.opacity = dim ? '0.3' : '';
+  });
+}
+// チップクリックのハンドラ（イベント委譲）
+(function initMapFilters(){
+  const wrap=document.getElementById('map-filters');
+  if(!wrap) return;
+  wrap.addEventListener('click',e=>{
+    const chip=e.target.closest('.fchip');
+    if(!chip) return;
+    if(chip.classList.contains('fchip-grp')){
+      wrap.querySelectorAll('.fchip-grp').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilters.grp=chip.getAttribute('data-grp');
+    }else if(chip.classList.contains('fchip-sol')){
+      wrap.querySelectorAll('.fchip-sol').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      activeFilters.sol=chip.getAttribute('data-sol');
+    }
+    applyMapFilters();
+  });
+})();
+// buildMapの後にフィルタを初期化する
+const _origBuildMap3 = buildMap;
+buildMap = function(){
+  _origBuildMap3();
+  buildNodeGroupMap();
+  buildGroupFilterChips();
+  applyMapFilters();
+};
 
 
 // ═══════════ CASE DETAIL ═══════════
