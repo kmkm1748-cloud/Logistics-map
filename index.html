@@ -126,6 +126,16 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .mchip-name.sbg-mn{color:var(--sb);font-weight:900;}
 .mchip-desc{font-size:10px;color:var(--muted);line-height:1.35;}
 .mchip-badges{display:flex;gap:2px;flex-wrap:wrap;}
+.cell-mkt{margin-top:5px;font-size:8.5px;font-weight:600;font-family:'DM Mono',monospace;line-height:1.3;color:#6b7480;letter-spacing:0;}
+.cell-mkt .mkt-tag{display:inline-block;background:#eef1f5;color:#5a6880;border-radius:3px;padding:0 4px;margin-right:4px;font-size:8px;}
+.cell-mkt .mkt-note{display:block;color:#9aa3b2;font-weight:400;font-size:7.5px;margin-top:2px;}
+.title-badge{display:inline-block;background:#fff5e6;color:#a8730a;border:1px solid #f0d9a8;border-radius:3px;padding:0 3px;font-weight:700;font-family:'DM Mono',monospace;cursor:help;}
+.chip-badges .title-badge{font-size:9px;}
+.mchip-co{font-size:8px;font-weight:500;color:#8a93a5;margin-left:1px;}
+.mchip-link{color:inherit;text-decoration:none;cursor:pointer;}
+.mchip-link:hover{text-decoration:underline;}
+.mchip-link:hover .mchip-co{color:#5b6472;}
+.mchip-ext{font-size:7px;opacity:.4;margin-left:1px;vertical-align:super;}
 
 /* ═══════════ DETAIL PAGE ═══════════ */
 #view-detail{overflow-y:auto;background:var(--bg);}
@@ -589,6 +599,12 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 .glossary-table tbody tr:last-child{border-bottom:none;}
 .glossary-table td{padding:8px 10px;color:var(--text2);line-height:1.6;}
 .gl-term{font-weight:800;color:var(--text);width:140px;background:var(--surface2);}
+.bldg-tbl{width:100%;border-collapse:collapse;font-size:12px;}
+.bldg-tbl th{background:var(--surface2);color:var(--text);font-weight:800;text-align:left;padding:7px 9px;border-bottom:2px solid var(--border);font-size:11px;white-space:nowrap;}
+.bldg-tbl td{padding:7px 9px;color:var(--text2);line-height:1.6;border-bottom:1px solid var(--border);vertical-align:top;}
+.bldg-tbl tbody tr:last-child td{border-bottom:none;}
+.bldg-tbl .bt-term{font-weight:800;color:var(--text);}
+.bldg-note{margin:14px 0;padding:10px 14px;border-left:3px solid var(--border2);background:var(--surface2);border-radius:0 8px 8px 0;font-size:13px;color:var(--text2);line-height:1.75;}
 
 @media (max-width:760px){
   .temp-zones{grid-template-columns:1fr;}
@@ -1538,8 +1554,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
     
     <div class="leg"><span class="expo-badge expo-kyushu26">🌸 KYU'26</span>九州展予定</div>
     <div class="sep"></div>
-    <div class="leg"><div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#fff5ee,#ffe8d6);border:1.5px solid var(--sb);box-shadow:0 0 5px var(--sb-glow)"></div>SBGroup企業</div>
-    <div class="sep"></div>
     <div style="font-size:10px;color:var(--muted2);font-family:'DM Mono',monospace;white-space:nowrap;">更新：2025年5月</div>
   </div>
 </div>
@@ -1550,12 +1564,13 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 </div>
 <div class="tabs" data-group="research">
   <button class="tab active" data-tab="map">業界マップ</button>
-  <button class="tab" data-tab="matrix">ソリューションマトリクス</button>
+  <button class="tab" data-tab="matrix">マテハン・ソリューション一覧</button>
   <button class="tab" data-tab="cases">事例集</button>
   <button class="tab" data-tab="market">市場調査</button>
 </div>
 <div class="tabs" data-group="textbook" style="display:none;">
   <button class="tab" data-tab="reading">業界ガイド</button>
+  <button class="tab" data-tab="building">🏢 建屋の話</button>
   <button class="tab" data-tab="intro">設備導入の流れ</button>
   <button class="tab" data-tab="souba">設備の相場観</button>
 </div>
@@ -3207,8 +3222,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
     
     <div class="leg"><span class="expo-badge expo-kyushu26">🌸 KYU'26</span>九州展予定</div>
     <div class="sep"></div>
-    <div class="leg"><div style="width:12px;height:12px;border-radius:3px;background:linear-gradient(135deg,#fff5ee,#ffe8d6);border:1.5px solid var(--sb);box-shadow:0 0 5px var(--sb-glow)"></div>SBGroup企業</div>
-    <div class="sep"></div>
     <div style="font-size:10px;color:var(--muted2);font-family:'DM Mono',monospace;white-space:nowrap;">更新：2025年5月</div>
   </div>
   </div>
@@ -3903,7 +3916,6 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 
           <p><strong>難しさ5：投資判断の壁</strong></p>
           <p>物流投資は「コスト削減」の論理で語られがちなので、経営層の判断が「人を減らせるかどうか」になりやすい。でも実際には、自動化の効果は「人を減らす」だけじゃなく、<strong>「24時間稼働できる」「品質が安定する」「ピークに耐えられる」「ベテランに依存しない」</strong>みたいな、定量化しづらいメリットも大きい。ここをどう経営層に翻訳するか、それが商談の山場、ということになります。</p>
-
           <div class="reading-final">
             <p>長々と書きましたが、私が物流業界をずっと観察していて思うのは、<strong>この業界、本当に変化のタイミングに来ている</strong>ということです。労働力危機、2024年問題、EC化、建築費高騰。どれもこれも「物流ロボット入れたほうがいい」方向に押している。これだけ追い風が揃うことは、業界の歴史上そうそうないでしょう。</p>
             <p>ただ、現場の固有事情・暗黙知・ピーク対応など、自動化が簡単ではない要素もたくさんある。だからこそ、<strong>「業界をちゃんと理解して提案できる営業」</strong>の価値が今、急上昇しているわけです。</p>
@@ -6301,6 +6313,27 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans JP',sans-seri
 
 
 
+    </div>
+  </div>
+
+  <!-- 建屋の話（独立タブ・Shoebill reading） -->
+  <div id="view-building" class="view" style="overflow-y:auto;">
+    <div class="reading-wrap">
+      <div class="reading-cover">
+        <div class="reading-cover-icon"></div>
+        <h2 class="reading-cover-title">🏢 建屋の話 — 自動化は「箱」の中にしか入らない</h2>
+      </div>
+      <div class="chapter-summary">
+        <div class="chapter-summary-title">このページで分かること</div>
+        <p class="chapter-summary-lead">建屋は「自動化が入る箱」そのもの。床荷重・天井高・防火区画・申請区分——この箱のスペックが、入れられる自動化の上限を先に決めている。機械を選ぶ前に、箱を読む。</p>
+        <ul class="chapter-summary-list"><li>マルチテナント型とBTS型の違いと、自動化の自由度</li><li>高さ・床荷重（点荷重）・受電・入出荷という建屋スペック</li><li>つまずく3関門：アンカー要否／建築物か設備かの申請／防火</li><li>なぜAutoStoreは既存の箱に後付けしやすいのか</li><li>物流不動産デベロッパー大手の顔ぶれ</li></ul>
+      </div>
+      <article class="reading-section">
+        <div class="reading-talker"><div class="reading-talker-icon"><div class="reading-talker-icon"><img src="data:image/jpeg;base64,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" width="56" height="56" style="border-radius:50%;display:block;" alt="ハシビロコウ"/></div></div><div class="reading-bubble">建屋の話。動かない箱の話なので、まあ、私向きの題材ではあります。急がなくていいです。座って読んでください。</div></div>
+        <div class="reading-body">
+<div class="ri-h">§1. 建屋の輪郭 — 機械より、箱が先</div><p>私は葦の上に巣をつくります。巣を建てる前に、まず確かめる。この葦、私の体重を支えるのか。どんなに良い魚を運んでも、巣ごと沈んだら意味がない。倉庫の自動化も、結局これと同じ話です。</p><p>自動倉庫やロボットは、宙には浮きません。それを据え付ける箱（建屋）が、入る機械の上限を先に決めてしまう。順番として、<strong>機械より、箱が先</strong>。ここを読まずに「最新ロボットです」と進めると、葦の強度を確かめずに巣を建てる鳥になります。…まあ、私には関係ない話ですが。</p><p>そして賃貸の物流施設には、性格の違う2タイプがいます。<strong>どちらの箱か。それで提案できる自動化の幅が変わる。</strong></p><div class="reading-figure"><div class="reading-figure-title">マルチテナント型 vs BTS型</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th></th><th>マルチテナント型</th><th>BTS型（Build-to-Suit）</th></tr></thead><tbody><tr><td class="bt-term">ひとことで</td><td>汎用の箱を区画貸し</td><td>用途を決めてからの専用の箱</td></tr><tr><td class="bt-term">入居</td><td>すぐ入れる／短期可</td><td>設計〜竣工を待つ／長期契約（5〜15年）</td></tr><tr><td class="bt-term">スペック</td><td>もう建っている箱に縛られる</td><td>床・天井・スパン・受電を自動化前提で盛れる</td></tr><tr><td class="bt-term">自動化</td><td>「箱に機械を合わせる」</td><td>「機械に箱を合わせられる」</td></tr></tbody></table></div></div><p class="bldg-note">私の巣で言うと、マルチテナントは空いていた葦に間借り、BTSは自分用に組んだ巣。快適なのは後者ですが、引っ越したいとき動けない。…私はそもそも動かないので、困りませんが。</p><p>相手がBTSなら大型・高密度を提案できる。既存のマルチテナント棟なら、低い天井・軽い荷重でも入る自動化を選ぶ。あとで効いてきます。</p><div class="ri-h">§2. 建屋の固有事情 — スペックが自動化の上限を決める</div><p>ここからが本題。用語が多くて、正直、説明するのは少し億劫ですが、付き合ってください。建屋が自動化に課してくる制約は<strong>「高さ・重さ・電気・出入口」</strong>の4つで、だいたい見通せます。数字は<strong>業界の目安</strong>と、あとで出てくる<strong>法律の規制値</strong>を分けて書きます（混ぜると事故るので）。なお標準値はおおむねプロロジス仕様が業界標準です。</p><p><strong>高さ。</strong>「梁下有効高（クリアハイト）」＝床から梁・設備の下端までの実際に使える高さ。<strong>自動倉庫の段数＝保管能力に直結</strong>します。天井が高くても、梁・照明・スプリンクラー・ダクトが下りてくると、そこが実質の天井。標準は有効<strong>5.5m以上</strong>（目安）。柱スパン（柱間・無柱空間）は広いほどレイアウト自由度が高く、標準は<strong>柱間10m以上</strong>（目安）。</p><p><strong>重さ。</strong>床荷重には2種類あります。床全体にならした<strong>等分布荷重（t/㎡）</strong>は標準<strong>1.5t/㎡以上</strong>（目安、BTSや高スペック棟では2.0t/㎡の例も）。問題はもう一つの<strong>集中荷重＝点荷重</strong>。t/㎡が足りていても、<strong>点で集中するハイラックやスタッカークレーンは“脚の一点”でアウト</strong>になり得る。逆にキューブ型自動倉庫（AutoStore等）は比較的軽い分散荷重で床に優しい。</p><p class="bldg-note">ならした重さより、脚の一点が勝負です。t/㎡だけ見て安心する人を、私は何度か見ました。…まあ、見ているだけですが。</p><p><strong>電気。</strong>意外と見落とされる受電容量。<strong>自動倉庫・AMR充電・コンベヤは電気を食う</strong>。先進的な大型施設では自動化対応のため<strong>30VA/㎡</strong>程度を確保する例が出ています（例：MFLP三郷）。容量が足りないと、機械を入れても動かせない。</p><p><strong>出入口。</strong>トラックバース・ドックレベラー・庇で入出荷の能力が決まる。庫内をいくら速くしても、接車口が詰まれば全体はそこで律速します。多層階では、大型トラックが各階・最上階まで自走で上がれる<strong>ランプウェイ（車路）</strong>か、荷を階間で上下させる<strong>垂直搬送機（VRC）</strong>（例：北勝のオートレーター＝垂直往復、バーチレーター＝垂直連続）で上階を活かします。</p><div class="ri-h">§3. 建屋の難しさ — つまずく3つの関門</div><p>自動倉庫の導入が建屋でつまずくのは、だいたいこの3つ。順に潰します。</p><p><strong>関門1：アンカー（床固定）は要る? 要らない? ── 何で分かれるか。</strong>「床にボルトで固定するか否か」は、次の4つで決まります。</p><p>① <strong>重心の高さ</strong>。高い位置に重い荷を積むほど、地震時の転倒モーメントが大きく、固定しないと横滑り・転倒する。背が高くて重い＝固定が要る。低背・幅広・重心が低い＝自立しやすい（奥行は高さの1/3が自立の目安）。<br>② <strong>走行・搬送系かどうか</strong>。スタッカークレーンは下部レールを床に固定するのが前提（走行精度と反力のため）。コンベヤも固定。＝この系統はアンカー必須。一方AMR・AGVは自走するので床固定は不要（むしろ床精度が要る）。<br>③ <strong>賃貸かどうか</strong>。アンカー＝床に穴を開ける。賃貸（マルチテナント）はオーナー許可＋退去時の原状回復義務（開けた穴が対象になりやすい）。ここが後付けのネック。<br>④ <strong>代替手段で足りるか</strong>。穴を開けずに、天つなぎ・背つなぎ・ラック連結・ブレース・転倒防止ベース（接地面積を広げる）で自立安定を確保できれば、アンカーを避けられる。※壁固定で建屋の鉄骨に留めると建屋構造に影響するので注意。</p><div class="reading-figure"><div class="reading-figure-title">方式別・アンカーの相場</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th>方式</th><th>床固定（アンカー）</th></tr></thead><tbody><tr><td class="bt-term">スタッカークレーン（AS/RS）</td><td>床固定が前提（必須）</td></tr><tr><td class="bt-term">ハイラック（パレットラック）</td><td>高さ・重量しだいで固定推奨（標準でアンカー固定の製品も）</td></tr><tr><td class="bt-term">AMR／AGV</td><td>床固定は不要（その代わり床精度が命）</td></tr><tr><td class="bt-term">AutoStore（グリッド）</td><td>自重で安定。低背でまとめれば穴あけ必須ではない＝既存箱に後付けしやすい</td></tr></tbody></table></div></div><p><strong>関門2：申請 ── 「建築物」か「設備」かで、結局なにが変わるか。</strong>これがいちばん地味で、いちばん効きます。</p><p>まず定義。建築基準法の<strong>「建築物」＝土地に定着する工作物のうち、屋根＋柱もしくは壁を持つもの</strong>。ポイントは「定着」で、<strong>基礎が無くても、随時かんたんに動かせない状態なら“定着”</strong>とみなされ得る。固定の有無だけでは決まりません。そして倉庫は法律上<strong>「特殊建築物」</strong>です。問題は自動倉庫がどちらに振れるか。<strong>ラックビル一体型</strong>（ラック自体が建物の柱・梁・屋根・外壁を兼ねる）は<strong>建築物</strong>。既存建物の中に置く<strong>設備型</strong>は「建築設備／工作物」寄り（規模・構造で判断は変わる）。</p><div class="reading-figure"><div class="reading-figure-title">建築物か、設備か ── 何が変わる</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th></th><th>建築物（特にラックビル一体型）</th><th>設備・工作物寄り</th></tr></thead><tbody><tr><td class="bt-term">建築確認申請</td><td>必要（着工前に確認→確認済証）</td><td>軽い／不要なことも</td></tr><tr><td class="bt-term">構造計算・耐震</td><td>特殊建築物としてフルに掛かる</td><td>設備としての耐震</td></tr><tr><td class="bt-term">容積率・延床面積</td><td><strong>算入される（最重要）</strong></td><td>算入されない</td></tr><tr><td class="bt-term">防火・避難</td><td>特殊建築物として掛かる</td><td>消防の設備規定は別途</td></tr></tbody></table></div><p class="reading-figure-cap">最大の差は「容積率・延床面積に入るか」。</p></div><p>床を設けず天井近くまで積むビル型自動ラック倉庫でも、<strong>「床が無いから平屋扱い」にはならない</strong>。<strong>高さ方向に一定間隔で“仮想の床”があるものとして延べ面積を算定</strong>します（国の検討では概ね8mごと）。これが<strong>容積率の上限</strong>に当たると、<strong>その敷地に建てられる規模そのものが縮む</strong>＝事業計画に直結。だから実務では、早い段階で「これは建築物か、設備か」を、設備メーカー・設計者・確認検査機関・所轄消防と握っておくのが定石です。</p><p class="bldg-note">人間は、床を取り払って空間を稼いだつもりが、法律の方が「では仮の床を置きましょう」と返してくる。なかなか面白い綱引きです。観察対象として興味深い。</p><p><strong>関門3：防火 ── 区画とラック式倉庫。</strong>法律の話なので、正直、私も少し面倒です。でも飛ばすと後で消防に止められる。一応。</p><p><strong>防火区画（面積区画）</strong>：倉庫は原則<strong>床面積1,500㎡ごと</strong>に防火の壁で区切るのが基本（建築基準法施行令112条）。大空間前提の自動倉庫は、この区切り壁とぶつかりやすい。連続した機械設備で区切れない構造で、燃えにくいモノを保管する“立体的な倉庫”なら緩和され得るが、<strong>「倉庫だから全部免除」ではない</strong>（所轄消防との個別協議が前提）。</p><p><strong>ラック式倉庫</strong>（消防法施行令12条1項4号＝棚を設け昇降機で荷を出し入れする装置を備えた倉庫＝<strong>AS/RSが該当</strong>）：<strong>高さ10m超かつ延べ面積700㎡以上</strong>でスプリンクラー義務。しかも天井ヘッドだけでなく、<strong>ラックの“間”にもヘッドを入れる「インラックスプリンクラー」</strong>が要る（平成10年・消防庁告示第5号）。床がなく天井近くまで積むので、煙突のように火が一気に上り、天井が高すぎて普通の消火栓では届かないから。</p><p class="bldg-note">私は巣に火を持ち込まないので、この辺は無縁ですが。人間は、よくこれだけ細かい取り決めを作りますね。</p><div class="ri-h">§4. 自動化のリアル — なぜAutoStoreは既存の箱に強いのか</div><p>ここまでの3関門を方式ごとに当てはめると、相性がはっきりします。</p><div class="reading-figure"><div class="reading-figure-title">ハイラック／クレーン vs AutoStore（建屋から見た相性）</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th>観点</th><th>ハイラック／スタッカークレーン</th><th>AutoStore（キューブ型）</th></tr></thead><tbody><tr><td class="bt-term">天井（梁下）</td><td>高いほど有利＝高い天井が要る</td><td>低めの梁下でも成立しやすい</td></tr><tr><td class="bt-term">床荷重</td><td>脚の点荷重がキツい／床補強も</td><td>軽めの分散荷重で床に優しい</td></tr><tr><td class="bt-term">アンカー・床精度</td><td>下部レールの床固定・高い床精度が前提</td><td>自重で安定、据付・拡張の自由度が高い</td></tr><tr><td class="bt-term">申請（建築物化）</td><td>ラックビル一体型は建築物→容積率算入の論点</td><td>低背でまとめれば建築物化を避けやすい</td></tr><tr><td class="bt-term">防火</td><td>10m超・700㎡以上でインラックSP・区画協議が重い</td><td>低背なら協議のハードルを下げやすい</td></tr><tr><td class="bt-term">どっちの箱向き?</td><td><strong>BTS向き</strong>（箱を機械に合わせる）</td><td><strong>既存マルチテナントへの後付けに強い</strong></td></tr></tbody></table></div></div><p class="bldg-note">提案の型は、要するにこう。BTSなら大型自動倉庫。既存マルチテナントなら、後付け適性の高いAutoStore。建屋を読めると、「最新だから買ってください」ではなく「この箱なら、これが入ります。ここを直せば入ります」と言える。根拠のある提案は、強い。</p><div class="ri-h">§5. 業界の裏話 — 建屋を建てている人たち（デベロッパー）</div><p>「箱を建てる側」を知っておくと、提案先の建屋の素性（スペックの癖・ブランド標準）が読めます。市場には開発・投資を含め<strong>70社以上</strong>がひしめいています（2025年時点）。多いですね。</p><div class="reading-figure"><div class="reading-figure-title">御三家</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th>デベロッパー</th><th>立ち位置</th><th>代表ブランド</th></tr></thead><tbody><tr><td class="bt-term">プロロジス（米系）</td><td>日本に賃貸型物流施設を持ち込んだ元祖。<strong>この会社のスペックが事実上の業界標準</strong>。Aクラスの呼称も同社由来</td><td>プロロジスパーク／プロロジスアーバン</td></tr><tr><td class="bt-term">日本GLP</td><td>大型・街づくり型を牽引</td><td>ALFALINK／Marq（都市型）</td></tr><tr><td class="bt-term">大和ハウス工業</td><td><strong>棟数・延床ともに国内トップ（約340棟・延床1,338万㎡、シェア約3割／2024年9月末・施工中含む）</strong>。倉庫建設・ゼネコン出身で地方にも強い</td><td>DPL／Dプロジェクト</td></tr></tbody></table></div></div><p><strong>主要プレイヤー（補足）。</strong><strong>ESR</strong>（外資・大型物件に強い物流特化系。10万㎡超のDCを各地で展開）。<strong>三井不動産（MFLP）</strong>＝開発・運営約78物件・総延床約610万㎡・累計投資約1.3兆円（2025年8月）。広場・保育所併設の「街づくり型」、物流コンサル/シェアリングの「MFLP &amp;LOGI」、冷凍冷蔵・データセンターへ拡大する“産業デベロッパー”路線（標準例＝梁下5.5m・床1.5t/㎡・受電30VA/㎡）。<strong>三菱地所</strong>＝ロジクロス。<strong>野村不動産</strong>＝Landport。<strong>住友商事</strong>＝SOSiLA。<strong>東急不動産／東京建物（T-LOGI）／オリックス不動産</strong>（総合デベロッパー系の参入組）。<strong>CRE</strong>＝ロジスクエア（中堅〜中規模に強い物流特化系）。<strong>ラサール</strong>＝ロジポート。ほか<strong>SGリアルティ</strong>（佐川系）・<strong>グッドマンジャパン</strong>・<strong>ロジランド</strong>・<strong>KIC</strong> など。</p><p><strong>REIT（投資の受け皿）。</strong>GLP投資法人、日本プロロジスリート、三井不動産ロジスティクスパーク投資法人（三井＋伊藤忠のダブルスポンサー）、SOSiLA物流リート など。<strong>デベロッパーが建てて → REITに組み入れて回す</strong>循環が市場を支えています。</p><p class="bldg-note">順位や数字は動きます。私は動きませんが、データは動く。商談前に最新を見てください。</p><div class="ri-h">§6. 建屋・不動産 用語ミニ辞典</div><div class="reading-figure"><div class="reading-figure-title">用語ミニ辞典</div><div style="overflow-x:auto;-webkit-overflow-scrolling:touch;"><table class="bldg-tbl"><thead><tr><th>用語</th><th>意味</th></tr></thead><tbody><tr><td class="bt-term">マルチテナント型</td><td>1棟を区画貸しする汎用施設。即入居・低初期投資だがスペックは既存依存</td></tr><tr><td class="bt-term">BTS型</td><td>Build-to-Suit。用途を決めてから建てる専用施設。自動化前提で設計できる</td></tr><tr><td class="bt-term">先進的物流施設（ALC）</td><td>延床16,500㎡以上・床1.5t/㎡以上・有効高5.5m以上・柱間10m以上・ランプウェイ付き等の大型施設の総称</td></tr><tr><td class="bt-term">Aクラス／LMT</td><td>高機能施設の呼称（Aクラス＝プロロジス由来、LMT＝大型マルチテナント／CBRE等）</td></tr><tr><td class="bt-term">梁下有効高</td><td>床から梁・設備下端までの実使用高さ。自動倉庫の段数を決める</td></tr><tr><td class="bt-term">等分布／点荷重</td><td>床全体にならした荷重（t/㎡）と、脚など1点に集中する荷重。後者が自動倉庫の可否を左右</td></tr><tr><td class="bt-term">受電容量</td><td>施設に引き込める電力量。自動化は電気を食うため要確認（例：30VA/㎡）</td></tr><tr><td class="bt-term">ランプウェイ／垂直搬送機(VRC)</td><td>トラックが各階に上がる車路／荷を階間で上下搬送する機械。多層階活用の手段</td></tr><tr><td class="bt-term">ラック式倉庫</td><td>棚＋昇降搬送装置を備えた倉庫（消令12条）。＝スタッカークレーン式自動倉庫</td></tr><tr><td class="bt-term">面積区画／インラックSP</td><td>原則1,500㎡ごとの防火区画／ラック間にも入れる消火設備（高さ10m超かつ700㎡以上で必要）</td></tr><tr><td class="bt-term">原状回復</td><td>退去時に借りた状態へ戻す義務。アンカー穴が対象になりやすい</td></tr></tbody></table></div></div><div class="reading-final"><p>建屋を読めるかどうかで、提案の説得力は変わります。機械の話の前に、箱の話を。…と、いつもより長く喋りました。少し疲れました。あとは皆さんで。動くのは、皆さんの仕事なので。</p><div class="reading-signature">— ハシビロコウ</div></div>
+        </div>
+      </article>
     </div>
   </div>
 
@@ -10057,8 +10090,281 @@ const EXPOS={
   kyushu26:{label:'九州展2026 出展予定',short:"KYU'26",emoji:'🌸',date:'2026年6月24〜25日',venue:'マリンメッセ福岡',url:'https://lttiekyushu.logis-tech-tokyo.gr.jp/',cls:'expo-kyushu26'},
 };
 const NODE_EXPOS={aiten:['kyushu26'],sbr:['kyushu26'],xyz_robotics:['kyushu26'],standard_robots:['kyushu26'],senad:['kyushu26']};
+// ═══════════ 称号バッジ / 市場規模データ ═══════════
+const BADGES={world1:{e:'🏆',s:'世界No.1'},jp1:{e:'🥇',s:'国内No.1'},niche:{e:'💎',s:'ニッチトップ'},std:{e:'🔧',s:'業界標準'}};
+const NODE_BADGES={
+  sanshin:[{t:'jp1',src:'🟢',note:'産業用ラック 生産量・売上 国内首位'}],
+  itohdenki:[{t:'niche',src:'🟢',note:'パワーモーラ/MDR ニッチトップ(経産省グローバルニッチトップ2020)'}],
+  interroll:[{t:'std',src:'⚪',note:'コンベヤ駆動ローラ(MDR) OEM事実上の標準'}],
+  daifuku:[{t:'world1',src:'⚪',note:'マテハン総合 売上世界首位級'}],
+  autostore:[{t:'niche',src:'⚪',note:'キューブ型GTPのパイオニア・首位級'}],
+  kardex:[{t:'niche',src:'⚪',note:'VLM 世界トップ級(上位3社で約5割)'}],
+  hanel:[{t:'niche',src:'⚪',note:'VLM 世界トップ級(上位3社で約5割)'}],
+};
+// 市場規模は全て⚪参考値(代表値)。機関により2〜3倍の幅あり。
+const MKT={
+  asrs:{l:'自動倉庫(AS/RS) 世界 約$10B→$15B(2030)・年率約8.5%'},
+  amr:{l:'AMR 世界 約$4B→$10B(2030)・年率約15%'},
+  sorter:{l:'仕分け/ソーター 世界 約$6B→$8B(2030)・年率約5%'},
+  conveyor:{l:'コンベヤ 世界 約$5〜7B・年率約5%'},
+  palletizer:{l:'パレタイズ/デパレ ロボット 世界 約$2.4B→$3.3B(2030)・年率約5.5%'},
+  wms:{l:'WMS 世界 約$4.6B→$10B(2030)・年率約17%'},
+  vlm:{l:'VLM 世界 約$1.8B→$3B(2030)・年率約9%'},
+  agv:{l:'AGV/AGF 世界 約$3〜5B→約$10B(2030)・年率約9%'},
+  pick:{l:'ピースピッキングロボ 約$0.3〜1.7B→$3〜7B・年率約20〜50%(新興・幅大)'},
+};
+// 主要ソリューション名（パイロット: デパレcatのみ）。会社×工程で異なるため工程名(en)でキー化。
+// 一次資料(各社公式)で確認済み。該当なしの会社は社名フォールバック。
+const SOL={
+  'Depal Robot':{
+    fanuc:'M-410シリーズ',
+    yaskawa:'MOTOMAN-PLシリーズ',
+    abb_r:'IRB 460/660 パレタイザ',
+    mujin:'MujinController（QuickBot）',
+    xyz_robotics:'AIデパレ/混載パレタイズ',
+  },
+  'Auto Forklift':{
+    balyo:'Driven by BALYO（REACHY）',
+    aiten:'無人フォークAGV（AS/AEシリーズ）',
+    visionnav:'自律フォークVNシリーズ',
+  },
+  'Inbound Conveyor':{
+    interroll:'Modular Conveyor Platform（MCP）',
+    daifuku:'モータローラコンベヤ',
+  },
+  'Stacker Crane':{
+    daifuku:'コンパクト/ラックビルシステム',
+    ssi:'SSI Exyz',
+  },
+  'Shuttle Rack':{
+    daifuku:'シャトルラックM/D³',
+    murata:'ユニシャトル（Uni-SHUTTLE）',
+    dematic:'Dematic Multishuttle',
+    knapp:'KNAPP OSR Shuttle',
+  },
+  'Cube GTP':{
+    autostore:'AutoStore（キューブ型自動倉庫）',
+    ocado:'Ocado Smart Platform（OSP）',
+    okamura:'AutoStore（オカムラ国内販売）',
+  },
+  'VLM':{
+    kardex:'Kardex Shuttle（VLM）',
+  },
+  'Palletizing Robot':{
+    fanuc:'M-410シリーズ',
+    yaskawa:'MOTOMAN-PLシリーズ',
+    abb_r:'IRB 460/660 パレタイザ',
+    mujin:'MujinController（パレタイズ）',
+  },
+  'AGF Outbound':{
+    balyo:'Driven by BALYO（REACHY）',
+    aiten:'無人フォークAGV（AS/AEシリーズ）',
+    visionnav:'自律フォークVNシリーズ',
+  },
+  'Outbound Conveyor':{
+    interroll:'Modular Conveyor Platform（MCP）',
+    daifuku:'モータローラコンベヤ',
+  },
+  'GTP Picking':{
+    autostore:'AutoStore（キューブ型GTP）',
+    ocado:'Ocado Smart Platform（OSP）',
+    exotec:'Skypod システム',
+    swisslog:'AutoStore統合/CycloneCarrier',
+    okamura:'AutoStore（オカムラ国内販売）',
+  },
+  'Robot Arm Pick':{
+    abb_r:'FlexPicker（IRB 360）',
+    teradyne:'Universal Robots（URシリーズ）',
+  },
+  'AI Picking':{
+    mujin:'MujinController（ピッキング）',
+    berkshire:'Core（ロボットピッキング）',
+    xyz_robotics:'AIピース/ケースピッキング',
+  },
+  'AMR (Shelf)':{
+    geekplus:'P シリーズ（棚搬送GTP）',
+    rapyuta:'ラピュタPA-AMR（ピッキングアシスト）',
+  },
+  'ACR (Case)':{
+    geekplus:'RoboShuttle（ケースハンドリング）',
+    hai:'HaiPick（世界初のACR）',
+  },
+  'AGF':{
+    balyo:'Driven by BALYO（REACHY）',
+    aiten:'無人フォークAGV（AS/AEシリーズ）',
+    visionnav:'自律フォークVNシリーズ',
+  },
+  'Conveyor':{
+    interroll:'Modular Conveyor Platform（MCP）',
+    daifuku:'モータローラコンベヤ',
+  },
+  'Vertical Reciprocating':{
+    hokusho:'オートレーター（垂直往復搬送機）',
+  },
+  'Spiral / Continuous':{
+    hokusho:'バーチレーター（垂直連続搬送機）',
+  },
+  'Cross-Belt Sorter':{
+    beumer:'BG Sorter CB（クロスベルト）',
+    daifuku:'クロスベルトソーター',
+  },
+  'Shuttle Sequencing':{
+    daifuku:'シャトルラックM/D³',
+    murata:'ユニシャトル（Uni-SHUTTLE）',
+    knapp:'KNAPP OSR Shuttle',
+  },
+  'AMR Sort':{
+    symbotic:'Symbotic System（SymBot）',
+  },
+  'Piece Sorter':{
+    hokusho:'オートソーターmini（ピースソーター）',
+  },
+  'WMS':{
+    blue_yonder:'Blue Yonder WMS',
+    manhattan:'Manhattan Active WM',
+    korber:'K.Motion Warehouse Advantage',
+    koch:'Infor WMS',
+    ssi:'WAMAS',
+    daifuku:'WareNavi',
+  },
+  'WES':{
+    dematic:'Dematic iQ',
+    greyorange:'GreyMatter（WES）',
+    korber:'K.Motion（WES）',
+  },
+  'AI Platform':{
+    symbotic:'Symbotic System（AI制御）',
+  },
+  'Digital Twin':{
+    dematic:'Dematic iQ（デジタルツイン）',
+  },
+};
+const SOL_URL={
+  'Depal Robot':{
+    fanuc:'https://www.fanucamerica.com/products/robots/series/m-410',
+    yaskawa:'https://www.motoman.com/en-us/products/robots/industrial/assembly/pl-series',
+    abb_r:'https://www.abb.com/global/en/areas/robotics/products/robots/articulated-robots/medium-robots/irb-460',
+    mujin:'https://mujin-corp.com/mujin-controller/',
+    xyz_robotics:'https://www.xyzrobotics.com/picking-robot/depalletizing-and-palletizing',
+  },
+  'Auto Forklift':{
+    balyo:'https://www.balyo.com/agv-reach-trucks/reachy',
+    aiten:'https://www.aitenrobot.com/',
+    visionnav:'https://www.visionnav.com/',
+  },
+  'Inbound Conveyor':{
+    interroll:'https://www.interroll.com/products/mcp',
+    daifuku:'https://www.daifuku.com/jp/solution/',
+  },
+  'Stacker Crane':{
+    daifuku:'https://www.daifuku.com/jp/solution/intralogistics/products/automated-warehouse/',
+    ssi:'https://www.ssi-schaefer.com/en-us/ssi-exyz-1074678',
+  },
+  'Shuttle Rack':{
+    daifuku:'https://www.daifuku.com/jp/solution/intralogistics/products/automated-warehouse/',
+    murata:'https://logistics.muratec.net/jp/',
+    dematic:'https://www.dematic.com/en-us/solutions/dematic-multishuttle/',
+    knapp:'https://www.knapp.com/en/insights/blog/best-of-osr-shuttle-warehouse-system/',
+  },
+  'Cube GTP':{
+    autostore:'https://www.autostoresystem.com/',
+    ocado:'https://www.ocadogroup.com/about-us/our-technology',
+    okamura:'https://www.okamura.co.jp/mhs/special_site/product/autostore/',
+  },
+  'VLM':{
+    kardex:'https://www.kardex.com/en-us/products/vertical-lift-module/kardex-shuttle',
+  },
+  'Palletizing Robot':{
+    fanuc:'https://www.fanucamerica.com/products/robots/series/m-410',
+    yaskawa:'https://www.motoman.com/en-us/products/robots/industrial/assembly/pl-series',
+    abb_r:'https://www.abb.com/global/en/areas/robotics/products/robots/articulated-robots/medium-robots/irb-460',
+    mujin:'https://mujin-corp.com/mujin-controller/',
+  },
+  'AGF Outbound':{
+    balyo:'https://www.balyo.com/agv-reach-trucks/reachy',
+    aiten:'https://www.aitenrobot.com/',
+    visionnav:'https://www.visionnav.com/',
+  },
+  'Outbound Conveyor':{
+    interroll:'https://www.interroll.com/products/mcp',
+    daifuku:'https://www.daifuku.com/jp/solution/',
+  },
+  'GTP Picking':{
+    autostore:'https://www.autostoresystem.com/',
+    ocado:'https://www.ocadogroup.com/about-us/our-technology',
+    exotec:'https://www.exotec.com/skypod-automated-storage-retrieval-system/',
+    swisslog:'https://www.swisslog.com/en-us/products-systems-solutions/asrs-automated-storage-retrieval-systems/autostore-integrator',
+    okamura:'https://www.okamura.co.jp/mhs/special_site/product/autostore/',
+  },
+  'Robot Arm Pick':{
+    abb_r:'https://www.abb.com/global/en/areas/robotics/products/robots/delta-robots/irb-360',
+    teradyne:'https://video.universal-robots.com/',
+  },
+  'AI Picking':{
+    mujin:'https://mujin-corp.com/mujin-controller/',
+    berkshire:'https://www.berkshiregrey.com/technologies/robotics/',
+    xyz_robotics:'https://www.xyzrobotics.com/',
+  },
+  'AMR (Shelf)':{
+    geekplus:'https://www.geekplus.com/product/roboshuttle',
+    rapyuta:'https://www.rapyuta-robotics.com/ja/solutions-pa-amr/',
+  },
+  'ACR (Case)':{
+    geekplus:'https://www.geekplus.com/product/roboshuttle',
+    hai:'https://www.hairobotics.com/products',
+  },
+  'AGF':{
+    balyo:'https://www.balyo.com/agv-reach-trucks/reachy',
+    aiten:'https://www.aitenrobot.com/',
+    visionnav:'https://www.visionnav.com/',
+  },
+  'Conveyor':{
+    interroll:'https://www.interroll.com/products/mcp',
+    daifuku:'https://www.daifuku.com/jp/solution/',
+  },
+  'Vertical Reciprocating':{
+    hokusho:'https://www.hokusho.co.jp/standard_vts.html',
+  },
+  'Spiral / Continuous':{
+    hokusho:'https://www.hokusho.co.jp/standard_vts.html',
+  },
+  'Cross-Belt Sorter':{
+    beumer:'https://www.beumergroup.com/products-systems/logistics-systems/bg-sorter-cb-cross-belt/',
+    daifuku:'https://www.daifuku.com/jp/solution/intralogistics/products/sort/cross-belt-sorter/',
+  },
+  'Shuttle Sequencing':{
+    daifuku:'https://www.daifuku.com/jp/solution/intralogistics/products/automated-warehouse/',
+    murata:'https://logistics.muratec.net/jp/',
+    knapp:'https://www.knapp.com/en/insights/blog/best-of-osr-shuttle-warehouse-system/',
+  },
+  'AMR Sort':{
+    symbotic:'https://www.symbotic.com/symbotic-system/',
+  },
+  'Piece Sorter':{
+    hokusho:'https://www.hokusho.co.jp/standard.html',
+  },
+  'WMS':{
+    blue_yonder:'https://blueyonder.com/solutions/warehouse-management',
+    manhattan:'https://www.manh.com/en-in/our-solutions/supply-chain-management-software/warehouse-management-system',
+    korber:'https://www.infios.com',
+    koch:'https://www.infor.com/solutions/scm/warehouse-management-system',
+    ssi:'https://www.ssi-schaefer.com/en-us/software/wamas-software-solutions',
+    daifuku:'https://www.daifuku.com/jp/solution/',
+  },
+  'WES':{
+    dematic:'https://www.dematic.com/en-us/solutions/dematic-multishuttle/',
+    greyorange:'https://www.greyorange.com/greymatter/',
+    korber:'https://www.infios.com',
+  },
+  'AI Platform':{
+    symbotic:'https://www.symbotic.com/symbotic-system/',
+  },
+  'Digital Twin':{
+    dematic:'https://www.dematic.com/en-us/solutions/dematic-multishuttle/',
+  },
+};
 const SBG_IDS=new Set(['sbg','sbr','greenbox','symbotic','berkshire','balyo','abb_r','skild','autostore']);
-function isSBG(id){return SBG_IDS.has(id);}
+function isSBG(id){return false;}
 function tagHTML(t){const i=TAGS[t];return i?`<span class="tag ${i.cls}">${i.label}</span>`:'';}
 
 // ═══════════ NODE DATA ═══════════
@@ -10319,15 +10625,15 @@ const GROUP_DATA={
   },
   specialist:{
     label:'専業・老舗メーカー',flag:'🌍',color:'#5a6880',
-    desc:'1919〜1959年に創業した特定技術領域の専業メーカー。Kardex（VLM・1919年）・Beumer（ソーター・1935年）・Interroll（コンベヤ・1959年）・ホクショー（垂直搬送・1952年）が代表格。いずれも特定の技術カテゴリで世界的なニッチトップ企業として長年にわたり業界標準を形成してきた。\n\nInterrollのコンベヤ部品はダイフク・Dematicなど多数の大手SIがOEM採用しており、「知らずに使っている」形で業界インフラを担っている。Kardex VLMは中小規模倉庫・工場での保管自動化で高いROIを実証している。',
-    kpis:[{l:'Kardex',v:'売上€791M（2024年・過去最高）'},{l:'Interroll',v:'売上CHF 527M（2024年）'},{l:'Beumer',v:'受注残€1.25B（2023年・過去最高）'},{l:'創業',v:'1919〜1959年（老舗）'}],
+    desc:'特定技術領域に特化した専業メーカー群（多くが1919〜1960年代創業の老舗）。VLM（Kardex/Hänel/Modula）・コンベヤ／MDR（Interroll/伊東電機）・ソーター（Beumer/Fives）・パレタイザ（オークラ輸送機）・垂直搬送／AS/RS（ホクショー/Stöcklin）・パレットラック／保管棚（Mecalux/三進金属/日本ファイリング）まで、それぞれが特定カテゴリで世界的・国内的なニッチトップとして業界標準を形成してきた。\n\nInterrollのコンベヤ部品はダイフク・Dematicなど多数の大手SIがOEM採用しており、「知らずに使っている」形で業界インフラを担っている。Kardex VLMは中小規模倉庫・工場での保管自動化で高いROIを実証している。',
+    kpis:[{l:'Kardex',v:'売上€791M（2024年・過去最高）'},{l:'Interroll',v:'売上CHF 527M（2024年）'},{l:'Beumer',v:'受注残€1.25B（2023年・過去最高）'},{l:'創業',v:'1919年〜（老舗中心）'}],
     strategy:'特定技術での深い専門性とOEM供給による業界インフラポジションが長期的な競争優位。大きな変化はなく安定した収益基盤を持つ一方、新興プレイヤーへの技術移転リスクも存在。',
-    members:['hokusho','interroll','beumer','kardex'],
+    members:['hokusho','interroll','beumer','kardex','hanel','itohdenki','okura','fives','modula','stocklin','mecalux','sanshin','nipponfiling'],
   },
 };
 
 const MAP_ROWS=[
-  {id:'sbg',label:'⭐ SBGroup',sub:'倉庫自動化への投資コミットメント 約10兆円超',commit:'AutoStore$2.8B + ABB$5.375B + GreenBox$7.5B受注残',tagline:'ハード（AutoStore/ABB/Agile/Agility）×AI基盤（OpenAI/Arm/Skild）×提供（SBR/GreenBox/SBKK/SB OAI）の全方位。AutoStore40%出資を含む業界最大規模',isSBG:true,
+  {id:'sbg',label:'SBGroup',sub:'倉庫自動化への投資コミットメント 約10兆円超',commit:'AutoStore$2.8B + ABB$5.375B + GreenBox$7.5B受注残',tagline:'ハード（AutoStore/ABB/Agile/Agility）×AI基盤（OpenAI/Arm/Skild）×提供（SBR/GreenBox/SBKK/SB OAI）の全方位。AutoStore40%出資を含む業界最大規模',isSBG:false,
     cols:[{ids:['autostore','abb_r','berkshire','balyo','agile','agility']},{ids:['skild','openai','symbotic']},{ids:['sbr','greenbox','sboai','sbkk']}]},
   {id:'kion',label:'KION Group',sub:'Dematic買収 $3.25B（2017年）',commit:'Dematic $3.25B + Linde/Still等',tagline:'欧州最大のフォークリフト・自動化コングロマリット',isSBG:false,
     cols:[{ids:['dematic']},{ids:[]},{ids:['swisslog','dematic']}]},
@@ -10347,8 +10653,8 @@ const MAP_ROWS=[
     cols:[{ids:['daifuku','murata','autostore','exotec','ocado','amazon_robotics']},{ids:['ssi','korber','manhattan','hitachi']},{ids:['daifuku','murata','ssi','knapp','exotec','okamura','greyorange']}]},
   {id:'china',label:'中国系（日本参入組）',sub:'日本市場に参入中のAMR・ACRメーカー',commit:'各社VC・自己資本',tagline:'AMR・ACRで世界シェアを拡大し日本市場への本格参入が進む',isSBG:false,
     cols:[{ids:['geekplus','hai','aiten','seer','tusk','mushiny','hikrobot','jdl','visionnav','xyz_robotics','standard_robots','senad']},{ids:['seer','jdl']},{ids:['geekplus','aiten','jdl']}]},
-  {id:'specialist',label:'専業・老舗メーカー',sub:'特定技術領域の専業・1919〜1959年創業',commit:'各社自己資本・上場',tagline:'垂直搬送・コンベヤ・VLMなど特定技術で世界的存在感を持つ老舗専業企業',isSBG:false,
-    cols:[{ids:['hokusho','interroll','beumer','kardex']},{ids:[]},{ids:[]}]},
+  {id:'specialist',label:'専業・老舗メーカー',sub:'特定技術領域の専業メーカー（1919年〜・老舗中心）',commit:'各社自己資本・上場',tagline:'垂直搬送・コンベヤ／MDR・VLM・ソーター・パレットラックなど特定技術で存在感を持つ専業メーカー群',isSBG:false,
+    cols:[{ids:['hokusho','interroll','beumer','kardex','hanel','itohdenki','okura','fives','modula','stocklin','mecalux','sanshin','nipponfiling']},{ids:[]},{ids:[]}]},
   {id:'startup',label:'国内新興',sub:'スタートアップ・RaaS型・2011〜2015年創業',commit:'各社VC調達',tagline:'RaaS型・AI活用・クラウドロボティクスで倉庫自動化に新しいアプローチをもたらす',isSBG:false,
     cols:[{ids:[]},{ids:['rapyuta','ground']},{ids:['rapyuta','mujin','ground','greyorange']}]},
 ];
@@ -10405,21 +10711,21 @@ const CHIP_DESC={
 // ═══════════ LAYER DATA (matrix) ═══════════
 const LAYERS=[
   {id:'inbound',label:'入荷・デパレ',desc:'荷物を受け取り\n棚まで運ぶ',color:'#e8341a',
-    cats:[{name:'デパレタイズ\nロボット',en:'Depal Robot',cos:['fanuc','yaskawa','abb_r','mujin','berkshire','xyz_robotics']},{name:'自動フォークリフト\n(AGF)',en:'Auto Forklift',cos:['balyo','aiten','visionnav']},{name:'水平コンベヤ\n投入',en:'Inbound Conveyor',cos:['interroll','daifuku','hokusho']}]},
+    cats:[{name:'デパレタイズ\nロボット',en:'Depal Robot',mkt:'palletizer',cos:['fanuc','yaskawa','abb_r','mujin','berkshire','xyz_robotics']},{name:'自動フォークリフト\n(AGF)',en:'Auto Forklift',mkt:'agv',cos:['balyo','aiten','visionnav']},{name:'水平コンベヤ\n投入',en:'Inbound Conveyor',mkt:'conveyor',cos:['interroll','daifuku','hokusho']}]},
   {id:'storage',label:'保管',desc:'商品を効率よく\n格納・管理する',color:'#1a6be8',
-    cats:[{name:'スタッカー\nクレーン',en:'Stacker Crane',cos:['daifuku','murata','ssi']},{name:'シャトル\nラック',en:'Shuttle Rack',cos:['daifuku','murata','dematic','knapp']},{name:'キューブ型\nGTP',en:'Cube GTP',cos:['autostore','ocado','okamura']},{name:'VLM\n垂直リフト',en:'VLM',cos:['kardex']}]},
+    cats:[{name:'スタッカー\nクレーン',en:'Stacker Crane',mkt:'asrs',cos:['daifuku','murata','ssi']},{name:'シャトル\nラック',en:'Shuttle Rack',mkt:'asrs',cos:['daifuku','murata','dematic','knapp']},{name:'キューブ型\nGTP',en:'Cube GTP',mkt:'asrs',mn:'GTP/キューブはAS/RS内サブ',cos:['autostore','ocado','okamura']},{name:'VLM\n垂直リフト',en:'VLM',mkt:'vlm',cos:['kardex']}]},
   {id:'hconv',label:'水平搬送',desc:'フロア内で商品を\n横方向に移動',color:'#0e8f6e',
-    cats:[{name:'AMR\n棚搬送型',en:'AMR (Shelf)',cos:['geekplus','rapyuta','quicktron','mushiny','hikrobot','standard_robots']},{name:'ACR\nケース搬送型',en:'ACR (Case)',cos:['geekplus','hai','aiten','seer','tusk','hikrobot']},{name:'AGF\n自動フォーク',en:'AGF',cos:['balyo','aiten','visionnav']},{name:'水平\nコンベヤ',en:'Conveyor',cos:['interroll','daifuku','honeywell']}]},
+    cats:[{name:'AMR\n棚搬送型',en:'AMR (Shelf)',mkt:'amr',cos:['geekplus','rapyuta','quicktron','mushiny','hikrobot','standard_robots']},{name:'ACR\nケース搬送型',en:'ACR (Case)',mkt:'amr',mn:'ACRはAMR市場に含む(新興)',cos:['geekplus','hai','aiten','seer','tusk','hikrobot']},{name:'AGF\n自動フォーク',en:'AGF',mkt:'agv',cos:['balyo','aiten','visionnav']},{name:'水平\nコンベヤ',en:'Conveyor',mkt:'conveyor',cos:['interroll','daifuku','honeywell']}]},
   {id:'vconv',label:'垂直搬送',desc:'上下階をつなぐ\n縦方向の搬送',color:'#7c3aed',
-    cats:[{name:'垂直往復機\n昇降機',en:'Vertical Reciprocating',cos:['hokusho']},{name:'垂直連続機\nスパイラル',en:'Spiral / Continuous',cos:['hokusho']},{name:'フロア間\n統合搬送',en:'Multi-floor System',cos:['daifuku','murata','honeywell']}]},
+    cats:[{name:'垂直往復機\n昇降機',en:'Vertical Reciprocating',cos:['hokusho']},{name:'垂直連続機\nスパイラル',en:'Spiral / Continuous',cos:['hokusho']},{name:'フロア間\n統合搬送',en:'Multi-floor System',mkt:'asrs',mn:'フロア間統合はAS/RS統合に含む',cos:['daifuku','murata','honeywell']}]},
   {id:'pick',label:'ピッキング',desc:'注文に応じて\n商品を取り出す',color:'#c4870a',
-    cats:[{name:'GTP型\nGoods-to-Person',en:'GTP Picking',cos:['autostore','ocado','exotec','swisslog','okamura']},{name:'ロボット\nアーム',en:'Robot Arm Pick',cos:['fanuc','yaskawa','abb_r','teradyne']},{name:'AI\nピッキング',en:'AI Picking',cos:['mujin','berkshire','xyz_robotics']}]},
+    cats:[{name:'GTP型\nGoods-to-Person',en:'GTP Picking',mkt:'asrs',mn:'GTP/キューブはAS/RS内サブ',cos:['autostore','ocado','exotec','swisslog','okamura']},{name:'ロボット\nアーム',en:'Robot Arm Pick',mkt:'pick',cos:['fanuc','yaskawa','abb_r','teradyne']},{name:'AI\nピッキング',en:'AI Picking',mkt:'pick',cos:['mujin','berkshire','xyz_robotics']}]},
   {id:'sort',label:'仕分け・荷揃え',desc:'店舗・注文別に\n商品を振り分ける',color:'#0a7eb8',
-    cats:[{name:'クロスベルト\nソーター',en:'Cross-Belt Sorter',cos:['beumer','honeywell','daifuku','senad']},{name:'シャトル\n荷揃え',en:'Shuttle Sequencing',cos:['daifuku','murata','knapp']},{name:'AMR\n仕分け',en:'AMR Sort',cos:['geekplus','symbotic']},{name:'ピース\nソーター',en:'Piece Sorter',cos:['hokusho']}]},
+    cats:[{name:'クロスベルト\nソーター',en:'Cross-Belt Sorter',mkt:'sorter',cos:['beumer','honeywell','daifuku','senad']},{name:'シャトル\n荷揃え',en:'Shuttle Sequencing',mkt:'asrs',mn:'シャトル荷揃えはAS/RS技術',cos:['daifuku','murata','knapp']},{name:'AMR\n仕分け',en:'AMR Sort',mkt:'amr',cos:['geekplus','symbotic']},{name:'ピース\nソーター',en:'Piece Sorter',mkt:'sorter',cos:['hokusho']}]},
   {id:'outbound',label:'出荷・パレタイズ',desc:'商品を梱包・積載し\n出荷準備をする',color:'#9b1fd4',
-    cats:[{name:'パレタイズ\nロボット',en:'Palletizing Robot',cos:['fanuc','yaskawa','abb_r','mujin']},{name:'AGF\n出荷搬送',en:'AGF Outbound',cos:['balyo','aiten','visionnav']},{name:'出荷コンベヤ',en:'Outbound Conveyor',cos:['interroll','daifuku','honeywell']}]},
+    cats:[{name:'パレタイズ\nロボット',en:'Palletizing Robot',mkt:'palletizer',cos:['fanuc','yaskawa','abb_r','mujin']},{name:'AGF\n出荷搬送',en:'AGF Outbound',mkt:'agv',cos:['balyo','aiten','visionnav']},{name:'出荷コンベヤ',en:'Outbound Conveyor',mkt:'conveyor',cos:['interroll','daifuku','honeywell']}]},
   {id:'soft',label:'ソフト・制御',desc:'倉庫全体を\n最適制御する',color:'#1a1f36',
-    cats:[{name:'WMS\n倉庫管理',en:'WMS',cos:['blue_yonder','manhattan','korber','koch','ssi','daifuku','jdl']},{name:'WES\n倉庫実行',en:'WES',cos:['honeywell','korber','dematic','hitachi','greyorange']},{name:'AI基盤\nプラットフォーム',en:'AI Platform',cos:['skild','symbotic','seer']},{name:'デジタル\nツイン',en:'Digital Twin',cos:['murata','dematic']}]},
+    cats:[{name:'WMS\n倉庫管理',en:'WMS',mkt:'wms',cos:['blue_yonder','manhattan','korber','koch','ssi','daifuku','jdl']},{name:'WES\n倉庫実行',en:'WES',mkt:'wms',mn:'WESはWMS/WCS市場に含む',cos:['honeywell','korber','dematic','hitachi','greyorange']},{name:'AI基盤\nプラットフォーム',en:'AI Platform',cos:['skild','symbotic','seer']},{name:'デジタル\nツイン',en:'Digital Twin',cos:['murata','dematic']}]},
 ];
 
 // Additional nodes used in matrix but not in main NODES
@@ -10512,6 +10818,15 @@ const EXTRA={
   interroll:{label:'Interroll',flag:'🇨🇭',sub:'SIX: INRN / 1959年',tags:['conv'],color:'#5a6880',website:'https://www.interroll.com/ja/',shortDesc:'コンベヤ・ソーティングの世界標準部品。多数のSIがOEM採用するインフラ企業。',desc:'コンベヤ・ソーティングの世界標準部品メーカー。ダイフク・Dematic等多数のSIがOEM採用。',kpis:[{l:'売上',v:'CHF 527M（2024年）'},{l:'強み',v:'業界標準コンベヤ部品のOEM供給'}],customers:[{flag:'🌍',name:'各大手SI経由（OEM）',tag:'B2B'}],solutions:[{name:'Interroll RBS',desc:'【倉庫搬送インフラの世界標準部品・OEMで業界に浸透】InterrollのRBS（ローラーボルバーシステム）はゾーンコントロール式ローラーコンベヤの事実上の世界標準。ダイフク・Dematic・SSI等の大手SIが自社システムのコアコンポーネントとしてOEM採用しており、「知らずに使っている」ケースも多い。モータープーリー方式により各ゾーンを独立制御することで省エネ（従来比最大50%削減）・低騒音・メンテナンス性向上を実現。2024年売上CHF 527M。',videoUrl:'https://www.youtube.com/watch?v=0Y4qxr8iFWk',linkUrl:'https://www.interroll.com/ja/products/',linkLabel:'製品ラインナップ'}],groupMembers:[],mapPositions:[{layer:'ソリューションマトリクス',cell:'入荷 / 水平コンベヤ列・水平搬送 / 水平コンベヤ列・出荷 / 出荷コンベヤ列'}]},
   beumer:{label:'Beumer Group',flag:'🇩🇪',sub:'非上場 / 1935年',tags:['conv','integrator'],color:'#5a6880',website:'https://www.beumergroup.com/',shortDesc:'空港BHS・EC向けクロスベルトソーターの世界大手。非上場のドイツ家族経営。',desc:'高速ソーティングシステムの専業大手。空港BHS・EC宅配仕分けで世界トップクラス。',kpis:[{l:'受注残',v:'€1.25B（2023年・過去最高）'},{l:'強み',v:'空港BHS・EC向けクロスベルトソーター世界大手'}],customers:[{flag:'🌍',name:'DHL・FedEx系',tag:'宅配'}],solutions:[{name:'クロスベルトソーター',desc:'【クロスベルト方式ソーターの世界大手・空港BHSでも圧倒的実績】クロスベルト型ソーターは各仕分けキャリアに小型コンベヤを搭載し、仕分け先に応じてベルトを正逆転させて荷物を排出する高精度仕分け方式。毎時数万件の処理が可能で、EC宅配・アパレル返品・空港手荷物（BHS）向けに世界トップクラスの実績を持つ。1935年創業のドイツ家族経営企業で、受注残€1.25B（2023年・過去最高）を誇る。DHL・FedEx系宅配センター・主要国際空港のBHSに広く採用。',videoUrl:'https://www.youtube.com/watch?v=Mpc1RCMJ3sY',linkUrl:'https://www.beumergroup.com/products/sortation-systems/',linkLabel:'ソーティング製品'}],groupMembers:[],mapPositions:[{layer:'ソリューションマトリクス',cell:'仕分け / クロスベルトソーター列'}]},
   kardex:{label:'Kardex',flag:'🇨🇭',sub:'SIX: KARN / 1919年',tags:['conv'],color:'#5a6880',website:'https://www.kardex.com/ja/',shortDesc:'VLM（垂直リフトモジュール）専業老舗。センサーで棚間隔を自動最適化。',desc:'垂直リフトモジュール（VLM）専業の老舗。センサーで棚間隔を自動最適化し超高密度収納を実現。',kpis:[{l:'売上',v:'€791M（2024年・過去最高）'},{l:'主力製品',v:'VLM（垂直リフトモジュール）'}],customers:[{flag:'🇯🇵',name:'国内中小製造・EC各社',tag:'中小企業'}],solutions:[{name:'Kardex Remstar VLM',desc:'【中小規模倉庫・工場の保管自動化で最もROIが出やすいソリューション】VLM（垂直リフトモジュール）はトレイを縦方向に積層保管し、センサーで商品の高さを自動計測して棚間隔を最適化する縦型自動棚。従来の固定棚と同じフットプリントで最大60%の保管密度向上を実現。2024年売上€791M（過去最高）。日本ではアルテック（Altec）が正規代理店。医薬品・電子部品・工具・スペアパーツ管理など「少量多品種の高密度保管」が必要な用途に最適で、大規模AS/RSほどの投資なしに即効性のある自動化が実現できる。',videoUrl:'https://www.youtube.com/watch?v=6o5P4NHDVB4',linkUrl:'https://www.kardex.com/ja/products',linkLabel:'Kardex製品ページ'}],groupMembers:[],mapPositions:[{layer:'ソリューションマトリクス',cell:'保管 / VLM垂直リフト列'}]},
+  hanel:{label:'Hänel',flag:'🇩🇪',sub:'独・非上場 / 1953年 / VLM・カルーセル専業',tags:['conv'],color:'#5a6880',website:'https://www.hanelworldwide.com/',shortDesc:'VLM「Lean-Lift®」と垂直カルーセル「Rotomat®」の世界的メーカー。独・同族経営。',desc:'1953年創業のドイツ同族企業。垂直リフトモジュール（Lean-Lift®）と垂直カルーセル（Rotomat®）の世界的トップメーカーで、70年以上にわたり自動垂直保管の業界標準を形成してきた。',kpis:[{l:'創業',v:'1953年（独・同族経営）'},{l:'主力製品',v:'Lean-Lift®（VLM）・Rotomat®（カルーセル）'}],customers:[{flag:'🌍',name:'製造・医療・MRO各社',tag:'多業種'}],solutions:[{name:'Hänel Lean-Lift®（VLM）',desc:'トレイを縦に積層保管し、要求時に作業者の手元へ自動搬送する垂直リフトモジュール。床面積を最大60%削減でき、Rotomat®カルーセルと並びVLM・垂直保管で世界トップクラスの実績を持つ。',videoUrl:null,linkUrl:'https://www.hanelworldwide.com/int/en/products/',linkLabel:'Hänel製品'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  itohdenki:{label:'伊東電機',flag:'🇯🇵',sub:'兵庫県加西市 / 1946年 / MDR専業',tags:['conv'],color:'#5a6880',website:'https://www.itohdenki.co.jp/',shortDesc:'コンベヤ駆動用モータローラ（MDR／パワーモーラ®）のトップメーカー。経産省グローバルニッチトップ。',desc:'1946年創業。コンベヤ駆動用モータローラ（MDR＝Motor Driven Roller、商標「パワーモーラ®」）の専業メーカー。米国郵便公社（USPS）の標準採用を機に世界へ普及し、MDRは今や全世界の搬送ラインの基幹駆動源。2020年に経産省「グローバルニッチトップ企業」に認定された。',kpis:[{l:'認定',v:'グローバルニッチトップ企業（経産省・2020年）'},{l:'主力製品',v:'MDR「パワーモーラ®」'}],customers:[{flag:'🌍',name:'各大手SI・USPS等（OEM）',tag:'B2B'}],solutions:[{name:'パワーモーラ®（MDR）',desc:'モータを内蔵したコンベヤ駆動ローラ。ローラ単位で駆動・停止する「ラン・オン・デマンド」搬送により従来比最大60%の省エネ・低騒音・エアレス化を実現し、多くの大手SIのコンベヤラインに基幹コンポーネントとして採用されている。',videoUrl:null,linkUrl:'https://www.itohdenki.co.jp/',linkLabel:'伊東電機'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  okura:{label:'オークラ輸送機',flag:'🇯🇵',sub:'兵庫県加古川市 / 1927年 / パレタイザ・コンベヤ',tags:['conv'],color:'#5a6880',website:'https://www.okurayusoki.co.jp/',shortDesc:'パレタイザ・コンベヤ国内トップクラスの総合マテハンメーカー。「コロコン」を発明。',desc:'1927年創業の総合物流機器メーカー。重力式ローラーコンベヤ「コロコン」を生み出し、パレタイザ・コンベヤで国内トップクラス。自動仕分け「ユニソーター」（毎時最大22,000個）やピッキングシステムまで物流機器全般を自社開発する。',kpis:[{l:'地位',v:'パレタイザ・コンベヤ 国内トップクラス'},{l:'仕分け能力',v:'ユニソーター 毎時最大22,000個'}],customers:[{flag:'🇯🇵',name:'食品・飲料・化学各社',tag:'製造・物流'}],solutions:[{name:'ユニソーター（高速仕分け）',desc:'毎時最大22,000個を処理する高速自動仕分け装置。搬送物の隙間を精密制御することで高密度・高精度な仕分けを実現し、パレタイザや各種コンベヤと組み合わせた一貫システムを国内外の工場・物流センターに提供する。',videoUrl:null,linkUrl:'https://www.okurayusoki.co.jp/',linkLabel:'オークラ輸送機'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  fives:{label:'Fives Intralogistics',flag:'🇫🇷',sub:'仏 / 1957年（Fivesグループ1812年）/ ソーター専業',tags:['conv'],color:'#5a6880',website:'https://www.fivesgroup.com/smart-automation-solutions',shortDesc:'クロスベルトソーターの先駆け。空港BHS・郵便・EC物流で世界的。',desc:'仏Fivesグループ（1812年創業）傘下の物流事業。Fives Intralogistics（1957年設立）は1980年代にクロスベルトソーターを発明し、現在もGENI-Belt™として高速・高精度仕分けの最先端を担う。空港手荷物（BHS）・郵便・宅配・EC物流で世界に2,000件超の導入実績を持つ。',kpis:[{l:'導入実績',v:'世界2,000件超（BHS・郵便・EC）'},{l:'代表技術',v:'GENI-Belt™ クロスベルトソーター'}],customers:[{flag:'🌍',name:'DHL・郵便事業者・主要空港',tag:'宅配・BHS'}],solutions:[{name:'GENI-Belt™ クロスベルトソーター',desc:'各キャリアに高摩擦ベルトを搭載し、最大3m/秒・99.99%の精度で荷物を仕分ける高速ソーター。冗長設計で高い稼働信頼性を持ち、世界中の郵便・宅配・EC・空港BHSの基幹仕分け装置として稼働している。',videoUrl:null,linkUrl:'https://www.fivesgroup.com/smart-automation-solutions',linkLabel:'Fives Intralogistics'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  modula:{label:'Modula',flag:'🇮🇹',sub:'伊 / 製品1987・会社設立2016 / VLM',tags:['conv'],color:'#5a6880',website:'https://www.modula.eu/',shortDesc:'VLM（垂直リフトモジュール）の世界的ブランド。伊・2024年売上€290M超。',desc:'イタリアのVLM（垂直リフトモジュール）専業ブランド。1987年に最初の製品が誕生し、2016年にS.p.A.として独立。VLM＋水平カルーセル＋自社WMSを展開し、全世界35,000顧客・2024年売上€290M超。Kardex・Hänelと並ぶVLM主要ブランドだが、創業は新しく「老舗」ではなく現代の有力ブランドにあたる。',kpis:[{l:'売上',v:'€290M超（2024年）'},{l:'顧客',v:'全世界35,000顧客'}],customers:[{flag:'🌍',name:'製造・自動車・電子各社',tag:'多業種'}],solutions:[{name:'Modula Lift（VLM）',desc:'高さを最大限活用して床面積を最大90%削減する垂直リフトモジュール。自社WMSと連動して在庫をリアルタイム管理し、少量多品種の高密度保管と高速ピッキングを実現。AGV・ロボット連携にも対応する。',videoUrl:null,linkUrl:'https://www.modula.eu/',linkLabel:'Modula'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  stocklin:{label:'Stöcklin',flag:'🇨🇭',sub:'スイス・非上場 / 1934年 / AS/RS',tags:['conv'],color:'#5a6880',website:'https://www.stoecklin.com/',shortDesc:'スタッカークレーン（AS/RS）・専用フォークリフトの老舗。自社一貫生産。',desc:'1934年創業のスイスの専業メーカー。スタッカークレーン（ユニットロード／ミニロードAS/RS）・搬送システム・専用フォークリフトを自社一貫生産し、自社ソフトlogOSと組み合わせてターンキーの倉庫自動化を提供。Ricola・Rittal等の欧州企業に実績を持つ。',kpis:[{l:'創業',v:'1934年（スイス・90年）'},{l:'主力',v:'スタッカークレーン（AS/RS）・専用フォークリフト'}],customers:[{flag:'🇪🇺',name:'Ricola・Rittal 等',tag:'製造'}],solutions:[{name:'スタッカークレーン式 AS/RS',desc:'パレット・コンテナを高密度に自動保管するユニットロード／ミニロード型スタッカークレーン。冷凍・冷蔵倉庫にも対応し、自社ソフトlogOSによる在庫・物流制御まで一貫提供する。設計から製造・据付まで自社で完結する点が強み。',videoUrl:null,linkUrl:'https://www.stoecklin.com/',linkLabel:'Stöcklin'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  mecalux:{label:'Mecalux',flag:'🇪🇸',sub:'スペイン・上場 / 1966年 / ラック＋自動倉庫',tags:['conv'],color:'#5a6880',website:'https://www.mecalux.com/',shortDesc:'金属ラック・自動倉庫・WMSの世界大手。スペイン・世界70か国超。',desc:'1966年創業のスペインの大手イントラロジスティクス企業。パレットラック・移動式ラック・ドライブインラック等の保管棚から、自動倉庫（AS/RS）、物流ソフト「Easy WMS」まで幅広く設計・製造・販売する。世界70か国以上で展開し、パレットラック市場の世界主要企業の一つ。',kpis:[{l:'展開',v:'世界70か国以上'},{l:'事業',v:'ラック＋自動倉庫＋WMS'}],customers:[{flag:'🌍',name:'製造・流通・EC各社',tag:'多業種'}],solutions:[{name:'パレットラック／自動倉庫',desc:'選択式パレットラック・ドライブイン・移動式ラックから、クラッドラック（最大高45m）・自動倉庫（AS/RS）まで、保管棚を起点に自動化まで一気通貫で提供。自社の「Easy WMS」と組み合わせて在庫を最適化する。',videoUrl:null,linkUrl:'https://www.mecalux.com/',linkLabel:'Mecalux'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  sanshin:{label:'三進金属工業',flag:'🇯🇵',sub:'大阪府忠岡町 / 1964年 / スチールラック国内No.1',tags:['conv'],color:'#5a6880',website:'https://www.sanshinkinzoku.co.jp/',shortDesc:'産業用スチールラックで生産量・売上 国内No.1。OEM主体の隠れた最大手。電動移動ラック「タナコン」。',desc:'1964年創業（1967年法人化）。産業用ラックで売上・生産量ともに国内No.1のスチールラック専業最大手。大手向けOEM／ODM主体のため一般知名度は低いが、物流・工場・事務所・図書館向けのラックを企画から製造・施工まで自社一貫で手がける。電動移動ラック「タナコン」やラック×ITの物流情報システムも展開。売上281億円（2023年9月期）。',kpis:[{l:'地位',v:'産業用ラック 生産量・売上 国内No.1'},{l:'売上',v:'281億円（2023年9月期）'}],customers:[{flag:'🇯🇵',name:'大手物流・小売（OEM中心）',tag:'B2B／OEM'}],solutions:[{name:'スチールラック／電動移動ラック「タナコン」',desc:'パレットラック・物品棚から電動移動ラック「タナコン」まで幅広いスチールラックを自社一貫生産。1994年に他社へ先駆けてピッキングシステムを開発し、ラック（ハード）と管理システム（ソフト）連動の先駆けとなった。国内最大級のラック生産能力を持つ。',videoUrl:null,linkUrl:'https://www.sanshinkinzoku.co.jp/',linkLabel:'三進金属工業'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
+  nipponfiling:{label:'日本ファイリング',flag:'🇯🇵',sub:'東京都千代田区 / 1924年 / 保管システム専業',tags:['conv'],color:'#5a6880',website:'https://www.nipponfiling.co.jp/',shortDesc:'日本初のスチール家具メーカー（1924）。移動棚・自動化書庫・立体自動倉庫の保管システム専業。2024年で100周年。',desc:'1924年創業。前年の関東大震災を機に「日本初のスチール家具の工業生産」に着手した保管システムの老舗専業メーカー。戦後に公務員記録用ファイリングキャビネット受注を機に現社名へ改称した。電動移動棚（スタックランナー）、立体自動倉庫「スカイラックシステム」、図書館向け自動化書庫「Auto Lib」、病院カルテ管理まで、保管・書架分野で数々の国内初を実現。2024年で創業100周年。',kpis:[{l:'創業',v:'1924年（日本初のスチール家具工業生産・2024年100周年）'},{l:'強み',v:'移動棚・自動化書庫・立体自動倉庫'}],customers:[{flag:'🇯🇵',name:'官公庁・図書館・病院・物流各社',tag:'多業種'}],solutions:[{name:'電動移動棚・自動化書庫「Auto Lib」',desc:'限られた床面積で収納量を最大化する電動移動棚（スタックランナー）と図書館向け自動化書庫「Auto Lib」を中核に、立体自動倉庫「スカイラック」やデジタルピッキング「ピックパル」まで保管システムを一貫提供。文教施設・官公庁・病院で豊富な実績を持つ。',videoUrl:null,linkUrl:'https://www.nipponfiling.co.jp/',linkLabel:'日本ファイリング'}],groupMembers:[],mapPositions:[{layer:'業界マップ',cell:'専業・老舗メーカー行 / ハード製造列'}]},
   quicktron:{label:'Quicktron',flag:'🇨🇳',sub:'アリババ系 / 上海',tags:['amr'],color:'#e8341a',website:'https://www.quicktron.com/',shortDesc:'アリババグループ関連のAMRメーカー。大規模フリート管理が得意。',desc:'アリババグループ関連のAMRメーカー。大規模フリート管理が得意。中国・東南アジアで多数導入。',kpis:[{l:'親会社',v:'アリババグループ関連'}],customers:[{flag:'🇨🇳',name:'アリババ物流施設',tag:'EC'}],solutions:[{name:'Quicktron AMRフリート',desc:'【アリババグループのノウハウを外部提供】アリババグループのECフルフィルメント・物流オペレーション技術を外部企業向けに展開するAMRシステム。菜鳥（Cainiao）ネットワークで実証されたフリート管理技術を活用し、数百台規模のAMRを一元管理できる。棚搬送型（Goods-to-Person）AMRが主力で、EC・3PL・食品流通向けに中国・東南アジアで多数の導入実績を持つ。',videoUrl:null,linkUrl:'https://www.quicktron.com/solutions/',linkLabel:'ソリューション詳細'}],groupMembers:[],mapPositions:[{layer:'ソリューションマトリクス',cell:'水平搬送 / AMR棚搬送列'}]},
   okamura:{label:'オカムラ',flag:'🇯🇵',sub:'株式会社オカムラ / 東証プライム / 1945年創業',tags:['gtp','integrator'],color:'#0e8f6e',website:'https://www.okamura.co.jp/mhs/',
     shortDesc:'AutoStore国内初導入（2016年）の正規販売店。国内50カ所以上の導入実績を持つ老舗SI。',
@@ -10647,9 +10962,11 @@ function buildMap(){
         const desc=CHIP_DESC[id]||nd.shortDesc||nd.desc?.slice(0,60)+'…'||'';
         const exps=NODE_EXPOS[id]||[];
         chip.innerHTML=`<div class="chip-top"><span class="chip-flag">${nd.flag}</span><span class="chip-name${sbg?' sbg-name':''}">${nd.label}</span></div><div class="chip-desc">${desc}</div>`;
-        if(exps.length){
+        const nbs=NODE_BADGES[id]||[];
+        if(exps.length||nbs.length){
           const bd=document.createElement('div');bd.className='chip-badges';
           exps.forEach(code=>{const ex=EXPOS[code];if(!ex)return;const sp=document.createElement('span');sp.className=`expo-badge ${ex.cls}`;sp.textContent=`${ex.emoji} ${ex.short}`;bd.appendChild(sp);});
+          nbs.forEach(b=>{const bg=BADGES[b.t];if(!bg)return;const sp=document.createElement('span');sp.className='title-badge';sp.title=(b.note||'')+(b.src?' ['+b.src+']':'');sp.textContent=bg.e+bg.s;bd.appendChild(sp);});
           chip.appendChild(bd);
         }
         chip.addEventListener('mouseenter',e=>showTip(id,e));
@@ -10677,7 +10994,7 @@ function buildMatrix(){
       const cell=document.createElement('div');cell.className='cell';
       const acc=document.createElement('div');acc.className='cell-accent';acc.style.background=layer.color;cell.appendChild(acc);
       const hdr=document.createElement('div');hdr.className='cell-hdr';hdr.style.color=layer.color;
-      hdr.innerHTML=cat.name.replace(/\n/g,'<br>')+`<span class="cell-en">${cat.en}</span>`;cell.appendChild(hdr);
+      hdr.innerHTML=cat.name.replace(/\n/g,'<br>')+`<span class="cell-en">${cat.en}</span>`;if(cat.mkt&&MKT[cat.mkt]){const mk=document.createElement('div');mk.className='cell-mkt';mk.innerHTML=`<span class="mkt-tag">⚪市場規模</span>${MKT[cat.mkt].l}`+(cat.mn?`<span class="mkt-note">※${cat.mn}</span>`:'');hdr.appendChild(mk);}cell.appendChild(hdr);
       const uniq=[];cat.cos.forEach(id=>{if(!uniq.includes(id))uniq.push(id);});
       uniq.forEach(id=>{
         const nd=getNode(id);if(!nd)return;
@@ -10685,10 +11002,16 @@ function buildMatrix(){
         const chip=document.createElement('div');chip.className='mchip'+(sbg?' sbg-mchip':'');
         const desc=CHIP_DESC[id]||nd.shortDesc||'';
         const exps=NODE_EXPOS[id]||[];
-        chip.innerHTML=`<div class="mchip-top"><span class="mchip-flag">${nd.flag}</span><span class="mchip-name${sbg?' sbg-mn':''}">${nd.label}</span></div>${desc?`<div class="mchip-desc">${desc}</div>`:''}`;
-        if(exps.length){
+        const sol=(SOL[cat.en]||{})[id];
+        const solUrl=(SOL_URL[cat.en]||{})[id];
+        const nameInner=sol?`${sol}<span class="mchip-co">（${nd.label}）</span>`:nd.label;
+        const nameHTML=solUrl?`<a class="mchip-link" href="${solUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();">${nameInner}<span class="mchip-ext">↗</span></a>`:nameInner;
+        chip.innerHTML=`<div class="mchip-top"><span class="mchip-flag">${nd.flag}</span><span class="mchip-name${sbg?' sbg-mn':''}">${nameHTML}</span></div>${desc?`<div class="mchip-desc">${desc}</div>`:''}`;
+        const nbs=NODE_BADGES[id]||[];
+        if(exps.length||nbs.length){
           const bd=document.createElement('div');bd.className='mchip-badges';
           exps.forEach(code=>{const ex=EXPOS[code];if(!ex)return;const sp=document.createElement('span');sp.className=`expo-badge ${ex.cls}`;sp.style.fontSize='7px';sp.textContent=`${ex.emoji} ${ex.short}`;bd.appendChild(sp);});
+          nbs.forEach(b=>{const bg=BADGES[b.t];if(!bg)return;const sp=document.createElement('span');sp.className='title-badge';sp.style.fontSize='7px';sp.title=(b.note||'')+(b.src?' ['+b.src+']':'');sp.textContent=bg.e+bg.s;bd.appendChild(sp);});
           chip.appendChild(bd);
         }
         chip.addEventListener('mouseenter',e=>showTip(id,e));
@@ -10789,8 +11112,8 @@ document.getElementById('back-btn').addEventListener('click',()=>switchView(prev
 });
 
 // ═══════════ TAB / VIEW SWITCHING (2階層) ═══════════
-const TAB_GROUP = { map:'research', matrix:'research', cases:'research', market:'research', reading:'textbook', intro:'textbook', souba:'textbook' };
-const CHAT_TABS = ['reading','intro','souba']; // マテハン教本配下でチャット表示
+const TAB_GROUP = { map:'research', matrix:'research', cases:'research', market:'research', reading:'textbook', intro:'textbook', souba:'textbook', building:'textbook' };
+const CHAT_TABS = ['reading','intro','souba','building']; // マテハン教本配下でチャット表示
 
 function switchTier1(group){
   document.querySelectorAll('.t1').forEach(b=>b.classList.toggle('active', b.getAttribute('data-t1')===group));
